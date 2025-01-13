@@ -7,25 +7,30 @@ namespace fs = std::filesystem;
 using namespace rm;
 int main(int argc, char** argv) {
     auto param = Param::get_instance();
-    bool debug = (*param)["Debug"]["Debug"];
-    init();
+    int debug = (*param)["Debug"]["Debug"];
+    Data::mining_tank_color = rm::ARMOR_COLOR_RED;
     //读取图片
     if(!debug)
     {
+        init();
         Camera* camera = Data::camera[Data::camera_index];
-        std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
+        while(true)
+        {
+            std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
 
-        frame_wait = tp1 = getTime();
-        while(frame == nullptr) {
-            frame = camera->buffer->pop();
-            double delay = getDoubleOfS(frame_wait, getTime());
-            if (delay > 0.5 && Data::timeout_flag) {
-                rm::message("Capture timeout", rm::MSG_ERROR);
-                exit(-1);
+            TimePoint frame_wait = getTime();
+            while(frame == nullptr) {
+                frame = camera->buffer->pop();
+                double delay = getDoubleOfS(frame_wait, getTime());
+                if (delay > 0.5 && Data::timeout_flag) {
+                    rm::message("Capture timeout", rm::MSG_ERROR);
+                    exit(-1);
+                }
             }
+            detect(*(frame->image));
+            cv::imshow("src", *(frame->image));
+            cv::waitKey(1);
         }
-
-        detect(*(frame->image));
     }
     else if(debug==1)
     {
@@ -43,7 +48,8 @@ int main(int argc, char** argv) {
             detect(src);
             cv::waitKey(0);
         }
-    }else if(debug==2)
+    }
+    else if(debug==2)
     {
         cv::Mat src = cv::imread("/home/tjurm/Code/TJURM-Engineering/image/15.jpg");
         if(src.empty()){

@@ -43,15 +43,15 @@
         "ShowTriangle": true,
         "Debug":1
     },
-
     "Camera":{
+        "CamLensDir" : "/etc/openrm/CamLens.json",
         "Base" : {
-            "CameraType" : "DaHeng1280_1024",
-            "LensType" : "Prime6mm",
-            "Serial" : "FDJ22060040",
-            "Width" : 1280,
+            "CameraType" : "DaHeng720_540",
+            "LensType" : "Prime25mm",
+            "Serial" : "FDJ21090028",
+            "Width" : 720,
             "ExposureTime" : 3000.0,
-            "FrameRate" : 200.0,
+            "FrameRate" : 120.0,
             "Gain" : 24.0,
             "ROIWidth" : -1,
             "ROIHeight" : -1

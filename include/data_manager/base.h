@@ -10,7 +10,7 @@ struct MiningTankFour
     cv::Point2f center;
 };
 
-struct MiningTankV 
+struct MiningTankV
 {
     std::vector<cv::Point2f> point;
 };

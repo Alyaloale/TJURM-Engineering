@@ -4,7 +4,6 @@ using namespace rm;
 
 
 void init(){
-    Data::mining_tank_color = rm::ARMOR_COLOR_RED;
     if(!init_camera())
     {
         rm::message("Failed to init camera", rm::MSG_ERROR);
@@ -43,7 +42,7 @@ bool init_camera(){
         rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
         double exp = (*param)["Camera"]["Base"]["ExposureTime"];
         double gain = (*param)["Camera"]["Base"]["Gain"];
-        double fps = (*param)["Camera"]["Base"]["FPS"];
+        double fps = (*param)["Camera"]["Base"]["FrameRate"];
         int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
         int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
         std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
@@ -57,11 +56,12 @@ bool init_camera(){
             return false;
         }
 
-        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps, 0, roi_width, roi_height);
+        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps);
         if(!flag_camera) {
             rm::message("Failed to set camera args", rm::MSG_ERROR);
             return false;
         }
         Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
         Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
+        return true;
 }

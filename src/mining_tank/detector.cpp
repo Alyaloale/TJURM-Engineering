@@ -533,13 +533,19 @@ void StrenthenColor(cv::Mat &src, cv::Mat &dst, rm::ArmorColor color)
     std::vector<cv::Mat> channels;
     dst = cv::Mat::zeros(src.size(),CV_8UC1);
     cv::split(src, channels);
-    int target ,other1,other2;
+    int b ,g,r,target,other1,other2;
     if(color == rm::ARMOR_COLOR_RED){
+        b = 0;
+        g = 0;
+        r = 255;
         target = 2;
         other1 = 0;
         other2 = 1;
     }
     else if(color == rm::ARMOR_COLOR_BLUE){
+        b = 255;
+        g = 0;
+        r = 0;
         target = 0;
         other1 = 1;
         other2 = 2;
@@ -551,9 +557,11 @@ void StrenthenColor(cv::Mat &src, cv::Mat &dst, rm::ArmorColor color)
     //增强颜色
     for(int i=0;i<src.rows;i++){
         for(int j=0;j<src.cols;j++){
+            double dis = std::sqrt((channels[0].at<uchar>(i,j)-b)*(channels[0].at<uchar>(i,j)-b)+(channels[1].at<uchar>(i,j)-g)*(channels[1].at<uchar>(i,j)-g)+(channels[2].at<uchar>(i,j)-r)*(channels[2].at<uchar>(i,j)-r));
+            double x=sqrt(dis/255);
             int gap = 2*channels[target].at<uchar>(i,j)-channels[other1].at<uchar>(i,j)-channels[other2].at<uchar>(i,j);
-            double ratio = 1.0*gap/(channels[other1].at<uchar>(i,j)+channels[other2].at<uchar>(i,j));
-            dst.at<uchar>(i,j) = (0.2*channels[target].at<uchar>(i,j)+gap*0.8*255);
+            gap =gap>0?gap:0;
+            dst.at<uchar>(i,j) = (1-std::pow(x,2.5)+std::pow(2.718,-20*x))/4*255+channels[target].at<uchar>(i,j)*0.25+gap*0.125;
         }
     }
 }
