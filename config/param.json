@@ -1,0 +1,60 @@
+{
+    "Path":{
+        "ImagePath": "/media/tjurm/ 赵子程/image/"
+    },
+    "Points":{
+        "Threshold":{
+            "RatioRed": 30,
+            "RatioBlue": 30
+        },
+        "MiningTank":{
+            "Four":{
+                "Ratio":{
+                    "MaxHeightWideRatio":3.6,
+                    "MinWideHeightRatio":0.25,
+                    "MaxcontourRectRatio": 0.70,
+                    "MincontourRectRatio": 0.20
+                },
+                "Area":{
+                    "MinArea": 60,
+                    "MaxArea": 900
+                }
+            },
+            "V":{
+                "Ratio":{
+                    "MaxHeightWideRatio":6.5,
+                    "MinHeightWideRatio":2,
+                    "MaxWideHeightRatio":0.52,
+                    "MinWideHeightRatio":0.13,
+                    "MaxcontourRectRatio": 0.28,
+                    "MincontourRectRatio": 0.06
+                },
+                "Area":{
+                    "MinArea": 250,
+                    "MaxArea": 2000
+                }
+            }
+        }
+    },
+    "Debug":{
+        "ShowImage": true,
+        "BinaryImage": true,
+        "ShowContour": true,
+        "ShowTriangle": true,
+        "Debug":1
+    },
+
+    "Camera":{
+        "Base" : {
+            "CameraType" : "DaHeng1280_1024",
+            "LensType" : "Prime6mm",
+            "Serial" : "FDJ22060040",
+            "Width" : 1280,
+            "ExposureTime" : 3000.0,
+            "FrameRate" : 200.0,
+            "Gain" : 24.0,
+            "ROIWidth" : -1,
+            "ROIHeight" : -1
+        }
+    }
+}

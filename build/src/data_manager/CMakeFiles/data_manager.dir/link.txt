@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdata_manager.a CMakeFiles/data_manager.dir/base.cpp.o CMakeFiles/data_manager.dir/init.cpp.o CMakeFiles/data_manager.dir/param.cpp.o
+/usr/bin/ranlib libdata_manager.a

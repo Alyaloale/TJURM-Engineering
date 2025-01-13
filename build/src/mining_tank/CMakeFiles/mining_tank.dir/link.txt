@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmining_tank.a CMakeFiles/mining_tank.dir/detector.cpp.o
+/usr/bin/ranlib libmining_tank.a

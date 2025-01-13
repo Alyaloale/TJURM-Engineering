@@ -1,0 +1,11 @@
+/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/TJURM-Engineering.dir
+/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/edit_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/rebuild_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/edit_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/rebuild_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/edit_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/rebuild_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/edit_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/rebuild_cache.dir
