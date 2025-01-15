@@ -41,7 +41,12 @@
         "BinaryImage": true,
         "ShowContour": true,
         "ShowTriangle": true,
-        "Debug":1
+        "Debug":1,
+        "Control":{
+            "Serial":false,
+            "SendWaitTime": 2000,
+            "SerialFlag": 0
+        }
     },
     "Camera":{
         "CamLensDir" : "/etc/openrm/CamLens.json",

@@ -4,17 +4,6 @@
 #include <openrm.h>
 
 
-struct MiningTankFour
-{
-    std::vector<std::vector<cv::Point2f>> point;//以三角形形式存储，顶点为第一个点，顺时针
-    cv::Point2f center;
-};
-
-struct MiningTankV
-{
-    std::vector<cv::Point2f> point;
-};
-
 namespace Data{
     // 颜色
     extern rm::ArmorColor self_color;
@@ -22,9 +11,18 @@ namespace Data{
     extern std::vector<rm::Camera*> camera;
     extern int camera_index;
     extern bool timeout_flag;
+    extern int debug;
+    extern std::string read_path;
+    extern bool show_image_flag;
+    extern bool show_binary_image_flag;
+    extern bool show_contour_flag;
+    extern bool show_triangle_flag;
+    extern bool serial_flag;
+    extern int send_wait_time_ms;
 }
 
 
-void init();
 bool init_camera();//初始化相机
+void init_serial();//初始化串口
+void init_debug();//初始化调试参数
 #endif // BASE_H

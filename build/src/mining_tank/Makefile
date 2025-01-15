@@ -154,6 +154,54 @@ detector.cpp.s:
 	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.s
 .PHONY : detector.cpp.s
 
+get_Four.o: get_Four.cpp.o
+.PHONY : get_Four.o
+
+# target to build an object file
+get_Four.cpp.o:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o
+.PHONY : get_Four.cpp.o
+
+get_Four.i: get_Four.cpp.i
+.PHONY : get_Four.i
+
+# target to preprocess a source file
+get_Four.cpp.i:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.i
+.PHONY : get_Four.cpp.i
+
+get_Four.s: get_Four.cpp.s
+.PHONY : get_Four.s
+
+# target to generate assembly for a file
+get_Four.cpp.s:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.s
+.PHONY : get_Four.cpp.s
+
+get_V.o: get_V.cpp.o
+.PHONY : get_V.o
+
+# target to build an object file
+get_V.cpp.o:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o
+.PHONY : get_V.cpp.o
+
+get_V.i: get_V.cpp.i
+.PHONY : get_V.i
+
+# target to preprocess a source file
+get_V.cpp.i:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.i
+.PHONY : get_V.cpp.i
+
+get_V.s: get_V.cpp.s
+.PHONY : get_V.s
+
+# target to generate assembly for a file
+get_V.cpp.s:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.s
+.PHONY : get_V.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -166,6 +214,12 @@ help:
 	@echo "... detector.o"
 	@echo "... detector.i"
 	@echo "... detector.s"
+	@echo "... get_Four.o"
+	@echo "... get_Four.i"
+	@echo "... get_Four.s"
+	@echo "... get_V.o"
+	@echo "... get_V.i"
+	@echo "... get_V.s"
 .PHONY : help
 
 

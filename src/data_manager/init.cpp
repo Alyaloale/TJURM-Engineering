@@ -1,15 +1,8 @@
 #include"data_manager/base.h"
 #include"data_manager/param.h"
+#include"data_manager/control/control.h"
+#include <thread>
 using namespace rm;
-
-
-void init(){
-    if(!init_camera())
-    {
-        rm::message("Failed to init camera", rm::MSG_ERROR);
-        exit(-1);
-    }
-}
 
 
 bool init_camera(){
@@ -64,4 +57,51 @@ bool init_camera(){
         Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
         Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
         return true;
+}
+
+void init_serial() {
+    int status;
+    std::vector<std::string> port_list;
+    auto control = Control::get_instance();
+
+    while(true) {
+
+        status = (int)rm::getSerialPortList(port_list, rm::SERIAL_TYPE_TTY_USB);
+
+        if (status != 0 || port_list.empty()) {
+            rm::message("Control port list failed", rm::MSG_ERROR);
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            port_list.clear();
+            continue;
+        }
+
+        control->port_name_ = port_list[0];
+        status = (int)rm::openSerialPort(control->file_descriptor_, control->port_name_);
+        if (status != 0) {
+            rm::message("Control port open failed", rm::MSG_ERROR);
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            port_list.clear();
+            continue;
+        }
+        if(status == 0) {
+            break;
+        }
+    }
+}
+
+void init_debug() {
+    auto param = Param::get_instance();
+
+
+    Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
+    Data::debug = (*param)["Debug"]["Debug"];
+    Data::mining_tank_color = rm::ARMOR_COLOR_RED;
+    Data::self_color = rm::ARMOR_COLOR_RED;
+    Data::read_path = (*param)["Path"]["ImagePath"];
+    Data::show_image_flag = (*param)["Debug"]["ShowImage"];
+    Data::show_binary_image_flag = (*param)["Debug"]["BinaryImage"];
+    Data::show_contour_flag = (*param)["Debug"]["ShowContour"];
+    Data::show_triangle_flag = (*param)["Debug"]["ShowTriangle"];
+    Data::send_wait_time_ms = (*param)["Debug"]["Control"]["SendWaitTime"];
+    Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
 }

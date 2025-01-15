@@ -139,7 +139,7 @@ CMakeFiles/TJURM-Engineering.dir/all: src/mining_tank/CMakeFiles/mining_tank.dir
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TJURM-Engineering.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/TJURM-Engineering.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : CMakeFiles/TJURM-Engineering.dir/rule
@@ -160,12 +160,12 @@ CMakeFiles/TJURM-Engineering.dir/clean:
 src/data_manager/CMakeFiles/data_manager.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=3,4,5,6 "Built target data_manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11 "Built target data_manager"
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/all
 
 # Build rule for subdir invocation for target.
 src/data_manager/CMakeFiles/data_manager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/data_manager/CMakeFiles/data_manager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/rule
@@ -186,12 +186,12 @@ src/data_manager/CMakeFiles/data_manager.dir/clean:
 src/mining_tank/CMakeFiles/mining_tank.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=7,8 "Built target mining_tank"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=12,13,14,15 "Built target mining_tank"
 .PHONY : src/mining_tank/CMakeFiles/mining_tank.dir/all
 
 # Build rule for subdir invocation for target.
 src/mining_tank/CMakeFiles/mining_tank.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/mining_tank/CMakeFiles/mining_tank.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : src/mining_tank/CMakeFiles/mining_tank.dir/rule

@@ -83,17 +83,49 @@ src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mining_tank.dir/detector.cpp.s"
 	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/mining_tank/detector.cpp -o CMakeFiles/mining_tank.dir/detector.cpp.s
 
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: src/mining_tank/CMakeFiles/mining_tank.dir/flags.make
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_Four.cpp
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: src/mining_tank/CMakeFiles/mining_tank.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o -MF CMakeFiles/mining_tank.dir/get_Four.cpp.o.d -o CMakeFiles/mining_tank.dir/get_Four.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_Four.cpp
+
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mining_tank.dir/get_Four.cpp.i"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_Four.cpp > CMakeFiles/mining_tank.dir/get_Four.cpp.i
+
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mining_tank.dir/get_Four.cpp.s"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_Four.cpp -o CMakeFiles/mining_tank.dir/get_Four.cpp.s
+
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: src/mining_tank/CMakeFiles/mining_tank.dir/flags.make
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_V.cpp
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: src/mining_tank/CMakeFiles/mining_tank.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o -MF CMakeFiles/mining_tank.dir/get_V.cpp.o.d -o CMakeFiles/mining_tank.dir/get_V.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_V.cpp
+
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mining_tank.dir/get_V.cpp.i"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_V.cpp > CMakeFiles/mining_tank.dir/get_V.cpp.i
+
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mining_tank.dir/get_V.cpp.s"
+	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_V.cpp -o CMakeFiles/mining_tank.dir/get_V.cpp.s
+
 # Object files for target mining_tank
 mining_tank_OBJECTS = \
-"CMakeFiles/mining_tank.dir/detector.cpp.o"
+"CMakeFiles/mining_tank.dir/detector.cpp.o" \
+"CMakeFiles/mining_tank.dir/get_Four.cpp.o" \
+"CMakeFiles/mining_tank.dir/get_V.cpp.o"
 
 # External object files for target mining_tank
 mining_tank_EXTERNAL_OBJECTS =
 
 src/mining_tank/libmining_tank.a: src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o
+src/mining_tank/libmining_tank.a: src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o
+src/mining_tank/libmining_tank.a: src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o
 src/mining_tank/libmining_tank.a: src/mining_tank/CMakeFiles/mining_tank.dir/build.make
 src/mining_tank/libmining_tank.a: src/mining_tank/CMakeFiles/mining_tank.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libmining_tank.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libmining_tank.a"
 	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && $(CMAKE_COMMAND) -P CMakeFiles/mining_tank.dir/cmake_clean_target.cmake
 	cd /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mining_tank.dir/link.txt --verbose=$(VERBOSE)
 

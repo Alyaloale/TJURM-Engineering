@@ -6,5 +6,5 @@ CXX_DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DTJURM_Eng
 
 CXX_INCLUDES = -I/usr/local/cuda/include -I/usr/local/include/openrm -I/usr/include/eigen3 -I/home/tjurm/Code/TJURM-Engineering/include -I/home/tjurm/Code/TJURM-Engineering/libs/json/single_include/nlohmann -I/home/tjurm/Code/TJURM-Engineering/libs/json/single_include -isystem /usr/local/opencv4.5.4/include/opencv4
 
-CXX_FLAGS = -g -std=gnu++17
+CXX_FLAGS = -g -std=gnu++1z
 
