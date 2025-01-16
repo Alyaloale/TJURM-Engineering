@@ -104,4 +104,98 @@ void init_debug() {
     Data::show_triangle_flag = (*param)["Debug"]["ShowTriangle"];
     Data::send_wait_time_ms = (*param)["Debug"]["Control"]["SendWaitTime"];
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
+
+    
+    std::vector<cv::Point3f> Point1;
+    cv::Point3f point1,point2,point3;
+    point1.x = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["x"];
+    point1.y = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["y"];
+    point1.z = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["z"];
+    point2.x = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["x"];
+    point2.y = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["y"];
+    point2.z = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["z"];
+    point3.x = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["x"];
+    point3.y = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["y"];
+    point3.z = (*param)["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["z"];
+    Point1.push_back(point1);
+    Point1.push_back(point2);
+    Point1.push_back(point3);
+
+    std::vector<cv::Point3f> Point2;
+    point1.x = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["x"];
+    point1.y = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["y"];
+    point1.z = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["z"];
+    point2.x = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["x"];
+    point2.y = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["y"];
+    point2.z = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["z"];
+    point3.x = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["x"];
+    point3.y = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["y"];
+    point3.z = (*param)["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["z"];
+    Point2.push_back(point1);
+    Point2.push_back(point2);
+    Point2.push_back(point3);
+
+    std::vector<cv::Point3f> Point3;
+    point1.x = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["x"];
+    point1.y = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["y"];
+    point1.z = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["z"];
+    point2.x = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["x"];
+    point2.y = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["y"];
+    point2.z = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["z"];
+    point3.x = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["x"];
+    point3.y = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["y"];
+    point3.z = (*param)["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["z"];
+    Point3.push_back(point1);
+    Point3.push_back(point2);
+    Point3.push_back(point3);
+
+    std::vector<cv::Point3f> Point4;
+    point1.x = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["x"];
+    point1.y = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["y"];
+    point1.z = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["z"];
+    point2.x = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["x"];
+    point2.y = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["y"];
+    point2.z = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["z"];
+    point3.x = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["x"];
+    point3.y = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["y"];
+    point3.z = (*param)["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["z"];
+    Point4.push_back(point1);
+    Point4.push_back(point2);
+    Point4.push_back(point3);
+    
+    std::vector<cv::Point3f> Point5;
+    point1.x = (*param)["MiningTank"]["V"]["PointLeft"]["Point1"]["x"];
+    point1.y = (*param)["MiningTank"]["V"]["PointLeft"]["Point1"]["y"];
+    point1.z = (*param)["MiningTank"]["V"]["PointLeft"]["Point1"]["z"];
+    point2.x = (*param)["MiningTank"]["V"]["PointLeft"]["Point2"]["x"];
+    point2.y = (*param)["MiningTank"]["V"]["PointLeft"]["Point2"]["y"];
+    point2.z = (*param)["MiningTank"]["V"]["PointLeft"]["Point2"]["z"];
+    point3.x = (*param)["MiningTank"]["V"]["PointLeft"]["Point3"]["x"];
+    point3.y = (*param)["MiningTank"]["V"]["PointLeft"]["Point3"]["y"];
+    point3.z = (*param)["MiningTank"]["V"]["PointLeft"]["Point3"]["z"];
+    Point5.push_back(point1);
+    Point5.push_back(point2);
+    Point5.push_back(point3);
+
+    std::vector<cv::Point3f> Point6;
+    point1.x = (*param)["MiningTank"]["V"]["PointRight"]["Point1"]["x"];
+    point1.y = (*param)["MiningTank"]["V"]["PointRight"]["Point1"]["y"];
+    point1.z = (*param)["MiningTank"]["V"]["PointRight"]["Point1"]["z"];
+    point2.x = (*param)["MiningTank"]["V"]["PointRight"]["Point2"]["x"];
+    point2.y = (*param)["MiningTank"]["V"]["PointRight"]["Point2"]["y"];
+    point2.z = (*param)["MiningTank"]["V"]["PointRight"]["Point2"]["z"];
+    point3.x = (*param)["MiningTank"]["V"]["PointRight"]["Point3"]["x"];
+    point3.y = (*param)["MiningTank"]["V"]["PointRight"]["Point3"]["y"];
+    point3.z = (*param)["MiningTank"]["V"]["PointRight"]["Point3"]["z"];
+    Point6.push_back(point1);
+    Point6.push_back(point2);
+    Point6.push_back(point3);
+
+
+    Data::points_3D.push_back(Point1);
+    Data::points_3D.push_back(Point2);
+    Data::points_3D.push_back(Point3);
+    Data::points_3D.push_back(Point4);
+    Data::points_3D.push_back(Point5);
+    Data::points_3D.push_back(Point6);
 }

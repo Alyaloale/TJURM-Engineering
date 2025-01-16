@@ -15,7 +15,7 @@ void Control::message() {
 void Control::state() {
 
     // 通过电控获取己方颜色
-    Data::self_color = (Data::mining_tank_color == rm::ARMOR_COLOR_BLUE) ? rm::ARMOR_COLOR_RED : rm::ARMOR_COLOR_BLUE;
+    Data::self_color = Control::get_self();
 }
 
 

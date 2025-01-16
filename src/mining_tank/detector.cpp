@@ -101,42 +101,14 @@ void detect(cv::Mat &src)
     show_triangle = cv::Mat::zeros(image_in.size(), CV_8UC3);
 
     //获取四点
-    if(mining_tank_contours_four.size()==4){
-        mining_tank_four = GetMiningTankFour(mining_tank_contours_four,binary_image,show_triangle);
-    }
-    else if(mining_tank_contours_four.size()>4){
-        std::cout<<"four point contour num is more than 4"<<std::endl;
-    }
-    else{
-        std::cout<<"four point contour num is less than 4"<<std::endl;
-        std::cout<<"four point contour num is "<<mining_tank_contours_four.size()<<std::endl;
-    }
+    mining_tank_four = GetMiningTankFour(mining_tank_contours_four,binary_image,show_triangle);
+    std::cout<<"four point contour num is "<<mining_tank_contours_four.size()<<std::endl;
 
     //获取V字
-    if(mining_tank_contours_v.size()==1){
-        mining_tank_v = GetMiningTankV(mining_tank_contours_v,binary_image,show_triangle);
-    }
-    else if(mining_tank_contours_v.size()>2){
-        std::cout<<"V contour num is more than 1"<<std::endl;
-    }
-    else{
-        std::cout<<"V contour is missing"<<std::endl;
-        std::cout<<"V contour num is "<<mining_tank_contours_v.size()<<std::endl;
-    }
+    mining_tank_v = GetMiningTankV(mining_tank_contours_v,binary_image,show_triangle);
+    std::cout<<"V contour num is "<<mining_tank_contours_v.size()<<std::endl;
+    
 
-    //画出四点矩形
-    if(Data::show_image_flag&&mining_tank_contours_four.size()==4){
-        for(int i=0;i<mining_tank_four.point.size();i++){
-            cv::line(image_in,mining_tank_four.point[i][0],mining_tank_four.point[(i+1)%mining_tank_four.point.size()][0],cv::Scalar(0,255,0),1);
-        }
-         cv::circle(image_in,mining_tank_four.point[0][0],2,cv::Scalar(255,0,0),2);
-    }
-    //画出V字
-    if(Data::show_image_flag&&mining_tank_contours_v.size()==1){
-        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[1],cv::Scalar(0,255,0),1);
-        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[2],cv::Scalar(0,255,0),1);
-        cv::circle(image_in,mining_tank_v.point[0],2,cv::Scalar(255,0,0),2);
-    }
     if(Data::show_image_flag&&Data::show_binary_image_flag){
         cv::imshow("gray_image", gray_image);
         cv::imshow("binary_image", binary_image);
@@ -145,9 +117,19 @@ void detect(cv::Mat &src)
         cv::imshow("show_triangle", show_triangle);
     }
     if(Data::show_image_flag){
+        //四点
+        for(int i=0;i<mining_tank_four.point.size();i++){
+            cv::line(image_in,mining_tank_four.point[i][0],mining_tank_four.point[(i+1)%mining_tank_four.point.size()][0],cv::Scalar(0,255,0),1);
+        }
+        cv::circle(image_in,mining_tank_four.point[0][0],2,cv::Scalar(255,0,0),2);
+
+        //V字
+        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[1],cv::Scalar(0,255,0),1);
+        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[2],cv::Scalar(0,255,0),1);
+        cv::circle(image_in,mining_tank_v.point[0],2,cv::Scalar(255,0,0),2);
         cv::imshow("image", image_in);
     }
-     cv::waitKey(1);
+    cv::waitKey(1);
 }
 
 

@@ -19,6 +19,8 @@ namespace Data{
     extern bool show_triangle_flag;
     extern bool serial_flag;
     extern int send_wait_time_ms;
+    extern std::vector<std::pair<std::vector<cv::Point3f>,std::vector<cv::Point2f>>> points_3D_2D;
+    extern std::vector<std::vector<cv::Point3f>> points_3D;
 }
 
 

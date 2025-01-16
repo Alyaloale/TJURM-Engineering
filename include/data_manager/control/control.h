@@ -24,9 +24,9 @@ public:
 
 
     rm::ArmorColor get_self() {
-        rm::ArmorColor enemy_color = static_cast<rm::ArmorColor>(this->state_bytes_.input_data.enemy_color);
-        if (enemy_color == rm::ARMOR_COLOR_BLUE) return rm::ARMOR_COLOR_RED;
-        else if (enemy_color == rm::ARMOR_COLOR_RED) return rm::ARMOR_COLOR_BLUE;
+        Data::mining_tank_color = static_cast<rm::ArmorColor>(this->state_bytes_.input_data.enemy_color);
+        if (Data::mining_tank_color == rm::ARMOR_COLOR_BLUE) return rm::ARMOR_COLOR_RED;
+        else if (Data::mining_tank_color == rm::ARMOR_COLOR_RED) return rm::ARMOR_COLOR_BLUE;
     }
 
 
