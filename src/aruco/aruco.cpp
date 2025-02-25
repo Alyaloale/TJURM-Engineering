@@ -49,18 +49,21 @@ void Control::aruco_detect() {
     auto param = Param::get_instance();
     while(true)
     {
-        cv::Mat aruco_image;
-        if(!Data::image_in.empty())detectArucoMarkers(Data::image_in.clone(), Data::markerIds, Data::markerCorners, true, &Data::image_in);
-        if(Data::show_aruco)
+        cv::Mat aruco_image ;
+        if(!Data::image_in.empty())
         {
-            cv::imshow("aruco", Data::image_in);
-            cv::waitKey(1);
-            for(int i=0;i<Data::markerIds.size();i++)
+            detectArucoMarkers(Data::image_in.clone(), Data::markerIds, Data::markerCorners, true, &aruco_image);
+            if(Data::show_aruco)
             {
-                std::cout<<"id: "<<Data::markerIds[i]<<std::endl;
-                for(int j=0;j<Data::markerCorners[i].size();j++)
+                cv::imshow("aruco", aruco_image);
+                cv::waitKey(1);
+                for(int i=0;i<Data::markerIds.size();i++)
                 {
-                    std::cout<<"corner: "<<Data::markerCorners[i][j]<<std::endl;
+                    std::cout<<"id: "<<Data::markerIds[i]<<std::endl;
+                    for(int j=0;j<Data::markerCorners[i].size();j++)
+                    {
+                        std::cout<<"corner: "<<Data::markerCorners[i][j]<<std::endl;
+                    }
                 }
             }
         }
