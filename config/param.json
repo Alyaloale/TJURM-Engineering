@@ -2,7 +2,7 @@
     "Path":{
         "ImagePath": "/media/tjurm/ 赵子程/image/"
     },
-    "Points":{
+    "Point":{
         "Threshold":{
             "RatioRed": 30,
             "RatioBlue": 30
@@ -18,63 +18,63 @@
                         },
                         "point2": {
                             "x": -87.5,
-                            "Y": -137.5,
+                            "y": -137.5,
                             "z": 0
                         },
                         "point3": {
                             "x": -137.5,
-                            "Y": -87.5,
+                            "y": -87.5,
                             "z": 0
                         }
                     },
                     "Point2":{
                         "point1": {
                             "x": 137.5,
-                            "Y": -137.5,
+                            "y": -137.5,
                             "z": 0
                         },
                         "point2": {
                             "x": 137.5,
-                            "Y": -108.5,
+                            "y": -108.5,
                             "z": 0
                         },
                         "point3": {
                             "x": 108.5,
-                            "Y": -137.5,
+                            "y": -137.5,
                             "z": 0
                         }
                     },
                     "Point3":{
                         "point1": {
                             "x": 137.5,
-                            "Y": 137.5,
+                            "y": 137.5,
                             "z": 0
                         },
                         "point2": {
                             "x": 87.5,
-                            "Y": 137.5,
+                            "y": 137.5,
                             "z": 0
                         },
                         "point3": {
                             "x": 137.5,
-                            "Y": 87.5,
+                            "y": 87.5,
                             "z": 0
                         }
                     },
                     "Point4":{
                         "point1": {
                             "x": -137.5,
-                            "Y": 137.5,
+                            "y": 137.5,
                             "z": 0
                         },
                         "point2": {
                             "x": 137.5,
-                            "Y": 87.5,
+                            "y": 87.5,
                             "z": 0
                         },
                         "point3": {
                             "x": -87.5,
-                            "Y": 137.5,
+                            "y": 137.5,
                             "z": 0
                         }
                     }
@@ -91,37 +91,37 @@
                 }
             },
             "V":{
-                "PointsRight":{
+                "PointRight":{
                     "Point1":{
                         "x":-144,
-                        "Y":0,
+                        "y":0,
                         "z":45.5
                     },
                     "Point2":{
                         "x":-144,
-                        "Y":100,
+                        "y":100,
                         "z":145.5
                     },
                     "Point3":{
                         "x":-144,
-                        "Y":-100,
+                        "y":-100,
                         "z":145.5
                     }
                 },
-                "PointsLeft":{
+                "PointLeft":{
                     "Point1":{
                         "x":144,
-                        "Y":0,
+                        "y":0,
                         "z":45.5
                     },
                     "Point2":{
                         "x":144,
-                        "Y":100,
+                        "y":100,
                         "z":145.5
                     },
                     "Point3":{
                         "x":144,
-                        "Y":-100,
+                        "y":-100,
                         "z":145.5
                     }
                 },
@@ -145,7 +145,8 @@
         "BinaryImage": true,
         "ShowContour": true,
         "ShowTriangle": true,
-        "Debug":1,
+        "ShowAruco": true,
+        "Debug":0,
         "Control":{
             "Serial":false,
             "SendWaitTime": 2000,

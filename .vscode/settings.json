@@ -70,6 +70,7 @@
         "core": "cpp",
         "numericaldiff": "cpp",
         "compare": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "bit": "cpp"
     }
 }

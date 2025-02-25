@@ -2,6 +2,7 @@
 #include "data_manager/param.h"
 #include "mining_tank/detector.h"
 #include "data_manager/control/control.h"
+#include "aruco/aruco_locate.h"
 
 std::mutex hang_up_mutex;
 std::condition_variable hang_up_cv;
@@ -15,7 +16,7 @@ int main(int argc, char** argv) {
     if (Data::serial_flag) init_serial();
 
     control->autodetect();
-
+    //aruco_cereate();
     rm::message("Main thread hang up!", rm::MSG_OK);
     std::unique_lock<std::mutex> lock(hang_up_mutex);
     hang_up_cv.wait(lock);

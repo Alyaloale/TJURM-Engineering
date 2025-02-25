@@ -31,6 +31,6 @@ void Control::send_thread() {
         std::this_thread::sleep_for(std::chrono::microseconds(Data::send_wait_time_ms));
         this->message();            // 统一终端发消息
         this->state();              // 根据串口更新状态
-        detect_start();             // 检测
+        //detect_start();             // 检测
     }
 }

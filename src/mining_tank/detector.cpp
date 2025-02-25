@@ -1,6 +1,7 @@
 #include "mining_tank/detector.h"
 #include <filesystem>
 #include <opencv2/core/utils/filesystem.hpp>
+#include "data_manager/control/control.h"
 
 static int binary_ratio;
 cv::Mat image_in;
@@ -9,54 +10,58 @@ cv::Mat show_triangle;
 using namespace rm;
 namespace fs = std::filesystem;
 
-void detect_start()
+void Control::detect_start()
 {
-    //读取图片
-    if(!Data::debug)
+    while(true)
     {
-        Camera* camera = Data::camera[Data::camera_index];
+        //读取图片
+        if(!Data::debug)
+        {
+            Camera* camera = Data::camera[Data::camera_index];
 
-        std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
+            std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
 
-        TimePoint frame_wait = getTime();
-        while(frame == nullptr) {
-            frame = camera->buffer->pop();
-            double delay = getDoubleOfS(frame_wait, getTime());
-            if (delay > 0.5 && Data::timeout_flag) {
-                rm::message("Capture timeout", rm::MSG_ERROR);
-                exit(-1);
+            TimePoint frame_wait = getTime();
+            while(frame == nullptr) {
+                frame = camera->buffer->pop();
+                double delay = getDoubleOfS(frame_wait, getTime());
+                if (delay > 0.5 && Data::timeout_flag) {
+                    rm::message("Capture timeout", rm::MSG_ERROR);
+                    exit(-1);
+                }
+            }
+            Data::image_in = frame->image->clone();
+            detect(Data::image_in);
+            //send_single(target_yaw, target_pitch, fire, Data::target_id);
+            cv::waitKey(1);
+
+        }
+        else if(Data::debug==1)
+        {
+            std::vector<cv::String> image_list;
+            cv::utils::fs::glob(Data::read_path, "*.jpg", image_list);
+            for(auto image : image_list)
+            {
+                cv::Mat src = cv::imread(image);
+                if(src.empty()){
+                    std::cout<<"image is empty"<<std::endl;
+                    return;
+                }
+                std::cout<<image<<std::endl;
+                detect(src);
+                cv::waitKey(0);
             }
         }
-        detect(*(frame->image));
-        //send_single(target_yaw, target_pitch, fire, Data::target_id);
-        cv::waitKey(1);
-
-    }
-    else if(Data::debug==1)
-    {
-        std::vector<cv::String> image_list;
-        cv::utils::fs::glob(Data::read_path, "*.jpg", image_list);
-        for(auto image : image_list)
+        else if(Data::debug==2)
         {
-            cv::Mat src = cv::imread(image);
+            cv::Mat src = cv::imread("/home/tjurm/Code/TJURM-Engineering/image/15.jpg");
             if(src.empty()){
-                std::cout<<"image is empty"<<std::endl;
-                return;
+            std::cout<<"image is empty"<<std::endl;
+            return;
             }
-            std::cout<<image<<std::endl;
             detect(src);
             cv::waitKey(0);
         }
-    }
-    else if(Data::debug==2)
-    {
-        cv::Mat src = cv::imread("/home/tjurm/Code/TJURM-Engineering/image/15.jpg");
-        if(src.empty()){
-        std::cout<<"image is empty"<<std::endl;
-        return;
-        }
-        detect(src);
-        cv::waitKey(0);
     }
 }
 void detect(cv::Mat &src)
@@ -68,20 +73,34 @@ void detect(cv::Mat &src)
     MiningTankV mining_tank_v;
 
 
-//灰度化二值化
+//灰度化
     cv::Mat gray_image;
-    //rm::getGrayScale(image, gray_image, Data::mining_tank_color, rm::GRAY_SCALE_METHOD_RGB);
-    StrenthenColor(image_in,gray_image,Data::mining_tank_color);
-
-    cv::Mat binary_image;
-    if (Data::mining_tank_color == rm::ARMOR_COLOR_RED){
-        binary_ratio=(*param)["Points"]["Threshold"]["RatioRed"];
-    } else{
-        binary_ratio=(*param)["Points"]["Threshold"]["RatioBlue"];
+    std::vector<cv::Mat> channels;
+    cv::split(src, channels);
+    if(Data::self_color == rm::ARMOR_COLOR_RED)gray_image = channels[2];
+    else
+        if(Data::self_color == rm::ARMOR_COLOR_BLUE)gray_image = channels[0]-channels[2];
+    else{
+        std::cout<<"self color is not red or blue"<<std::endl;
+        return;
     }
-    int threshold_from_hist = rm::getThresholdFromHist(image_in,8,binary_ratio);
-    threshold_from_hist = std::clamp(threshold_from_hist, 10, 100);
-    rm::getBinary(gray_image, binary_image,threshold_from_hist, rm::BINARY_METHOD_DIRECT_THRESHOLD);
+    //StrenthenColor(src,gray_image,Data::mining_tank_color);
+    if(Data::show_image_flag&&Data::show_binary_image_flag){
+        cv::imshow("gray_image", gray_image);
+    }
+
+//二值化
+    cv::Mat binary_image;
+    // if (Data::mining_tank_color == rm::ARMOR_COLOR_RED){
+    //     binary_ratio=(*param)["Point"]["Threshold"]["RatioRed"];
+    // } else{
+    //     binary_ratio=(*param)["Point"]["Threshold"]["RatioBlue"];
+    // }
+    // int threshold_from_hist = rm::getThresholdFromHist(image_in,8,binary_ratio);
+    // threshold_from_hist = std::clamp(threshold_from_hist, 10, 100);
+    // rm::getBinary(gray_image, binary_image,threshold_from_hist, rm::BINARY_METHOD_DIRECT_THRESHOLD);
+    double threshold = cv::threshold(gray_image, binary_image, 0, 255, cv::THRESH_BINARY + cv::THRESH_OTSU);
+    //std::cout<<"threshold is "<<threshold<<std::endl;
 
 
 //轮廓检测
@@ -110,7 +129,6 @@ void detect(cv::Mat &src)
     
 
     if(Data::show_image_flag&&Data::show_binary_image_flag){
-        cv::imshow("gray_image", gray_image);
         cv::imshow("binary_image", binary_image);
     }
     if(Data::show_image_flag&&Data::show_triangle_flag){
@@ -121,15 +139,16 @@ void detect(cv::Mat &src)
         for(int i=0;i<mining_tank_four.point.size();i++){
             cv::line(image_in,mining_tank_four.point[i][0],mining_tank_four.point[(i+1)%mining_tank_four.point.size()][0],cv::Scalar(0,255,0),1);
         }
-        cv::circle(image_in,mining_tank_four.point[0][0],2,cv::Scalar(255,0,0),2);
+        if(mining_tank_contours_four.size())cv::circle(image_in,mining_tank_four.point[0][0],2,cv::Scalar(255,0,0),2);
 
         //V字
-        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[1],cv::Scalar(0,255,0),1);
-        cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[2],cv::Scalar(0,255,0),1);
-        cv::circle(image_in,mining_tank_v.point[0],2,cv::Scalar(255,0,0),2);
+        if(mining_tank_contours_v.size()>=2){
+            cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[1],cv::Scalar(0,255,0),1);
+            cv::line(image_in,mining_tank_v.point[0],mining_tank_v.point[2],cv::Scalar(0,255,0),1);
+            cv::circle(image_in,mining_tank_v.point[0],2,cv::Scalar(255,0,0),2);
+        }
         cv::imshow("image", image_in);
     }
-    cv::waitKey(1);
 }
 
 

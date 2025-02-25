@@ -72,6 +72,6 @@ echo -e "${blue}        $total${reset}"
 
 echo -e "${yellow}\n<--- Run Code --->${reset}"
 cp TJURM-Engineering /usr/local/bin/
-TJURM-Engineering
+./TJURM-Engineering
 
 echo -e "${yellow}<----- OVER ----->${reset}"

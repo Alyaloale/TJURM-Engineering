@@ -2,6 +2,7 @@
 #define DATA_MANAGER_BASE_H
 #include <opencv2/opencv.hpp>
 #include <openrm.h>
+#include <opencv2/aruco.hpp>
 
 
 namespace Data{
@@ -17,10 +18,15 @@ namespace Data{
     extern bool show_binary_image_flag;
     extern bool show_contour_flag;
     extern bool show_triangle_flag;
+    extern bool show_aruco;
     extern bool serial_flag;
     extern int send_wait_time_ms;
     extern std::vector<std::pair<std::vector<cv::Point3f>,std::vector<cv::Point2f>>> points_3D_2D;
     extern std::vector<std::vector<cv::Point3f>> points_3D;
+    extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
+    extern cv::Mat image_in;
+    extern std::vector<int> markerIds;
+    extern std::vector<std::vector<cv::Point2f>> markerCorners;
 }
 
 

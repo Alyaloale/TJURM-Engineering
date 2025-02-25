@@ -33,6 +33,8 @@ public:
     void send_thread();
     void receive_thread();
     void autodetect();
+    void detect_start();
+    void aruco_detect();
     void message();
     void state();
 

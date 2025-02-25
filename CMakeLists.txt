@@ -12,6 +12,10 @@ add_definitions(-DTJURM_Engineering)
 find_package(CUDA REQUIRED)
 include_directories(/usr/local/cuda/include)
 
+#TensorRT
+include_directories(/home/tjurm/Downloads/TensorRT-8.4.3.1/include)
+link_directories(/home/tjurm/Downloads/TensorRT-8.4.3.1/lib)
+
 # OpenRM
 find_package(OpenRM REQUIRED)
 include_directories(${OpenRM_INCLUDE_DIRS})
@@ -37,6 +41,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/json/single_include/nlohmann)
 # 添加构建子目录
 add_subdirectory(src/data_manager)
 add_subdirectory(src/mining_tank)
+add_subdirectory(src/aruco)
 
 # 添加可执行文件
 add_executable(TJURM-Engineering src/main.cpp)
@@ -45,5 +50,6 @@ add_executable(TJURM-Engineering src/main.cpp)
 target_link_libraries(TJURM-Engineering
     data_manager
     mining_tank
+    aruco
 )
 

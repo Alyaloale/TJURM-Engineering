@@ -8,14 +8,14 @@ std::vector<std::vector<cv::Point>> MiningTankCountourVSift(std::vector<std::vec
 {
     auto param = Param::get_instance();
     std::vector<std::vector<cv::Point>> mining_tank_contours;
-    double maxhwratio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MaxHeightWideRatio"];
-    double minhwratio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MinHeightWideRatio"];
-    double maxwhratio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MaxWideHeightRatio"];
-    double minwhratio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MinWideHeightRatio"];
-    double maxarearatio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MaxcontourRectRatio"];
-    double minarearatio = (*param)["Points"]["MiningTank"]["V"]["Ratio"]["MincontourRectRatio"];
-    int maxarea = (*param)["Points"]["MiningTank"]["V"]["Area"]["MaxArea"];
-    int minarea = (*param)["Points"]["MiningTank"]["V"]["Area"]["MinArea"];
+    double maxhwratio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MaxHeightWideRatio"];
+    double minhwratio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MinHeightWideRatio"];
+    double maxwhratio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MaxWideHeightRatio"];
+    double minwhratio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MinWideHeightRatio"];
+    double maxarearatio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MaxcontourRectRatio"];
+    double minarearatio = (*param)["Point"]["MiningTank"]["V"]["Ratio"]["MincontourRectRatio"];
+    int maxarea = (*param)["Point"]["MiningTank"]["V"]["Area"]["MaxArea"];
+    int minarea = (*param)["Point"]["MiningTank"]["V"]["Area"]["MinArea"];
 
     for (auto &contour : contours) {
         if(contour.size()<5)continue;
@@ -141,8 +141,18 @@ void StrenthenColor(cv::Mat &src, cv::Mat &dst, rm::ArmorColor color)
 {
     //分离通道
     std::vector<cv::Mat> channels;
-    dst = cv::Mat::zeros(src.size(),CV_8UC1);
     cv::split(src, channels);
+    if(color == rm::ARMOR_COLOR_RED){
+        cv::subtract(channels[2],channels[0],dst);
+    }
+    else if(color == rm::ARMOR_COLOR_BLUE){
+        cv::subtract(channels[0],channels[2],dst);
+    }
+    else{
+        std::cout<<"strenten color is not red or blue"<<std::endl;
+        return;
+    }
+    dst = cv::Mat::zeros(src.size(), CV_8UC1);
     int b ,g,r,target,other1,other2;
     if(color == rm::ARMOR_COLOR_RED){
         b = 0;
@@ -157,8 +167,8 @@ void StrenthenColor(cv::Mat &src, cv::Mat &dst, rm::ArmorColor color)
         g = 0;
         r = 0;
         target = 0;
-        other1 = 1;
-        other2 = 2;
+        other1 = 2;
+        other2 = 1;
     }
     else{
         std::cout<<"strenten color is not red or blue"<<std::endl;

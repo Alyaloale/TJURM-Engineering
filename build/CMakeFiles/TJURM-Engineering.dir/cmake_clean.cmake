@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o"
-  "CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o.d"
   "TJURM-Engineering"
   "TJURM-Engineering.pdb"
 )
