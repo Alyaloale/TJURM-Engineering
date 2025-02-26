@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tjurm/Code/TJURM-Engineering
+CMAKE_SOURCE_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tjurm/Code/TJURM-Engineering/build
+CMAKE_BINARY_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering/build
 
 # Include any dependencies generated for this target.
 include src/data_manager/CMakeFiles/data_manager.dir/depend.make
@@ -59,107 +59,107 @@ include src/data_manager/CMakeFiles/data_manager.dir/flags.make
 
 src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o: ../src/data_manager/base.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/base.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/base.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/base.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/base.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/base.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/base.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/base.cpp > CMakeFiles/data_manager.dir/base.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/base.cpp > CMakeFiles/data_manager.dir/base.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/base.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/base.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/base.cpp -o CMakeFiles/data_manager.dir/base.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/base.cpp -o CMakeFiles/data_manager.dir/base.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o: ../src/data_manager/control/control.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/control.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/control.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/control.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/control.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/control/control.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/control.cpp > CMakeFiles/data_manager.dir/control/control.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/control.cpp > CMakeFiles/data_manager.dir/control/control.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/control/control.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/control.cpp -o CMakeFiles/data_manager.dir/control/control.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/control.cpp -o CMakeFiles/data_manager.dir/control/control.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o: ../src/data_manager/control/crc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/crc.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/crc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/crc.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/crc.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/control/crc.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/crc.cpp > CMakeFiles/data_manager.dir/control/crc.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/crc.cpp > CMakeFiles/data_manager.dir/control/crc.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/control/crc.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/crc.cpp -o CMakeFiles/data_manager.dir/control/crc.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/crc.cpp -o CMakeFiles/data_manager.dir/control/crc.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o: ../src/data_manager/control/receive_thread.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/receive_thread.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/receive_thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/receive_thread.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/receive_thread.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/control/receive_thread.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/receive_thread.cpp > CMakeFiles/data_manager.dir/control/receive_thread.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/receive_thread.cpp > CMakeFiles/data_manager.dir/control/receive_thread.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/control/receive_thread.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/receive_thread.cpp -o CMakeFiles/data_manager.dir/control/receive_thread.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/receive_thread.cpp -o CMakeFiles/data_manager.dir/control/receive_thread.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o: ../src/data_manager/control/send_thread.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/send_thread.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/send_thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/send_thread.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/send_thread.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/control/send_thread.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/send_thread.cpp > CMakeFiles/data_manager.dir/control/send_thread.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/send_thread.cpp > CMakeFiles/data_manager.dir/control/send_thread.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/control/send_thread.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/send_thread.cpp -o CMakeFiles/data_manager.dir/control/send_thread.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/send_thread.cpp -o CMakeFiles/data_manager.dir/control/send_thread.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o: ../src/data_manager/control/thread_control.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/thread_control.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/thread_control.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/control/thread_control.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/thread_control.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/control/thread_control.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/thread_control.cpp > CMakeFiles/data_manager.dir/control/thread_control.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/thread_control.cpp > CMakeFiles/data_manager.dir/control/thread_control.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/control/thread_control.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/control/thread_control.cpp -o CMakeFiles/data_manager.dir/control/thread_control.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/thread_control.cpp -o CMakeFiles/data_manager.dir/control/thread_control.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o: ../src/data_manager/init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/init.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/init.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/init.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/init.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/init.cpp > CMakeFiles/data_manager.dir/init.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/init.cpp > CMakeFiles/data_manager.dir/init.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/init.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/init.cpp -o CMakeFiles/data_manager.dir/init.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/init.cpp -o CMakeFiles/data_manager.dir/init.cpp.s
 
 src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o: src/data_manager/CMakeFiles/data_manager.dir/flags.make
 src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o: ../src/data_manager/param.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/param.cpp.o -c /home/tjurm/Code/TJURM-Engineering/src/data_manager/param.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/data_manager.dir/param.cpp.o -c /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/param.cpp
 
 src/data_manager/CMakeFiles/data_manager.dir/param.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/data_manager.dir/param.cpp.i"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/Code/TJURM-Engineering/src/data_manager/param.cpp > CMakeFiles/data_manager.dir/param.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/param.cpp > CMakeFiles/data_manager.dir/param.cpp.i
 
 src/data_manager/CMakeFiles/data_manager.dir/param.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/data_manager.dir/param.cpp.s"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/Code/TJURM-Engineering/src/data_manager/param.cpp -o CMakeFiles/data_manager.dir/param.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/param.cpp -o CMakeFiles/data_manager.dir/param.cpp.s
 
 # Object files for target data_manager
 data_manager_OBJECTS = \
@@ -185,9 +185,9 @@ src/data_manager/libdata_manager.a: src/data_manager/CMakeFiles/data_manager.dir
 src/data_manager/libdata_manager.a: src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o
 src/data_manager/libdata_manager.a: src/data_manager/CMakeFiles/data_manager.dir/build.make
 src/data_manager/libdata_manager.a: src/data_manager/CMakeFiles/data_manager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libdata_manager.a"
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -P CMakeFiles/data_manager.dir/cmake_clean_target.cmake
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/data_manager.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libdata_manager.a"
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -P CMakeFiles/data_manager.dir/cmake_clean_target.cmake
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/data_manager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/data_manager/CMakeFiles/data_manager.dir/build: src/data_manager/libdata_manager.a
@@ -195,10 +195,10 @@ src/data_manager/CMakeFiles/data_manager.dir/build: src/data_manager/libdata_man
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/build
 
 src/data_manager/CMakeFiles/data_manager.dir/clean:
-	cd /home/tjurm/Code/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -P CMakeFiles/data_manager.dir/cmake_clean.cmake
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager && $(CMAKE_COMMAND) -P CMakeFiles/data_manager.dir/cmake_clean.cmake
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/clean
 
 src/data_manager/CMakeFiles/data_manager.dir/depend:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tjurm/Code/TJURM-Engineering /home/tjurm/Code/TJURM-Engineering/src/data_manager /home/tjurm/Code/TJURM-Engineering/build /home/tjurm/Code/TJURM-Engineering/build/src/data_manager /home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tjurm/TJURM-2025/TJURM-Engineering /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager /home/tjurm/TJURM-2025/TJURM-Engineering/build /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/depend
 

@@ -121,11 +121,11 @@ void detect(cv::Mat &src)
 
     //获取四点
     mining_tank_four = GetMiningTankFour(mining_tank_contours_four,binary_image,show_triangle);
-    std::cout<<"four point contour num is "<<mining_tank_contours_four.size()<<std::endl;
+    //std::cout<<"four point contour num is "<<mining_tank_contours_four.size()<<std::endl;
 
     //获取V字
     mining_tank_v = GetMiningTankV(mining_tank_contours_v,binary_image,show_triangle);
-    std::cout<<"V contour num is "<<mining_tank_contours_v.size()<<std::endl;
+    //std::cout<<"V contour num is "<<mining_tank_contours_v.size()<<std::endl;
     
 
     if(Data::show_image_flag&&Data::show_binary_image_flag){

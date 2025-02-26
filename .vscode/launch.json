@@ -8,7 +8,7 @@
             "name": "(gdb) 启动",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/tjurm/Code/TJURM-Engineering/build/TJURM-Engineering",
+            "program": "/home/tjurm/TJURM-2025/TJURM-Engineering/build/TJURM-Engineering",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

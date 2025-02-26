@@ -49,7 +49,7 @@ bool init_camera(){
             return false;
         }
 
-        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
+        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps, rm::TRIGGER_MODE_AUTO);
         if(!flag_camera) {
             rm::message("Failed to set camera args", rm::MSG_ERROR);
             return false;
@@ -105,6 +105,7 @@ void init_debug() {
     Data::send_wait_time_ms = (*param)["Debug"]["Control"]["SendWaitTime"];
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
     Data::show_aruco = (*param)["Debug"]["ShowAruco"];
+    Data::timeout_flag = (*param)["Debug"]["TimeOut"];
 
     std::vector<cv::Point3f> Point1;
     cv::Point3f point1,point2,point3;

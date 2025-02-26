@@ -7,7 +7,7 @@
 void aruco_cereate();//生成ArUco标记
 bool detectArucoMarkers(const cv::Mat& inputImage,
     std::vector<int>& markerIds, std::vector<std::vector<cv::Point2f>>& markerCorners,
-    bool drawMarkers , cv::Mat* outputImage );//检测ArUco标记
+    bool drawMarkers ,std::vector<std::vector<cv::Point2f>>& rejectedCandidates);//检测ArUco标记
 
 
 

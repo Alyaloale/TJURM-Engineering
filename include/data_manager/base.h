@@ -27,6 +27,7 @@ namespace Data{
     extern cv::Mat image_in;
     extern std::vector<int> markerIds;
     extern std::vector<std::vector<cv::Point2f>> markerCorners;
+    extern std::vector<std::vector<cv::Point2f>> rejectedCandidates;
 }
 
 
