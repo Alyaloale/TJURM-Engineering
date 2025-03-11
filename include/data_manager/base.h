@@ -44,6 +44,7 @@ namespace Data{
     extern RealSenseCamera realsense_camera;
     extern std::vector<int> markerIds;
     extern std::vector<std::vector<cv::Point2f>> markerCorners;
+    extern std::vector<std::vector<cv::Point2f>> rejectedCandidates;
 }
 
 

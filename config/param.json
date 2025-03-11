@@ -147,6 +147,7 @@
         "ShowTriangle": true,
         "ShowAruco": true,
         "Debug":0,
+        "TimeOut":false,
         "Control":{
             "Serial":false,
             "SendWaitTime": 2000,

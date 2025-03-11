@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tjurm/Code/TJURM-Engineering
+CMAKE_SOURCE_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tjurm/Code/TJURM-Engineering/build
+CMAKE_BINARY_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles /home/tjurm/Code/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/progress.marks
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/progress.marks
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/clean
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,17 +97,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/preinstall
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/preinstall
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/json_binary_dir/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -129,6 +129,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

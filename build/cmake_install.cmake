@@ -1,4 +1,4 @@
-# Install script for directory: /home/tjurm/Code/TJURM-Engineering
+# Install script for directory: /home/tjurm/TJURM-2025/TJURM-Engineering
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,10 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+<<<<<<< HEAD
   include("/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/cmake_install.cmake")
   include("/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/cmake_install.cmake")
   include("/home/tjurm/Code/TJURM-Engineering/build/src/aruco/cmake_install.cmake")
   include("/home/tjurm/Code/TJURM-Engineering/build/src/locate/cmake_install.cmake")
+=======
+  include("/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/cmake_install.cmake")
+  include("/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/cmake_install.cmake")
+  include("/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/aruco/cmake_install.cmake")
+>>>>>>> e9a8de65d0dfa6a38d110712373565c20e455560
 
 endif()
 
@@ -54,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tjurm/Code/TJURM-Engineering/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tjurm/TJURM-2025/TJURM-Engineering/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

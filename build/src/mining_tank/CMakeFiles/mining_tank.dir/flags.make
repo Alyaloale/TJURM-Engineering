@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++17
 
 CXX_DEFINES = -DTJURM_Engineering
 
-CXX_INCLUDES = -I/usr/local/cuda/include -I/home/tjurm/Downloads/TensorRT-8.4.3.1/include -I/usr/local/include/openrm -I/usr/include/eigen3 -I/home/tjurm/Code/TJURM-Engineering/include -I/home/tjurm/Code/TJURM-Engineering/libs/json/single_include/nlohmann -isystem /usr/local/opencv4.5.4/include/opencv4 
+CXX_INCLUDES = -I/usr/local/cuda/include -I/home/tjurm/Downloads/TensorRT-8.4.3.1/include -I/usr/local/include/openrm -I/usr/include/eigen3 -I/home/tjurm/TJURM-2025/TJURM-Engineering/include -I/home/tjurm/TJURM-2025/TJURM-Engineering/libs/json/single_include/nlohmann -isystem /usr/local/opencv4.5.4/include/opencv4 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/rebuild_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/edit_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/TJURM-Engineering.dir
@@ -15,3 +16,19 @@
 /home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/rebuild_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/edit_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/locate.dir
+=======
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles/rebuild_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles/edit_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles/TJURM-Engineering.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/rebuild_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/edit_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/edit_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/json_binary_dir/CMakeFiles/rebuild_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/rebuild_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/edit_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/aruco/CMakeFiles/rebuild_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/aruco/CMakeFiles/edit_cache.dir
+/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir
+>>>>>>> e9a8de65d0dfa6a38d110712373565c20e455560

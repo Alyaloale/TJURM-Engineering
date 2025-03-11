@@ -167,6 +167,7 @@ void init_debug() {
     Data::send_wait_time_ms = (*param)["Debug"]["Control"]["SendWaitTime"];
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
     Data::show_aruco = (*param)["Debug"]["ShowAruco"];
+    Data::timeout_flag = (*param)["Debug"]["TimeOut"];
 
     std::vector<cv::Point3f> Point1;
     cv::Point3f point1,point2,point3;

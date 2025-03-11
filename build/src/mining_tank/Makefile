@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tjurm/Code/TJURM-Engineering
+CMAKE_SOURCE_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tjurm/Code/TJURM-Engineering/build
+CMAKE_BINARY_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles /home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/progress.marks
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/progress.marks
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/clean
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/preinstall
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/preinstall
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/mining_tank/CMakeFiles/mining_tank.dir/rule:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/CMakeFiles/mining_tank.dir/rule
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/mining_tank/CMakeFiles/mining_tank.dir/rule
 .PHONY : src/mining_tank/CMakeFiles/mining_tank.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ mining_tank: src/mining_tank/CMakeFiles/mining_tank.dir/rule
 
 # fast build rule for target.
 mining_tank/fast:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/build
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/build
 .PHONY : mining_tank/fast
 
 detector.o: detector.cpp.o
@@ -131,7 +131,7 @@ detector.o: detector.cpp.o
 
 # target to build an object file
 detector.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o
 .PHONY : detector.cpp.o
 
 detector.i: detector.cpp.i
@@ -140,7 +140,7 @@ detector.i: detector.cpp.i
 
 # target to preprocess a source file
 detector.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.i
 .PHONY : detector.cpp.i
 
 detector.s: detector.cpp.s
@@ -149,7 +149,7 @@ detector.s: detector.cpp.s
 
 # target to generate assembly for a file
 detector.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.s
 .PHONY : detector.cpp.s
 
 get_Four.o: get_Four.cpp.o
@@ -158,7 +158,7 @@ get_Four.o: get_Four.cpp.o
 
 # target to build an object file
 get_Four.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o
 .PHONY : get_Four.cpp.o
 
 get_Four.i: get_Four.cpp.i
@@ -167,7 +167,7 @@ get_Four.i: get_Four.cpp.i
 
 # target to preprocess a source file
 get_Four.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.i
 .PHONY : get_Four.cpp.i
 
 get_Four.s: get_Four.cpp.s
@@ -176,7 +176,7 @@ get_Four.s: get_Four.cpp.s
 
 # target to generate assembly for a file
 get_Four.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.s
 .PHONY : get_Four.cpp.s
 
 get_V.o: get_V.cpp.o
@@ -185,7 +185,7 @@ get_V.o: get_V.cpp.o
 
 # target to build an object file
 get_V.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o
 .PHONY : get_V.cpp.o
 
 get_V.i: get_V.cpp.i
@@ -194,7 +194,7 @@ get_V.i: get_V.cpp.i
 
 # target to preprocess a source file
 get_V.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.i
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.i
 .PHONY : get_V.cpp.i
 
 get_V.s: get_V.cpp.s
@@ -203,7 +203,7 @@ get_V.s: get_V.cpp.s
 
 # target to generate assembly for a file
 get_V.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.s
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.s
 .PHONY : get_V.cpp.s
 
 # Help Target
@@ -235,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

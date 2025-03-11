@@ -18,7 +18,7 @@ void aruco_cereate()
 //  检测 ArUco 标记的函数
 bool detectArucoMarkers(const cv::Mat& inputImage,
     std::vector<int>& markerIds, std::vector<std::vector<cv::Point2f>>& markerCorners,
-    bool drawMarkers , cv::Mat* outputImage ) {
+    bool drawMarkers ,std::vector<std::vector<cv::Point2f>>& rejectedCandidates) {
 
     // 获取预定义的 ArUco 字典
     cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(Data::dictionaryName);
@@ -26,22 +26,10 @@ bool detectArucoMarkers(const cv::Mat& inputImage,
     // 创建检测参数对象
     cv::Ptr<cv::aruco::DetectorParameters> parameters = cv::aruco::DetectorParameters::create();
 
-    // 存储可能被拒绝的候选标记
-    std::vector<std::vector<cv::Point2f>> rejectedCandidates;
-
     // 检测 ArUco 标记
     cv::aruco::detectMarkers(inputImage, dictionary, markerCorners, markerIds, parameters, rejectedCandidates);
-
-    if (drawMarkers && outputImage != nullptr) {
-
-        // 复制输入图像到输出图像
-        inputImage.copyTo(*outputImage);
-        // 绘制检测到的标记
-        if (!markerIds.empty()) {
-
-            cv::aruco::drawDetectedMarkers(*outputImage, markerCorners, markerIds);
-        }
-    }
+    std::cout<<markerCorners.size()<<" ";
+    std::cout<<rejectedCandidates.size()<<std::endl;
 
     return !markerIds.empty();
 }
@@ -64,6 +52,14 @@ void Control::aruco_detect() {
             IsdetectAruco = detectArucoMarkers(Data::image_in_RealSense_color.clone(), Data::markerIds, Data::markerCorners, true, &aruco_image);
             if(Data::show_aruco)
             {
+                for (size_t i = 0; i < Data::markerCorners.size(); ++i) {
+                        std::vector<cv::Point> polygon;
+                        for (size_t j = 0; j < Data::markerCorners[i].size(); ++j) {
+                            polygon.push_back(cv::Point(Data::markerCorners[i][j].x, Data::markerCorners[i][j].y));
+                        }
+                        cv::polylines(aruco_image, polygon, true, cv::Scalar(0, 255, 0), 2);
+                    }
+
                 cv::imshow("aruco", aruco_image);
                 cv::waitKey(1);
                 //按q保存图片，序号命名

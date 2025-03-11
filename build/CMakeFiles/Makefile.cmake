@@ -19,9 +19,14 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../src/data_manager/CMakeLists.txt"
   "../src/locate/CMakeLists.txt"
   "../src/mining_tank/CMakeLists.txt"
+  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-config-version.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-config.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-nonamespace-targets-release.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-nonamespace-targets.cmake"
   "/usr/lib/cmake/eigen3/Eigen3Config.cmake"
   "/usr/lib/cmake/eigen3/Eigen3ConfigVersion.cmake"
   "/usr/lib/cmake/eigen3/Eigen3Targets.cmake"
+<<<<<<< HEAD
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-nonamespace-targets-release.cmake"
@@ -30,6 +35,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2ConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets-release.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets.cmake"
+=======
+>>>>>>> e9a8de65d0dfa6a38d110712373565c20e455560
   "/usr/local/lib/cmake/Ceres/CeresConfig.cmake"
   "/usr/local/lib/cmake/Ceres/CeresConfigVersion.cmake"
   "/usr/local/lib/cmake/Ceres/CeresTargets-release.cmake"
