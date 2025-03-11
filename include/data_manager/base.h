@@ -3,6 +3,20 @@
 #include <opencv2/opencv.hpp>
 #include <openrm.h>
 #include <opencv2/aruco.hpp>
+#include <librealsense2/rs.hpp>
+
+struct RealSenseCamera {
+    rs2::config config;//配置摄像头
+    rs2::pipeline pipeline;//启动摄像头
+    rs2::pipeline_profile profile;//启动管道，应用配置
+    rs2::align depth_to_color;//创建对齐对象，将深度帧对齐到彩色帧
+    bool Ispipeline_started = false;
+    cv::Mat intrinsic_matrix;
+    cv::Mat distortion_coeffs;
+    RealSenseCamera() : depth_to_color(rs2_stream::RS2_STREAM_COLOR) {
+        
+    }
+};
 
 
 namespace Data{
@@ -24,7 +38,10 @@ namespace Data{
     extern std::vector<std::pair<std::vector<cv::Point3f>,std::vector<cv::Point2f>>> points_3D_2D;
     extern std::vector<std::vector<cv::Point3f>> points_3D;
     extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
-    extern cv::Mat image_in;
+    extern cv::Mat image_in_DaHeng;
+    extern cv::Mat image_in_RealSense_color;
+    extern cv::Mat image_in_RealSense_depth;
+    extern RealSenseCamera realsense_camera;
     extern std::vector<int> markerIds;
     extern std::vector<std::vector<cv::Point2f>> markerCorners;
 }
@@ -33,4 +50,6 @@ namespace Data{
 bool init_camera();//初始化相机
 void init_serial();//初始化串口
 void init_debug();//初始化调试参数
+void get_image_DaHeng();//获取大恒相机图像
+void get_image_RealSense();//获取RealSense相机图像
 #endif // BASE_H

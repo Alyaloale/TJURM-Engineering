@@ -21,4 +21,5 @@ target_link_libraries(data_manager
         ${OpenCV_LIBS}
         ${OpenRM_LIBS}
         ${JSON_LIBS}
+        ${realsense2_LIBRARY}
 )

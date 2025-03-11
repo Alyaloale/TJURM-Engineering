@@ -154,7 +154,7 @@
         }
     },
     "Camera":{
-        "CamLensDir" : "/etc/openrm/CamLens.json",
+        "CamLensDir" : "/etc/openrm_engineering/CamLens.json",
         "Base" : {
             "CameraType" : "DaHeng720_540",
             "LensType" : "Prime25mm",

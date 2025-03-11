@@ -471,6 +471,9 @@ nlohmann_json_BINARY_DIR:STATIC=/home/tjurm/Code/TJURM-Engineering/build/src/dat
 //Value Computed by CMake
 nlohmann_json_SOURCE_DIR:STATIC=/home/tjurm/Code/TJURM-Engineering/libs/json
 
+//The directory containing a CMake configuration file for realsense2.
+realsense2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/realsense2
+
 
 ########################
 # INTERNAL cache entries
@@ -616,7 +619,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

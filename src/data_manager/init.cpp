@@ -24,40 +24,103 @@ bool init_camera(){
 
 
     // 获取相机数量
-    int camera_num;
-    bool flag_camera = rm::getDaHengCameraNum(camera_num);
-    Data::camera.clear();
-    Data::camera.resize(camera_num + 1, nullptr);
-    if(!flag_camera) {
-        rm::message("Failed to get camera number", rm::MSG_ERROR);
-        return false;
-    }
-        rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
-        double exp = (*param)["Camera"]["Base"]["ExposureTime"];
-        double gain = (*param)["Camera"]["Base"]["Gain"];
-        double fps = (*param)["Camera"]["Base"]["FrameRate"];
-        int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
-        int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
-        std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
-        std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
-        Data::camera[1] = new rm::Camera();
-        flag_camera = rm::openDaHeng(
-            Data::camera[1], 1, nullptr, nullptr, nullptr, false);
+    // int camera_num;
+    // bool flag_camera = rm::getDaHengCameraNum(camera_num);
+    // Data::camera.clear();
+    // Data::camera.resize(camera_num + 1, nullptr);
+    // if(!flag_camera) {
+    //     rm::message("Failed to get camera number", rm::MSG_ERROR);
+    //     return false;
+    // }
+    //     rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
+    //     double exp = (*param)["Camera"]["Base"]["ExposureTime"];
+    //     double gain = (*param)["Camera"]["Base"]["Gain"];
+    //     double fps = (*param)["Camera"]["Base"]["FrameRate"];
+    //     int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
+    //     int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
+    //     std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
+    //     std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
+    //     Data::camera[1] = new rm::Camera();
+    //     flag_camera = rm::openDaHeng(
+    //         Data::camera[1], 1, nullptr, nullptr, nullptr, false);
 
-        if(!flag_camera) {
-            rm::message("Failed to open camera", rm::MSG_ERROR);
+    //     if(!flag_camera) {
+    //         rm::message("Failed to open camera", rm::MSG_ERROR);
+    //         return false;
+    //     }
+
+    //     flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
+    //     if(!flag_camera) {
+    //         rm::message("Failed to set camera args", rm::MSG_ERROR);
+    //         return false;
+    //     }
+        // Param::from_json(camlens["camera_type"]["lens_type"]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
+        // Param::from_json(camlens["camera_type"]["lens_type"]["Distortion"], Data::camera[1]->distortion_coeffs);
+
+
+        //RealSense相机
+        try {
+            // 配置彩色图像流
+            Data::realsense_camera.config.enable_stream(RS2_STREAM_COLOR, 1280, 720, RS2_FORMAT_BGR8, 30);
+            // 配置深度图像流
+            Data::realsense_camera.config.enable_stream(RS2_STREAM_DEPTH, 1280, 720, RS2_FORMAT_Z16, 30);
+            // 启动管道，应用配置
+            if(!Data::realsense_camera.Ispipeline_started)
+            {
+                Data::realsense_camera.pipeline.start(Data::realsense_camera.config);
+                Data::realsense_camera.Ispipeline_started = true;
+            }
+            // 获取相机内参
+
+            Param::from_json(camlens["RealSense"]["D435i"]["Intrinsic"], Data::realsense_camera.intrinsic_matrix);
+            Param::from_json(camlens["RealSense"]["D435i"]["Distortion"], Data::realsense_camera.distortion_coeffs);
+
+        } catch (const rs2::error& e) {
+            std::cerr << "RealSense error calling " << e.get_failed_function() << "(" << e.get_failed_args() << "):\n    " << e.what() << std::endl;
+            return false;
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
             return false;
         }
-
-        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
-        if(!flag_camera) {
-            rm::message("Failed to set camera args", rm::MSG_ERROR);
-            return false;
-        }
-        Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
-        Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
         return true;
 }
+
+// 获取大恒相机图像
+void get_image_DaHeng(){
+    Camera* camera = Data::camera[Data::camera_index];
+
+    std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
+
+    TimePoint frame_wait = getTime();
+    while(frame == nullptr) {
+        frame = camera->buffer->pop();
+        double delay = getDoubleOfS(frame_wait, getTime());
+        if (delay > 0.5 && Data::timeout_flag) {
+            rm::message("Capture timeout", rm::MSG_ERROR);
+            exit(-1);
+        }
+    }
+    Data::image_in_DaHeng = frame->image->clone();
+}
+
+// 获取RealSense相机图像
+void get_image_RealSense(){
+    rs2::frameset frameset;
+    // 等待获取一帧数据
+    frameset = Data::realsense_camera.pipeline.wait_for_frames();
+    //进行对齐操作
+    rs2::frameset aligned_frames = Data::realsense_camera.depth_to_color.process(frameset);
+
+    // 获取对齐后的深度帧和彩色帧
+    rs2::depth_frame aligned_depth_frame = aligned_frames.get_depth_frame();
+    rs2::video_frame color_frame = aligned_frames.get_color_frame();
+    if (!aligned_depth_frame || !color_frame) return;
+
+    // 将深度帧和彩色帧转换为 OpenCV 图像
+    Data::image_in_RealSense_color = cv::Mat(cv::Size(1280, 720), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP);
+    Data::image_in_RealSense_depth = cv::Mat(cv::Size(1280, 720), CV_16UC1, (void*)aligned_depth_frame.get_data(), cv::Mat::AUTO_STEP);
+}
+
 
 void init_serial() {
     int status;
@@ -95,7 +158,6 @@ void init_debug() {
 
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
     Data::debug = (*param)["Debug"]["Debug"];
-    Data::mining_tank_color = rm::ARMOR_COLOR_RED;
     Data::self_color = rm::ARMOR_COLOR_RED;
     Data::read_path = (*param)["Path"]["ImagePath"];
     Data::show_image_flag = (*param)["Debug"]["ShowImage"];

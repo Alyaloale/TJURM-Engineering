@@ -12,3 +12,6 @@
 /home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/rebuild_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/edit_cache.dir
 /home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/rebuild_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/edit_cache.dir
+/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/locate.dir

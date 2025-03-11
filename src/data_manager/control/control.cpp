@@ -35,9 +35,9 @@ void Control::autodetect() {
     setThreadPriority(send_thread, SCHED_RR, 97);
     send_thread.detach();
 
-    std::thread detect_start(&Control::detect_start, this);
-    setThreadPriority(detect_start, SCHED_RR, 98);
-    detect_start.detach();
+    // std::thread detect_start(&Control::detect_start, this);
+    // setThreadPriority(detect_start, SCHED_RR, 98);
+    // detect_start.detach();
 
     std::thread aruco_detect_thread(&Control::aruco_detect, this);
     setThreadPriority(aruco_detect_thread, SCHED_RR, 98);

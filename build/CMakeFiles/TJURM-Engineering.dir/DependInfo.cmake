@@ -10,6 +10,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "ELPP_NO_DEFAULT_LOG_FILE"
   "JSON_DIAGNOSTICS=0"
   "JSON_USE_IMPLICIT_CONVERSIONS=1"
   "TJURM_Engineering"
@@ -32,6 +33,7 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
+  "/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

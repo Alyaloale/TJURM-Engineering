@@ -8,6 +8,12 @@
 
 using namespace rm;
 
+void Control::state() {
+
+    // 通过电控获取己方颜色
+    Data::self_color = Control::get_self();
+}
+
 void Control::receive_thread() {
     rm::initSerialHead(file_descriptor_, sizeof(StateBytes), SOF);
     char buffer[400];

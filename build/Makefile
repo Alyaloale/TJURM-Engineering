@@ -162,6 +162,19 @@ aruco/fast:
 	$(MAKE) -f src/aruco/CMakeFiles/aruco.dir/build.make src/aruco/CMakeFiles/aruco.dir/build
 .PHONY : aruco/fast
 
+#=============================================================================
+# Target rules for targets named locate
+
+# Build rule for target.
+locate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 locate
+.PHONY : locate
+
+# fast build rule for target.
+locate/fast:
+	$(MAKE) -f src/locate/CMakeFiles/locate.dir/build.make src/locate/CMakeFiles/locate.dir/build
+.PHONY : locate/fast
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -201,6 +214,7 @@ help:
 	@echo "... data_manager"
 	@echo "... mining_tank"
 	@echo "... aruco"
+	@echo "... locate"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

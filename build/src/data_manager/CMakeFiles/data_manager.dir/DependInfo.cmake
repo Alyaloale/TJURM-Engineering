@@ -17,6 +17,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "ELPP_NO_DEFAULT_LOG_FILE"
   "JSON_DIAGNOSTICS=0"
   "JSON_USE_IMPLICIT_CONVERSIONS=1"
   "TJURM_Engineering"

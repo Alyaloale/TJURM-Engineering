@@ -78,7 +78,7 @@ MiningTankFour GetMiningTankFour(std::vector<std::vector<cv::Point>> contours, c
 {
     MiningTankFour mining_tank_four;
     std::vector<std::vector<cv::Point2f>> mining_tank_point_four;
-    cv::Point2f orignin;
+    int orignin;
     for (auto &contour : contours)
     {
 
@@ -147,11 +147,12 @@ MiningTankFour GetMiningTankFour(std::vector<std::vector<cv::Point>> contours, c
         }
 
         // 交换特殊点和第一个点，使得特殊点为第一个点
-        std::swap(triangle[0], triangle[special_point]);
+        if(special_point)std::swap(triangle[0], triangle[special_point]);
         // 画出特殊点
         if (special_contours.size() >= 3)
         {
-            orignin = triangle[0];
+            mining_tank_four.point.push_back(triangle);
+            continue;
         }
         mining_tank_point_four.push_back(triangle);
     }
@@ -168,27 +169,14 @@ MiningTankFour GetMiningTankFour(std::vector<std::vector<cv::Point>> contours, c
 
     // 顺时针排序2143相限
     std::sort(mining_tank_point_four.begin(), mining_tank_point_four.end(), [center](std::vector<cv::Point2f> a, std::vector<cv::Point2f> b)
-              { return atan2(a[0].y - center.y, a[0].x - center.x) > atan2(b[0].y - center.y, b[0].x - center.x); });
-    int flag = 0;
+    { return atan2(a[0].y - center.y, a[0].x - center.x) > atan2(b[0].y - center.y, b[0].x - center.x); });
     for (int i = 0; i < mining_tank_point_four.size(); i++)
-    {
-        double dis = cv::norm(mining_tank_point_four[i][0] - orignin);
-        if (dis < 0.1)
-        {
-            flag = i;
-        }
-    }
-    for (int i = flag; i < mining_tank_point_four.size(); i++)
-    {
-        mining_tank_four.point.push_back(mining_tank_point_four[i]);
-    }
-    for (int i = 0; i < flag; i++)
     {
         mining_tank_four.point.push_back(mining_tank_point_four[i]);
     }
 
     // 画出四点
-    if (Data::show_image_flag && Data::show_triangle_flag)
+    if (Data::show_image_flag && Data::show_triangle_flag&&mining_tank_four.point.size()==4)
     {
         for (int i = 0; i < mining_tank_four.point.size(); i++)
         {

@@ -33,6 +33,9 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 find_package(Ceres REQUIRED)
 include_directories(${CERES_INCLUDE_DIRS})
 
+#Realsense
+find_package(realsense2 REQUIRED)
+include_directories(${realsense2_INCLUDE_DIR})
 
 # 添加项目头文件
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -42,6 +45,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/json/single_include/nlohmann)
 add_subdirectory(src/data_manager)
 add_subdirectory(src/mining_tank)
 add_subdirectory(src/aruco)
+add_subdirectory(src/locate)
 
 # 添加可执行文件
 add_executable(TJURM-Engineering src/main.cpp)
@@ -51,5 +55,6 @@ target_link_libraries(TJURM-Engineering
     data_manager
     mining_tank
     aruco
+    locate
 )
 

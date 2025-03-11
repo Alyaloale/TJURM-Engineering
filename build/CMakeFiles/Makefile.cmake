@@ -17,6 +17,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../libs/json/cmake/pkg-config.pc.in"
   "../src/aruco/CMakeLists.txt"
   "../src/data_manager/CMakeLists.txt"
+  "../src/locate/CMakeLists.txt"
   "../src/mining_tank/CMakeLists.txt"
   "/usr/lib/cmake/eigen3/Eigen3Config.cmake"
   "/usr/lib/cmake/eigen3/Eigen3ConfigVersion.cmake"
@@ -25,6 +26,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-nonamespace-targets-release.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-nonamespace-targets.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Config.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2ConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets-release.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets.cmake"
   "/usr/local/lib/cmake/Ceres/CeresConfig.cmake"
   "/usr/local/lib/cmake/Ceres/CeresConfigVersion.cmake"
   "/usr/local/lib/cmake/Ceres/CeresTargets-release.cmake"
@@ -85,6 +90,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/data_manager/json_binary_dir/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/mining_tank/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/aruco/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/locate/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -93,4 +99,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
   "src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
   "src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
+  "src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
   )

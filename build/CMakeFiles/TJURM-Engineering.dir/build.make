@@ -82,6 +82,9 @@ TJURM-Engineering: CMakeFiles/TJURM-Engineering.dir/build.make
 TJURM-Engineering: src/data_manager/libdata_manager.a
 TJURM-Engineering: src/mining_tank/libmining_tank.a
 TJURM-Engineering: src/aruco/libaruco.a
+TJURM-Engineering: src/locate/liblocate.a
+TJURM-Engineering: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.55.1
+TJURM-Engineering: /usr/lib/x86_64-linux-gnu/librsutils.a
 TJURM-Engineering: /usr/local/opencv4.5.4/lib/libopencv_gapi.so.4.5.4
 TJURM-Engineering: /usr/local/opencv4.5.4/lib/libopencv_stitching.so.4.5.4
 TJURM-Engineering: /usr/local/opencv4.5.4/lib/libopencv_alphamat.so.4.5.4

@@ -1,5 +1,6 @@
 #include "aruco/aruco_locate.h"
 #include "data_manager/control/control.h"
+#include "locate/locate.h"
 
 
 void aruco_cereate()
@@ -47,16 +48,29 @@ bool detectArucoMarkers(const cv::Mat& inputImage,
 
 void Control::aruco_detect() {
     auto param = Param::get_instance();
+    int count = 0;
     while(true)
     {
-        cv::Mat aruco_image ;
-        if(!Data::image_in.empty())
+        cv::Mat aruco_image;
+        get_image_RealSense();
+        //get_image_DaHeng();
+        // cv::imshow("RealSense", Data::image_in_RealSense_depth);
+        // cv::imshow("RealSense_color", Data::image_in_RealSense_color);
+        if(!Data::image_in_RealSense_color.empty())
         {
-            detectArucoMarkers(Data::image_in.clone(), Data::markerIds, Data::markerCorners, true, &aruco_image);
+            bool IsdetectAruco;
+            Data::markerIds.clear();
+            Data::markerCorners.clear();
+            IsdetectAruco = detectArucoMarkers(Data::image_in_RealSense_color.clone(), Data::markerIds, Data::markerCorners, true, &aruco_image);
             if(Data::show_aruco)
             {
                 cv::imshow("aruco", aruco_image);
                 cv::waitKey(1);
+                //按q保存图片，序号命名
+                // if(cv::waitKey(1) == 'q')
+                // {
+                //     cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/biaoding/"+std::to_string(count++)+".jpg", Data::image_in_RealSense_color);
+                // }
                 for(int i=0;i<Data::markerIds.size();i++)
                 {
                     std::cout<<"id: "<<Data::markerIds[i]<<std::endl;
@@ -66,6 +80,50 @@ void Control::aruco_detect() {
                     }
                 }
             }
+            if(IsdetectAruco)
+            {
+                getArucotocamera(Data::markerIds, Data::markerCorners);
+            }
         }
+    }
+}
+void getArucotocamera(std::vector<int>& markerIds, std::vector<std::vector<cv::Point2f>>& markerCorners)
+{
+    std::vector< std::pair<std::vector<cv::Point3d>, int> > Arucos_camera;
+    for(int i=0;i<markerIds.size();i++)
+    {
+        std::pair<std::vector<cv::Point3d>, int> Aruco_camera;
+        Aruco_camera.second = markerIds[i];
+        for(int j=0;j<markerCorners[i].size();j++)
+        {
+            cv::Point2d point;
+            point.x = markerCorners[i][j].x;
+            point.y = markerCorners[i][j].y;
+            cv::Point3d point3d = pixelToCamera(point);
+            if(point3d.x&&point3d.y&&point3d.z)Aruco_camera.first.push_back(point3d);
+        }
+        if(Aruco_camera.first.size()==4)Arucos_camera.push_back(Aruco_camera);
+    }
+    //输出距离
+    // for(int i=0;i<Arucos_camera.size();i++)
+    // {
+    //     std::cout<<"id: "<<Arucos_camera[i].second<<std::endl;
+    //     for(int j=0;j<Arucos_camera[i].first.size();j++)
+    //     {
+    //         std::cout<<"distance: "<<Arucos_camera[i].first[j]<<std::endl;
+    //     }
+    // }
+
+    for(int i=0;i<Arucos_camera.size();i++)
+    {
+        Eigen::Matrix4d T;
+        std::vector<cv::Point3d> srcPoints = {
+            cv::Point3d(0, 0, 0),
+            cv::Point3d(1, 0, 0),
+            cv::Point3d(1, 1, 0),
+            cv::Point3d(0, 1, 0)
+        };
+        T = computeTransformation(srcPoints, Arucos_camera[i].first);
+        std::cout<<"T: "<<T<<std::endl;
     }
 }

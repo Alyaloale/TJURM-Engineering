@@ -71,6 +71,7 @@
         "numericaldiff": "cpp",
         "compare": "cpp",
         "stop_token": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "variant": "cpp"
     }
 }

@@ -42,6 +42,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/cmake_install.cmake")
   include("/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/cmake_install.cmake")
   include("/home/tjurm/Code/TJURM-Engineering/build/src/aruco/cmake_install.cmake")
+  include("/home/tjurm/Code/TJURM-Engineering/build/src/locate/cmake_install.cmake")
 
 endif()
 

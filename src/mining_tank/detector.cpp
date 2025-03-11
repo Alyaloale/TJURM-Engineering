@@ -17,24 +17,8 @@ void Control::detect_start()
         //读取图片
         if(!Data::debug)
         {
-            Camera* camera = Data::camera[Data::camera_index];
-
-            std::shared_ptr<rm::Frame> frame = camera->buffer->pop();
-
-            TimePoint frame_wait = getTime();
-            while(frame == nullptr) {
-                frame = camera->buffer->pop();
-                double delay = getDoubleOfS(frame_wait, getTime());
-                if (delay > 0.5 && Data::timeout_flag) {
-                    rm::message("Capture timeout", rm::MSG_ERROR);
-                    exit(-1);
-                }
-            }
-            Data::image_in = frame->image->clone();
-            detect(Data::image_in);
-            //send_single(target_yaw, target_pitch, fire, Data::target_id);
-            cv::waitKey(1);
-
+            get_image_DaHeng();
+            detect(Data::image_in_DaHeng);
         }
         else if(Data::debug==1)
         {
@@ -149,58 +133,4 @@ void detect(cv::Mat &src)
         }
         cv::imshow("image", image_in);
     }
-}
-
-
-std::vector<std::pair<cv::Vec4d,cv::Vec4d>> GetMaxTwoLine(std::vector<std::vector<cv::Point>> contours,cv::Mat contour_image)
-{
-    std::vector<std::pair<cv::Vec4d,cv::Vec4d>> max_two_line;
-    cv::Vec4d first_max_line, second_max_line;
-    double max_length = 0;
-    double second_max_length = 0;
-    //霍夫变换获取两条最长线段
-    for (auto &contour : contours) {
-        //roi获取
-        cv::RotatedRect rect = cv::minAreaRect(contour);
-        int x_min=10000, x_max=0, y_min=10000, y_max=0, width=0, height=0;
-        for(int i=0;i<contour.size();i++){
-            x_min = std::min(x_min,contour[i].x);
-            x_max = std::max(x_max,contour[i].x);
-            y_min = std::min(y_min,contour[i].y);
-            y_max = std::max(y_max,contour[i].y);
-        }
-        cv::Point2i roi = cv::Point2i(x_min,y_min);
-        width = x_max-x_min;
-        height = y_max-y_min;
-        width = std::min(width+20,contour_image.cols-roi.x);
-        height = std::min(height+20,contour_image.rows-roi.y);
-        roi.x = std::max(roi.x-10,0);
-        roi.y = std::max(roi.y-10,0);
-        cv::Mat roi_image = contour_image(cv::Rect(roi.x,roi.y,width,height));
-        // cv::imshow("roi_image",roi_image);
-        // cv::waitKey(0);
-        std::vector<cv::Vec4d> lines;
-        cv::HoughLinesP(roi_image, lines, 1, CV_PI / 180, 50, 30, 10);
-        //根据长度由大到小排序
-        std::sort(lines.begin(), lines.end(), [](cv::Vec4d a, cv::Vec4d b) {
-            return cv::norm(cv::Point2f(a[0], a[1]) - cv::Point2f(a[2], a[3])) > cv::norm(cv::Point2f(b[0], b[1]) - cv::Point2f(b[2], b[3]));
-        });
-        if (lines.size() >= 2) {
-            first_max_line = lines[0];
-            second_max_line = lines[1];
-            //roi修正
-            first_max_line[0] += roi.x;
-            first_max_line[1] += roi.y;
-            first_max_line[2] += roi.x;
-            first_max_line[3] += roi.y;
-            second_max_line[0] += roi.x;
-            second_max_line[1] += roi.y;
-            second_max_line[2] += roi.x;
-            second_max_line[3] += roi.y;
-            max_two_line.push_back(std::make_pair(first_max_line, second_max_line));
-        }
-        std::cout<<lines.size()<<std::endl;
-    }
-
-    return max_two_line;
 }
