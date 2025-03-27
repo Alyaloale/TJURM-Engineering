@@ -13,6 +13,12 @@ struct RealSenseCamera {
     bool Ispipeline_started = false;
     cv::Mat intrinsic_matrix;
     cv::Mat distortion_coeffs;
+    cv::Mat r_rgb_to_depth;
+    cv::Mat t_rgb_to_depth;
+    // 创建滤波对象
+    rs2::decimation_filter dec_filter;  // 降采样滤波
+    rs2::spatial_filter spatial_filter; // 空间域滤波
+    rs2::temporal_filter temporal_filter; // 时间域滤波
     RealSenseCamera() : depth_to_color(rs2_stream::RS2_STREAM_COLOR) {
         
     }
@@ -39,12 +45,15 @@ namespace Data{
     extern std::vector<std::vector<cv::Point3f>> points_3D;
     extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
     extern cv::Mat image_in_DaHeng;
+    extern cv::Mat image_in_DaHeng_depth;
     extern cv::Mat image_in_RealSense_color;
     extern cv::Mat image_in_RealSense_depth;
     extern RealSenseCamera realsense_camera;
     extern std::vector<int> markerIds;
     extern std::vector<std::vector<cv::Point2f>> markerCorners;
     extern std::vector<std::vector<cv::Point2f>> rejectedCandidates;
+    extern Eigen::Matrix4d RealSenseT;
+    extern Eigen::Matrix4d DaHengT;
 }
 
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager
+# Install script for directory: /home/tjurm/Code/TJURM-Engineering/src/data_manager
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/json_binary_dir/cmake_install.cmake")
+  include("/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/json_binary_dir/cmake_install.cmake")
 
 endif()
 

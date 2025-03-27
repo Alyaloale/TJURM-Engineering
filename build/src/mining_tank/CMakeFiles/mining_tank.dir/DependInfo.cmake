@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/mining_tank/detector.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/mining_tank/get_Four.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/mining_tank/get_V.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/mining_tank/detector.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_Four.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/mining_tank/get_V.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

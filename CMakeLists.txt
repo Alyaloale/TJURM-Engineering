@@ -46,6 +46,7 @@ add_subdirectory(src/data_manager)
 add_subdirectory(src/mining_tank)
 add_subdirectory(src/aruco)
 add_subdirectory(src/locate)
+add_subdirectory(src/cuda)
 
 # 添加可执行文件
 add_executable(TJURM-Engineering src/main.cpp)
@@ -56,5 +57,6 @@ target_link_libraries(TJURM-Engineering
     mining_tank
     aruco
     locate
+    cudatools
 )
 

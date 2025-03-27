@@ -10,13 +10,13 @@ using namespace rm;
 
 
 int main(int argc, char** argv) {
+    //aruco_cereate();
     auto control = Control::get_instance();
     init_debug();
     if(!Data::debug) while(true) if(init_camera()) break;
     if (Data::serial_flag) init_serial();
 
     control->autodetect();
-    //aruco_cereate();
     rm::message("Main thread hang up!", rm::MSG_OK);
     std::unique_lock<std::mutex> lock(hang_up_mutex);
     hang_up_cv.wait(lock);

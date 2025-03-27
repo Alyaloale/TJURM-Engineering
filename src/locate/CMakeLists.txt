@@ -1,6 +1,7 @@
 file(GLOB_RECURSE
     locate_src
         ${CMAKE_SOURCE_DIR}/src/locate/*.cpp
+        ${CMAKE_SOURCE_DIR}/src/locate/*.cu
 )
 
 

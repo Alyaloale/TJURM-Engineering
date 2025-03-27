@@ -1,4 +1,4 @@
-# Install script for directory: /home/tjurm/TJURM-2025/TJURM-Engineering/src/mining_tank
+# Install script for directory: /home/tjurm/Code/TJURM-Engineering/src/mining_tank
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

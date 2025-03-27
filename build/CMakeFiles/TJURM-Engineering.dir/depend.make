@@ -11,6 +11,13 @@ CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: ../include/mining_tank/get_Four
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: ../include/mining_tank/get_V.h
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: ../libs/json/single_include/nlohmann/json.hpp
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInfer.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInferImpl.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInferLegacyDims.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInferRuntime.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInferRuntimeCommon.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvInferVersion.h
+CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /home/tjurm/Downloads/TensorRT-8.4.3.1/include/NvOnnxParser.h
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/include/eigen3/Eigen/Cholesky
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/include/eigen3/Eigen/Core
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/include/eigen3/Eigen/Dense
@@ -392,7 +399,6 @@ CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/radar
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/radar/solver.h
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/solver/solvepnp.h
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/solver/ternary.hpp
-CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/stereo/stereo.h
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/structure/camera.hpp
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/structure/cyclequeue.hpp
 CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o: /usr/local/include/openrm/structure/enums.hpp

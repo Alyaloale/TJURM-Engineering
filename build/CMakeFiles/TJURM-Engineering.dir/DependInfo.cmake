@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/main.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/main.cpp" "/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -30,16 +30,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-<<<<<<< HEAD
   "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
-=======
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
->>>>>>> e9a8de65d0dfa6a38d110712373565c20e455560
+  "/home/tjurm/Code/TJURM-Engineering/build/src/cuda/CMakeFiles/cudatools.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,4 +1,4 @@
-# Install script for directory: /home/tjurm/TJURM-2025/TJURM-Engineering/libs/json
+# Install script for directory: /home/tjurm/Code/TJURM-Engineering/libs/json
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

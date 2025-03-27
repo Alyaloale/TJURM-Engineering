@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <opencv2/core/utils/filesystem.hpp>
 #include "data_manager/control/control.h"
+#include "locate/locate.h"
 
 static int binary_ratio;
 cv::Mat image_in;
@@ -18,7 +19,9 @@ void Control::detect_start()
         if(!Data::debug)
         {
             get_image_DaHeng();
+            get_image_rgbdepth();
             detect(Data::image_in_DaHeng);
+            cv::waitKey(1);
         }
         else if(Data::debug==1)
         {
@@ -68,24 +71,21 @@ void detect(cv::Mat &src)
         std::cout<<"self color is not red or blue"<<std::endl;
         return;
     }
-    //StrenthenColor(src,gray_image,Data::mining_tank_color);
+    StrenthenColor(src,gray_image,Data::mining_tank_color);
     if(Data::show_image_flag&&Data::show_binary_image_flag){
         cv::imshow("gray_image", gray_image);
     }
 
 //二值化
     cv::Mat binary_image;
-    // if (Data::mining_tank_color == rm::ARMOR_COLOR_RED){
-    //     binary_ratio=(*param)["Point"]["Threshold"]["RatioRed"];
-    // } else{
-    //     binary_ratio=(*param)["Point"]["Threshold"]["RatioBlue"];
-    // }
-    // int threshold_from_hist = rm::getThresholdFromHist(image_in,8,binary_ratio);
-    // threshold_from_hist = std::clamp(threshold_from_hist, 10, 100);
-    // rm::getBinary(gray_image, binary_image,threshold_from_hist, rm::BINARY_METHOD_DIRECT_THRESHOLD);
-    double threshold = cv::threshold(gray_image, binary_image, 0, 255, cv::THRESH_BINARY + cv::THRESH_OTSU);
-    //std::cout<<"threshold is "<<threshold<<std::endl;
-
+    if (Data::mining_tank_color == rm::ARMOR_COLOR_RED){
+        binary_ratio=(*param)["Point"]["Threshold"]["RatioRed"];
+    } else{
+        binary_ratio=(*param)["Point"]["Threshold"]["RatioBlue"];
+    }
+    int threshold_from_hist = rm::getThresholdFromHist(image_in,8,binary_ratio);
+    threshold_from_hist = std::clamp(threshold_from_hist, 10, 100);
+    rm::getBinary(gray_image, binary_image,threshold_from_hist, rm::BINARY_METHOD_DIRECT_THRESHOLD);
 
 //轮廓检测
     std::vector<std::vector<cv::Point>> contours;

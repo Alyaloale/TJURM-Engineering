@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering
+CMAKE_SOURCE_DIR = /home/tjurm/Code/TJURM-Engineering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tjurm/TJURM-2025/TJURM-Engineering/build
+CMAKE_BINARY_DIR = /home/tjurm/Code/TJURM-Engineering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles /home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/progress.marks
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/TJURM-2025/TJURM-Engineering/build/CMakeFiles 0
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles /home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/progress.marks
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/clean
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/preinstall
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/preinstall
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/data_manager/CMakeFiles/data_manager.dir/rule:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/CMakeFiles/data_manager.dir/rule
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f CMakeFiles/Makefile2 src/data_manager/CMakeFiles/data_manager.dir/rule
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ data_manager: src/data_manager/CMakeFiles/data_manager.dir/rule
 
 # fast build rule for target.
 data_manager/fast:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/build
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/build
 .PHONY : data_manager/fast
 
 base.o: base.cpp.o
@@ -131,7 +131,7 @@ base.o: base.cpp.o
 
 # target to build an object file
 base.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o
 .PHONY : base.cpp.o
 
 base.i: base.cpp.i
@@ -140,7 +140,7 @@ base.i: base.cpp.i
 
 # target to preprocess a source file
 base.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.i
 .PHONY : base.cpp.i
 
 base.s: base.cpp.s
@@ -149,7 +149,7 @@ base.s: base.cpp.s
 
 # target to generate assembly for a file
 base.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/base.cpp.s
 .PHONY : base.cpp.s
 
 control/control.o: control/control.cpp.o
@@ -158,7 +158,7 @@ control/control.o: control/control.cpp.o
 
 # target to build an object file
 control/control.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o
 .PHONY : control/control.cpp.o
 
 control/control.i: control/control.cpp.i
@@ -167,7 +167,7 @@ control/control.i: control/control.cpp.i
 
 # target to preprocess a source file
 control/control.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.i
 .PHONY : control/control.cpp.i
 
 control/control.s: control/control.cpp.s
@@ -176,7 +176,7 @@ control/control.s: control/control.cpp.s
 
 # target to generate assembly for a file
 control/control.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.s
 .PHONY : control/control.cpp.s
 
 control/crc.o: control/crc.cpp.o
@@ -185,7 +185,7 @@ control/crc.o: control/crc.cpp.o
 
 # target to build an object file
 control/crc.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o
 .PHONY : control/crc.cpp.o
 
 control/crc.i: control/crc.cpp.i
@@ -194,7 +194,7 @@ control/crc.i: control/crc.cpp.i
 
 # target to preprocess a source file
 control/crc.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.i
 .PHONY : control/crc.cpp.i
 
 control/crc.s: control/crc.cpp.s
@@ -203,7 +203,7 @@ control/crc.s: control/crc.cpp.s
 
 # target to generate assembly for a file
 control/crc.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.s
 .PHONY : control/crc.cpp.s
 
 control/receive_thread.o: control/receive_thread.cpp.o
@@ -212,7 +212,7 @@ control/receive_thread.o: control/receive_thread.cpp.o
 
 # target to build an object file
 control/receive_thread.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o
 .PHONY : control/receive_thread.cpp.o
 
 control/receive_thread.i: control/receive_thread.cpp.i
@@ -221,7 +221,7 @@ control/receive_thread.i: control/receive_thread.cpp.i
 
 # target to preprocess a source file
 control/receive_thread.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.i
 .PHONY : control/receive_thread.cpp.i
 
 control/receive_thread.s: control/receive_thread.cpp.s
@@ -230,7 +230,7 @@ control/receive_thread.s: control/receive_thread.cpp.s
 
 # target to generate assembly for a file
 control/receive_thread.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.s
 .PHONY : control/receive_thread.cpp.s
 
 control/send_thread.o: control/send_thread.cpp.o
@@ -239,7 +239,7 @@ control/send_thread.o: control/send_thread.cpp.o
 
 # target to build an object file
 control/send_thread.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o
 .PHONY : control/send_thread.cpp.o
 
 control/send_thread.i: control/send_thread.cpp.i
@@ -248,7 +248,7 @@ control/send_thread.i: control/send_thread.cpp.i
 
 # target to preprocess a source file
 control/send_thread.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.i
 .PHONY : control/send_thread.cpp.i
 
 control/send_thread.s: control/send_thread.cpp.s
@@ -257,7 +257,7 @@ control/send_thread.s: control/send_thread.cpp.s
 
 # target to generate assembly for a file
 control/send_thread.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.s
 .PHONY : control/send_thread.cpp.s
 
 control/thread_control.o: control/thread_control.cpp.o
@@ -266,7 +266,7 @@ control/thread_control.o: control/thread_control.cpp.o
 
 # target to build an object file
 control/thread_control.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o
 .PHONY : control/thread_control.cpp.o
 
 control/thread_control.i: control/thread_control.cpp.i
@@ -275,7 +275,7 @@ control/thread_control.i: control/thread_control.cpp.i
 
 # target to preprocess a source file
 control/thread_control.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.i
 .PHONY : control/thread_control.cpp.i
 
 control/thread_control.s: control/thread_control.cpp.s
@@ -284,7 +284,7 @@ control/thread_control.s: control/thread_control.cpp.s
 
 # target to generate assembly for a file
 control/thread_control.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.s
 .PHONY : control/thread_control.cpp.s
 
 init.o: init.cpp.o
@@ -293,7 +293,7 @@ init.o: init.cpp.o
 
 # target to build an object file
 init.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o
 .PHONY : init.cpp.o
 
 init.i: init.cpp.i
@@ -302,7 +302,7 @@ init.i: init.cpp.i
 
 # target to preprocess a source file
 init.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.i
 .PHONY : init.cpp.i
 
 init.s: init.cpp.s
@@ -311,7 +311,7 @@ init.s: init.cpp.s
 
 # target to generate assembly for a file
 init.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/init.cpp.s
 .PHONY : init.cpp.s
 
 param.o: param.cpp.o
@@ -320,7 +320,7 @@ param.o: param.cpp.o
 
 # target to build an object file
 param.cpp.o:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o
 .PHONY : param.cpp.o
 
 param.i: param.cpp.i
@@ -329,7 +329,7 @@ param.i: param.cpp.i
 
 # target to preprocess a source file
 param.cpp.i:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.i
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.i
 .PHONY : param.cpp.i
 
 param.s: param.cpp.s
@@ -338,7 +338,7 @@ param.s: param.cpp.s
 
 # target to generate assembly for a file
 param.cpp.s:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.s
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/param.cpp.s
 .PHONY : param.cpp.s
 
 # Help Target
@@ -385,6 +385,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/tjurm/TJURM-2025/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

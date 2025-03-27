@@ -30,8 +30,19 @@ std::vector<std::vector<cv::Point>> MiningTankCountourFourSift(std::vector<std::
         cv::Point2f center = rect.center;
         int dis_x = std::min(center.x, show_contour.cols - center.x);
         int dis_y = std::min(center.y, show_contour.rows - center.y);
+        double color_ratio = 0;
+
+        
+
         // std::cout<<"area:"<<area<<std::endl;
-        if (hwratio > maxhwratio || whratio < minwhratio || contour_area > maxarea || contour_area < minarea || area_ratio > maxarearatio || area_ratio < minarearatio || dis_x < 20 || dis_y < 20)
+        if (hwratio > maxhwratio ||
+            whratio < minwhratio ||
+            contour_area > maxarea ||
+            contour_area < minarea ||
+            area_ratio > maxarearatio ||
+            area_ratio < minarearatio ||
+            dis_x < 20 ||
+            dis_y < 20)
         {
             // std::cout << std::endl;
             // std::cout << "hwratio:" << hwratio << std::endl;
@@ -55,7 +66,7 @@ std::vector<std::vector<cv::Point>> MiningTankCountourFourSift(std::vector<std::
         // 边数筛选
         std::vector<cv::Point> polygon;
         cv::approxPolyDP(contour, polygon, 0.2 * sqrt(contour_area), true);
-        if (polygon.size() >= 3 && polygon.size() <= 9)
+        if (polygon.size() >= 3 && polygon.size() <= 12)
         {
             mining_tank_contours.push_back(contour);
         }
@@ -227,4 +238,16 @@ int CountLinePixels(cv::Point p1, cv::Point p2, cv::Mat &binary_image) {
         }
     }
     return count;
+}
+//计算红色度
+double calculateRedness(uint8_t R, uint8_t G, uint8_t B) {
+    const double MAX_DISTANCE = 441.67295593; // 255*sqrt(3)
+    double distance = sqrt(pow(255 - R, 2) + pow(G, 2) + pow(B, 2));
+    return 1.0 - (distance / MAX_DISTANCE);
+}
+//计算蓝色度
+double calculateBlue(uint8_t R, uint8_t G, uint8_t B) {
+    const double MAX_DISTANCE = 441.67295593; // 255*sqrt(3)
+    double distance = sqrt(pow(R, 2) + pow(G, 2) + pow(255 - B, 2));
+    return 1.0 - (distance / 441.67295593);
 }

@@ -14,4 +14,6 @@ struct MiningTankFour
 MiningTankFour GetMiningTankFour(std::vector<std::vector<cv::Point>> contours,cv::Mat& binary_image,cv::Mat& show_triangle); //获取四点
 std::vector<std::vector<cv::Point>> MiningTankCountourFourSift(std::vector<std::vector<cv::Point>> &contours,cv::Mat& show_contour); //获取四点轮廓
 int CountLinePixels(cv::Point p1, cv::Point p2, cv::Mat &binary_image); //计算直线上的白点数
+double calculateRedness(uint8_t R, uint8_t G, uint8_t B);
+double calculateBlue(uint8_t R, uint8_t G, uint8_t B);
 #endif

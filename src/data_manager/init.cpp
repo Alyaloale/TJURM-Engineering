@@ -24,38 +24,38 @@ bool init_camera(){
 
 
     // 获取相机数量
-    // int camera_num;
-    // bool flag_camera = rm::getDaHengCameraNum(camera_num);
-    // Data::camera.clear();
-    // Data::camera.resize(camera_num + 1, nullptr);
-    // if(!flag_camera) {
-    //     rm::message("Failed to get camera number", rm::MSG_ERROR);
-    //     return false;
-    // }
-    //     rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
-    //     double exp = (*param)["Camera"]["Base"]["ExposureTime"];
-    //     double gain = (*param)["Camera"]["Base"]["Gain"];
-    //     double fps = (*param)["Camera"]["Base"]["FrameRate"];
-    //     int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
-    //     int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
-    //     std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
-    //     std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
-    //     Data::camera[1] = new rm::Camera();
-    //     flag_camera = rm::openDaHeng(
-    //         Data::camera[1], 1, nullptr, nullptr, nullptr, false);
+    int camera_num;
+    bool flag_camera = rm::getDaHengCameraNum(camera_num);
+    Data::camera.clear();
+    Data::camera.resize(camera_num + 1, nullptr);
+    if(!flag_camera) {
+        rm::message("Failed to get camera number", rm::MSG_ERROR);
+        return false;
+    }
+        rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
+        double exp = (*param)["Camera"]["Base"]["ExposureTime"];
+        double gain = (*param)["Camera"]["Base"]["Gain"];
+        double fps = (*param)["Camera"]["Base"]["FrameRate"];
+        int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
+        int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
+        std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
+        std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
+        Data::camera[1] = new rm::Camera();
+        flag_camera = rm::openDaHeng(
+            Data::camera[1], 1, nullptr, nullptr, nullptr, false);
 
-    //     if(!flag_camera) {
-    //         rm::message("Failed to open camera", rm::MSG_ERROR);
-    //         return false;
-    //     }
+        if(!flag_camera) {
+            rm::message("Failed to open camera", rm::MSG_ERROR);
+            return false;
+        }
 
-    //     flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
-    //     if(!flag_camera) {
-    //         rm::message("Failed to set camera args", rm::MSG_ERROR);
-    //         return false;
-    //     }
-        // Param::from_json(camlens["camera_type"]["lens_type"]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
-        // Param::from_json(camlens["camera_type"]["lens_type"]["Distortion"], Data::camera[1]->distortion_coeffs);
+        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
+        if(!flag_camera) {
+            rm::message("Failed to set camera args", rm::MSG_ERROR);
+            return false;
+        }
+        Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
+        Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
 
 
         //RealSense相机
@@ -74,6 +74,14 @@ bool init_camera(){
 
             Param::from_json(camlens["RealSense"]["D435i"]["Intrinsic"], Data::realsense_camera.intrinsic_matrix);
             Param::from_json(camlens["RealSense"]["D435i"]["Distortion"], Data::realsense_camera.distortion_coeffs);
+            std::cout<<Data::realsense_camera.intrinsic_matrix<<std::endl;
+            // 获取外参
+            Param::from_json(camlens["RealSense"]["D435i"]["Rotation"], Data::realsense_camera.r_rgb_to_depth);
+            Param::from_json(camlens["RealSense"]["D435i"]["Translation"], Data::realsense_camera.t_rgb_to_depth);
+            //获取深度标尺
+            // double depth_scale = Data::realsense_camera.pipeline.get_active_profile().get_device().first<rs2::depth_sensor>().get_depth_scale();
+            // std::cout << "Depth scale: " << depth_scale << std::endl;
+
 
         } catch (const rs2::error& e) {
             std::cerr << "RealSense error calling " << e.get_failed_function() << "(" << e.get_failed_args() << "):\n    " << e.what() << std::endl;
@@ -101,6 +109,7 @@ void get_image_DaHeng(){
         }
     }
     Data::image_in_DaHeng = frame->image->clone();
+    cv::resize(Data::image_in_DaHeng, Data::image_in_DaHeng, cv::Size(1280, 720));
 }
 
 // 获取RealSense相机图像
@@ -111,6 +120,10 @@ void get_image_RealSense(){
     //进行对齐操作
     rs2::frameset aligned_frames = Data::realsense_camera.depth_to_color.process(frameset);
 
+    //滤波
+    // aligned_frames = Data::realsense_camera.dec_filter.process(aligned_frames);
+    // aligned_frames = Data::realsense_camera.spatial_filter.process(aligned_frames);
+    // aligned_frames = Data::realsense_camera.temporal_filter.process(aligned_frames);
     // 获取对齐后的深度帧和彩色帧
     rs2::depth_frame aligned_depth_frame = aligned_frames.get_depth_frame();
     rs2::video_frame color_frame = aligned_frames.get_color_frame();
@@ -168,6 +181,7 @@ void init_debug() {
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
     Data::show_aruco = (*param)["Debug"]["ShowAruco"];
     Data::timeout_flag = (*param)["Debug"]["TimeOut"];
+
 
     std::vector<cv::Point3f> Point1;
     cv::Point3f point1,point2,point3;

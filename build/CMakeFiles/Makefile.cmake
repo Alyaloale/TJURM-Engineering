@@ -9,6 +9,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
   "CMakeFiles/3.16.3/CMakeCCompiler.cmake"
+  "CMakeFiles/3.16.3/CMakeCUDACompiler.cmake"
   "CMakeFiles/3.16.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.16.3/CMakeSystem.cmake"
   "../libs/json/CMakeLists.txt"
@@ -16,17 +17,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../libs/json/cmake/nlohmann_jsonConfigVersion.cmake.in"
   "../libs/json/cmake/pkg-config.pc.in"
   "../src/aruco/CMakeLists.txt"
+  "../src/cuda/CMakeLists.txt"
   "../src/data_manager/CMakeLists.txt"
   "../src/locate/CMakeLists.txt"
   "../src/mining_tank/CMakeLists.txt"
-  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-config-version.cmake"
-  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-config.cmake"
-  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-nonamespace-targets-release.cmake"
-  "/usr/lib/aarch64-linux-gnu/cmake/gflags/gflags-nonamespace-targets.cmake"
   "/usr/lib/cmake/eigen3/Eigen3Config.cmake"
   "/usr/lib/cmake/eigen3/Eigen3ConfigVersion.cmake"
   "/usr/lib/cmake/eigen3/Eigen3Targets.cmake"
-<<<<<<< HEAD
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-nonamespace-targets-release.cmake"
@@ -35,8 +32,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2ConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets-release.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/realsense2/realsense2Targets.cmake"
-=======
->>>>>>> e9a8de65d0dfa6a38d110712373565c20e455560
   "/usr/local/lib/cmake/Ceres/CeresConfig.cmake"
   "/usr/local/lib/cmake/Ceres/CeresConfigVersion.cmake"
   "/usr/local/lib/cmake/Ceres/CeresTargets-release.cmake"
@@ -52,6 +47,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/opencv4.5.4/lib/cmake/opencv4/OpenCVModules-release.cmake"
   "/usr/local/opencv4.5.4/lib/cmake/opencv4/OpenCVModules.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake-3.16/Modules/CMakeCUDAInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake"
@@ -68,6 +64,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.16/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.16/Modules/Compiler/NVIDIA-CUDA.cmake"
   "/usr/share/cmake-3.16/Modules/ExternalProject.cmake"
   "/usr/share/cmake-3.16/Modules/FindCUDA.cmake"
   "/usr/share/cmake-3.16/Modules/FindCUDA/select_compute_arch.cmake"
@@ -98,6 +95,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/mining_tank/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/aruco/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/locate/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/cuda/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -107,4 +105,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
   "src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
   "src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
+  "src/cuda/CMakeFiles/cudatools.dir/DependInfo.cmake"
   )

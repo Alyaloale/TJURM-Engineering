@@ -30,3 +30,46 @@
         }
     ]
 }
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "(cuda-gdb) 启动",
+//             "type": "cppdbg",
+//             "request": "launch",
+//             "program": "/home/tjurm/Code/TJURM-Engineering/build/TJURM-Engineering",
+//             "args": [],
+//             "MIMode": "gdb",
+//             "cwd": "${fileDirname}",
+//             "miDebuggerPath": "/usr/local/cuda/bin/cuda-gdb",  // 动态路径
+//             "environment": [
+//                 {
+//                     "name": "PATH",
+//                     "value": "${env:PATH}:/usr/local/cuda/bin"  // 正确的 PATH 设置
+//                 },
+//                 {
+//                     "name": "CUDA_LAUNCH_BLOCKING",
+//                     "value": "1"
+//                 },
+//                 {
+//                     "name": "NVIDIA_VISIBLE_DEVICES",
+//                     "value": "0"
+//                 }
+//             ],
+//             "setupCommands": [
+//                 {
+//                     "text": "set cuda break_on_launch all",
+//                     "description": "启用所有内核断点"
+//                 },
+//                 {
+//                     "text": "set cuda memcheck on",
+//                     "description": "内存错误检测"
+//                 },
+//                 {
+//                     "text": "set cuda exception on",
+//                     "description": "内核异常捕获"
+//                 }
+//             ]
+//         }
+//     ]
+// }

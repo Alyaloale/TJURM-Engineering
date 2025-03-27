@@ -83,11 +83,11 @@
                     "MaxHeightWideRatio":3.6,
                     "MinWideHeightRatio":0.25,
                     "MaxcontourRectRatio": 0.70,
-                    "MincontourRectRatio": 0.20
+                    "MincontourRectRatio": 0.10
                 },
                 "Area":{
                     "MinArea": 60,
-                    "MaxArea": 900
+                    "MaxArea":5000
                 }
             },
             "V":{
@@ -145,7 +145,7 @@
         "BinaryImage": true,
         "ShowContour": true,
         "ShowTriangle": true,
-        "ShowAruco": true,
+        "ShowAruco": false,
         "Debug":0,
         "TimeOut":false,
         "Control":{
@@ -157,9 +157,9 @@
     "Camera":{
         "CamLensDir" : "/etc/openrm_engineering/CamLens.json",
         "Base" : {
-            "CameraType" : "DaHeng720_540",
-            "LensType" : "Prime25mm",
-            "Serial" : "FDJ21090028",
+            "CameraType" : "DaHeng1280_1024",
+            "LensType" : "Prime6mm",
+            "Serial" : "FGK25030071",
             "Width" : 720,
             "ExposureTime" : 3000.0,
             "FrameRate" : 120.0,

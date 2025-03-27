@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/base.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/control.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/crc.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/receive_thread.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/send_thread.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/control/thread_control.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/init.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o"
-  "/home/tjurm/TJURM-2025/TJURM-Engineering/src/data_manager/param.cpp" "/home/tjurm/TJURM-2025/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/base.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/base.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/control/control.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/control/crc.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/control/receive_thread.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/control/send_thread.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/control/thread_control.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/control/thread_control.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/init.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/init.cpp.o"
+  "/home/tjurm/Code/TJURM-Engineering/src/data_manager/param.cpp" "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/param.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
