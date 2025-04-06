@@ -38,6 +38,8 @@ void Control::aruco_detect() {
     while(true)
     {
         get_image_RealSense();
+        //get_image_DaHeng();
+        //get_image_rgbdepth();
         if(!Data::image_in_RealSense_color.empty()&&Data::show_aruco)
         {
             bool IsdetectAruco;
@@ -63,12 +65,13 @@ void Control::aruco_detect() {
 
             if(Data::show_aruco)
             {
-                //cv::resize(Data::image_in_RealSense_color, Data::image_in_RealSense_color, cv::Size(3840, 2160));
+                cv::resize(Data::image_in_RealSense_color, Data::image_in_RealSense_color, cv::Size(1920, 1080));
                 cv::imshow("Aruco", Data::image_in_RealSense_color);
-                cv::imshow("depth", Data::image_in_RealSense_depth);
+                //cv::imshow("depth", Data::image_in_RealSense_depth);
+                //cv::imshow("RGB", Data::image_in_DaHeng);
                 //输入w保存图片
                 char key = cv::waitKey(1);
-                // if(key=='w')
+                // if(key==' ')
                 // {
                 //     cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/ARUCO/"+std::to_string(count)+".jpg", Data::image_in_RealSense_color);
                 //     cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/RGB/"+std::to_string(count)+".jpg", Data::image_in_DaHeng);
@@ -100,10 +103,17 @@ void getArucotocamera(std::vector<int>& markerIds, std::vector<std::vector<cv::P
     for(int i=0;i<Arucos_camera.size();i++)
     {
         std::cout<<"id: "<<Arucos_camera[i].second<<std::endl;
+        double distance = 0;
         for(int j=0;j<Arucos_camera[i].first.size();j++)
         {
-            std::cout<<"x: "<<Arucos_camera[i].first[j].x<<" y: "<<Arucos_camera[i].first[j].y<<" z: "<<Arucos_camera[i].first[j].z<<std::endl;
+            for(int k=j+1;k<Arucos_camera[i].first.size();k++)
+            {
+                double dis = cv::norm(Arucos_camera[i].first[j] - Arucos_camera[i].first[k]);
+                distance += dis;
+            }
         }
+        distance /= 6;
+        std::cout<<"distance: "<<distance<<std::endl;
     }
 
     for(int i=0;i<Arucos_camera.size();i++)
@@ -129,10 +139,20 @@ void getArucotocamera(std::vector<int>& markerIds, std::vector<std::vector<cv::P
         }
         //平面度
         double flatness = calculateFlatness(Arucos_camera[i].first);
-        std::cout<<"flatness: "<<flatness<<std::endl;
+        //std::cout<<"flatness: "<<flatness<<std::endl;
         //计算变换矩阵
         T = computeTransformMatrix(srcPoints_eigen, dstPoints_eigen);
-        if(flatness < 10)Data::RealSenseT = T;
+        if(flatness < 10){
+            //转Mat Data::RealSenseT
+            Data::RealSenseT = cv::Mat::zeros(4, 4, CV_64F);
+            for(int j=0;j<4;j++)
+            {
+                for(int k=0;k<4;k++)
+                {
+                    Data::RealSenseT.at<double>(j,k) = T(j,k);
+                }
+            }
+        }
         //畸变矩阵设置为空
         cv::Mat distCoeffs = cv::Mat::zeros(5, 1, CV_64F);
         //重投影

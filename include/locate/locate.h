@@ -3,7 +3,7 @@
 #include "data_manager/param.h"
 #include "data_manager/base.h"
 #include <Eigen/Dense>
-#include "locate/dbscan.h"
+#include "locate/tools.h"
 
 
 std::vector<cv::Point2d> reprojectPointsToPixel(const std::vector<cv::Point3d>& srcPoints, const Eigen::Matrix4d& T, 
@@ -19,10 +19,12 @@ cv::Point3d RealSensePixelToCamera(
     const cv::Mat& dist_coeffs
 );//获取去畸变后的深度值和相机坐标系下的点
 
-cv::Point3d PixelToCameraWithoutDbscan(
-    const cv::Point2d& pixel_coord,
+cv::Point3f PixelToCameraWithoutDbscan(
+    const cv::Point2f& pixel_coord,
     const cv::Mat& depth_image,
-    const cv::Mat& camera_matrix
+    const cv::Mat& camera_matrix,
+    const cv::Mat& dist_coeffs,
+    bool accept_invalid_depth
 );//获取深度值和相机坐标系下的点
 
 double calculateFlatness(const std::vector<cv::Point3d>& points);//计算四点平面度
@@ -41,5 +43,9 @@ std::vector<cv::Point3d> Cameratoimage(
     const std::vector<cv::Point3d>& camera_points,
     const cv::Mat& camera_matrix,
     const cv::Mat& dist_coeffs );//将相机坐标系下的点投影到图像平面
-
+void hybridMedianBilateralFilter(const cv::Mat& depth, cv::Mat& output,
+    int medianSize, 
+    int bilateralSize,
+    float sigmaColor,
+    float sigmaSpace);//混合中值滤波器
 #endif

@@ -13,7 +13,12 @@
 
 void setThreadPriority(std::thread& thread, int policy, int priority);
 
-#define SOF 0xA5
+SharedData* init_shared_memory();// 初始化共享内存
+
+void update_shared_data(SharedData* data, const float new_matrix[4][4], short new_color);// 更新共享内存
+
+void read_shared_data(SharedData* data, float out_matrix[4][4], short* out_color, uint64_t* out_ts);// 读取共享内存
+
 
 class Control {
 public:
@@ -22,48 +27,16 @@ public:
         return instance;
     }
 
-
-    rm::ArmorColor get_self() {
-        Data::mining_tank_color = static_cast<rm::ArmorColor>(this->state_bytes_.input_data.enemy_color);
-        if (Data::mining_tank_color == rm::ARMOR_COLOR_BLUE) return rm::ARMOR_COLOR_RED;
-        else if (Data::mining_tank_color == rm::ARMOR_COLOR_RED) return rm::ARMOR_COLOR_BLUE;
-    }
-
-
-    void send_thread();
-    void receive_thread();
     void autodetect();
     void detect_start();
     void aruco_detect();
-    void message();
-    void state();
 
-    void send_single(double yaw, double pitch, bool fire, rm::ArmorID id = rm::ARMOR_ID_UNKNOWN);
-    void stop_send() { send_flag_ = false; }
-    void start_send() {
-        send_flag_ = true;
-        send_cv_.notify_all();
-    }
 
 
 private:
     Control() {}
     Control(const Control&) = delete;
     Control& operator=(const Control&) = delete;
-
-
-public:
-    std::deque<std::pair<TimePoint, StateBytes>> state_queue_;
-
-    StateBytes              state_bytes_;             // 电控 -> 自瞄
-    OperateBytes            operate_bytes_;           // 自瞄 -> 电控
-
-    int                     file_descriptor_;
-    std::string             port_name_;
-
-private:
-    bool                    send_flag_ = true;
-    std::condition_variable send_cv_;
 };
 
 #endif

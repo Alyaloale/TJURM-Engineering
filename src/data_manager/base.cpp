@@ -2,6 +2,7 @@
 #include"data_manager/param.h"
 
 
+
 rm::ArmorColor Data::self_color;
 rm::ArmorColor Data::mining_tank_color;
 int Data::camera_index = 1;
@@ -23,9 +24,9 @@ RealSenseCamera Data::realsense_camera;
 int Data::send_wait_time_ms = 2000;
 cv::aruco::PREDEFINED_DICTIONARY_NAME Data::dictionaryName = cv::aruco::DICT_4X4_50;
 std::vector< std::pair< std::vector<cv::Point3f>,std::vector<cv::Point2f> > >Data::points_3D_2D;
-std::vector<std::vector<cv::Point3f>> Data::points_3D;
+std::vector<cv::Point3d> Data::points_3D;
 std::vector<int> Data::markerIds;
 std::vector<std::vector<cv::Point2f>> Data::markerCorners;
 std::vector<std::vector<cv::Point2f>> Data::rejectedCandidates;
-Eigen::Matrix4d Data::RealSenseT;
-Eigen::Matrix4d Data::DaHengT;
+cv::Mat Data::RealSenseT;
+cv::Mat Data::DaHengT;

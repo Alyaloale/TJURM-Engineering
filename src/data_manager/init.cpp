@@ -24,73 +24,77 @@ bool init_camera(){
 
 
     // 获取相机数量
-    int camera_num;
-    bool flag_camera = rm::getDaHengCameraNum(camera_num);
-    Data::camera.clear();
-    Data::camera.resize(camera_num + 1, nullptr);
-    if(!flag_camera) {
-        rm::message("Failed to get camera number", rm::MSG_ERROR);
+    // int camera_num;
+    // bool flag_camera = rm::getDaHengCameraNum(camera_num);
+    // Data::camera.clear();
+    // Data::camera.resize(camera_num + 1, nullptr);
+    // if(!flag_camera) {
+    //     rm::message("Failed to get camera number", rm::MSG_ERROR);
+    //     return false;
+    // }
+    //     rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
+    //     double exp = (*param)["Camera"]["Base"]["ExposureTime"];
+    //     double gain = (*param)["Camera"]["Base"]["Gain"];
+    //     double fps = (*param)["Camera"]["Base"]["FrameRate"];
+    //     int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
+    //     int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
+    //     std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
+    //     std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
+    //     Data::camera[1] = new rm::Camera();
+    //     flag_camera = rm::openDaHeng(
+    //         Data::camera[1], 1, nullptr, nullptr, nullptr, false);
+
+    //     if(!flag_camera) {
+    //         rm::message("Failed to open camera", rm::MSG_ERROR);
+    //         return false;
+    //     }
+
+    //     flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
+    //     if(!flag_camera) {
+    //         rm::message("Failed to set camera args", rm::MSG_ERROR);
+    //         return false;
+    //     }
+    //     Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
+    //     Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
+
+
+    double realsense_exp = (*param)["Camera"]["RealSense"]["ExposureTime"];
+    //RealSense相机
+    try {
+        Data::realsense_camera.config.enable_stream(RS2_STREAM_COLOR, 1280, 720, RS2_FORMAT_BGR8, 30);
+        // 配置深度图像流
+        Data::realsense_camera.config.enable_stream(RS2_STREAM_DEPTH, 1280, 720, RS2_FORMAT_Z16, 30);
+        // 启动管道，应用配置
+        if(!Data::realsense_camera.Ispipeline_started)
+        {
+            Data::realsense_camera.pipeline.start(Data::realsense_camera.config);
+            Data::realsense_camera.Ispipeline_started = true;
+        }
+        // 配置彩色图像流
+        auto sensor = Data::realsense_camera.pipeline.get_active_profile().get_device().query_sensors()[1];
+        sensor.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, 0); // 关闭自动曝光
+        sensor.set_option(RS2_OPTION_EXPOSURE, realsense_exp);
+        // 获取相机内参
+
+        Param::from_json(camlens["RealSense"]["D435i"]["Intrinsic"], Data::realsense_camera.intrinsic_matrix);
+        Param::from_json(camlens["RealSense"]["D435i"]["Distortion"], Data::realsense_camera.distortion_coeffs);
+        //std::cout<<Data::realsense_camera.intrinsic_matrix<<std::endl;
+        // 获取外参
+        Param::from_json(camlens["RealSense"]["D435i"]["Rotation"], Data::realsense_camera.r_rgb_to_depth);
+        Param::from_json(camlens["RealSense"]["D435i"]["Translation"], Data::realsense_camera.t_rgb_to_depth);
+        //获取深度标尺
+        // double depth_scale = Data::realsense_camera.pipeline.get_active_profile().get_device().first<rs2::depth_sensor>().get_depth_scale();
+        // std::cout << "Depth scale: " << depth_scale << std::endl;
+
+
+    } catch (const rs2::error& e) {
+        std::cerr << "RealSense error calling " << e.get_failed_function() << "(" << e.get_failed_args() << "):\n    " << e.what() << std::endl;
+        return false;
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
         return false;
     }
-        rm::message("get camera number "+ std::to_string(camera_num), rm::MSG_NOTE);
-        double exp = (*param)["Camera"]["Base"]["ExposureTime"];
-        double gain = (*param)["Camera"]["Base"]["Gain"];
-        double fps = (*param)["Camera"]["Base"]["FrameRate"];
-        int roi_width = (*param)["Camera"]["Base"]["ROIWidth"];
-        int roi_height = (*param)["Camera"]["Base"]["ROIHeight"];
-        std::string camera_type = (*param)["Camera"]["Base"]["CameraType"];
-        std::string lens_type = (*param)["Camera"]["Base"]["LensType"];
-        Data::camera[1] = new rm::Camera();
-        flag_camera = rm::openDaHeng(
-            Data::camera[1], 1, nullptr, nullptr, nullptr, false);
-
-        if(!flag_camera) {
-            rm::message("Failed to open camera", rm::MSG_ERROR);
-            return false;
-        }
-
-        flag_camera = setDaHengArgs(Data::camera[1], exp, gain, fps ,rm::TRIGGER_MODE_AUTO);
-        if(!flag_camera) {
-            rm::message("Failed to set camera args", rm::MSG_ERROR);
-            return false;
-        }
-        Param::from_json(camlens[camera_type][lens_type]["Intrinsic"], Data::camera[1]->intrinsic_matrix);
-        Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
-
-
-        //RealSense相机
-        try {
-            // 配置彩色图像流
-            Data::realsense_camera.config.enable_stream(RS2_STREAM_COLOR, 1280, 720, RS2_FORMAT_BGR8, 30);
-            // 配置深度图像流
-            Data::realsense_camera.config.enable_stream(RS2_STREAM_DEPTH, 1280, 720, RS2_FORMAT_Z16, 30);
-            // 启动管道，应用配置
-            if(!Data::realsense_camera.Ispipeline_started)
-            {
-                Data::realsense_camera.pipeline.start(Data::realsense_camera.config);
-                Data::realsense_camera.Ispipeline_started = true;
-            }
-            // 获取相机内参
-
-            Param::from_json(camlens["RealSense"]["D435i"]["Intrinsic"], Data::realsense_camera.intrinsic_matrix);
-            Param::from_json(camlens["RealSense"]["D435i"]["Distortion"], Data::realsense_camera.distortion_coeffs);
-            std::cout<<Data::realsense_camera.intrinsic_matrix<<std::endl;
-            // 获取外参
-            Param::from_json(camlens["RealSense"]["D435i"]["Rotation"], Data::realsense_camera.r_rgb_to_depth);
-            Param::from_json(camlens["RealSense"]["D435i"]["Translation"], Data::realsense_camera.t_rgb_to_depth);
-            //获取深度标尺
-            // double depth_scale = Data::realsense_camera.pipeline.get_active_profile().get_device().first<rs2::depth_sensor>().get_depth_scale();
-            // std::cout << "Depth scale: " << depth_scale << std::endl;
-
-
-        } catch (const rs2::error& e) {
-            std::cerr << "RealSense error calling " << e.get_failed_function() << "(" << e.get_failed_args() << "):\n    " << e.what() << std::endl;
-            return false;
-        } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
-            return false;
-        }
-        return true;
+    return true;
 }
 
 // 获取大恒相机图像
@@ -121,48 +125,51 @@ void get_image_RealSense(){
     rs2::frameset aligned_frames = Data::realsense_camera.depth_to_color.process(frameset);
 
     //滤波
-    // aligned_frames = Data::realsense_camera.dec_filter.process(aligned_frames);
-    // aligned_frames = Data::realsense_camera.spatial_filter.process(aligned_frames);
-    // aligned_frames = Data::realsense_camera.temporal_filter.process(aligned_frames);
+    // rs2::decimation_filter dec_filter;   // 降采样滤波器 (降低分辨率换精度)
+    // dec_filter.set_option(RS2_OPTION_FILTER_MAGNITUDE, 2);  // 降采样率2x
+
+    // rs2::spatial_filter spatial_filter;  // 空间域高斯滤波
+    // spatial_filter.set_option(RS2_OPTION_FILTER_SMOOTH_ALPHA, 0.5f); 
+    // spatial_filter.set_option(RS2_OPTION_FILTER_SMOOTH_DELTA, 20);  // 边缘保护阈值
+
+    // rs2::temporal_filter temp_filter;    // 时域递推滤波
+    // temp_filter.set_option(RS2_OPTION_FILTER_SMOOTH_ALPHA, 0.4f);
+    // temp_filter.set_option(RS2_OPTION_FILTER_SMOOTH_DELTA, 20);
+
+    // rs2::hole_filling_filter hole_filter;// 空洞填充滤波
+    // hole_filter.set_option(RS2_OPTION_HOLES_FILL, 2);  // 使用邻域均值填充
+
+
     // 获取对齐后的深度帧和彩色帧
     rs2::depth_frame aligned_depth_frame = aligned_frames.get_depth_frame();
+    // .apply_filter(dec_filter)
+    // .apply_filter(spatial_filter)
+    // .apply_filter(temp_filter)
+    // .apply_filter(hole_filter);
     rs2::video_frame color_frame = aligned_frames.get_color_frame();
     if (!aligned_depth_frame || !color_frame) return;
 
     // 将深度帧和彩色帧转换为 OpenCV 图像
     Data::image_in_RealSense_color = cv::Mat(cv::Size(1280, 720), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP);
     Data::image_in_RealSense_depth = cv::Mat(cv::Size(1280, 720), CV_16UC1, (void*)aligned_depth_frame.get_data(), cv::Mat::AUTO_STEP);
+
 }
 
 
 void init_serial() {
-    int status;
-    std::vector<std::string> port_list;
-    auto control = Control::get_instance();
+    int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
+    ftruncate(fd, SHM_SIZE);
+    SharedData *data = mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
-    while(true) {
+    // 初始化互斥锁属性为进程间共享
+    pthread_mutexattr_t mutex_attr;
+    pthread_mutexattr_init(&mutex_attr);
+    pthread_mutexattr_setpshared(&mutex_attr, PTHREAD_PROCESS_SHARED);
+    pthread_mutex_init(&data->mutex, &mutex_attr);
 
-        status = (int)rm::getSerialPortList(port_list, rm::SERIAL_TYPE_TTY_USB);
-
-        if (status != 0 || port_list.empty()) {
-            rm::message("Control port list failed", rm::MSG_ERROR);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-            port_list.clear();
-            continue;
-        }
-
-        control->port_name_ = port_list[0];
-        status = (int)rm::openSerialPort(control->file_descriptor_, control->port_name_);
-        if (status != 0) {
-            rm::message("Control port open failed", rm::MSG_ERROR);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-            port_list.clear();
-            continue;
-        }
-        if(status == 0) {
-            break;
-        }
-    }
+    // 初始矩阵和时间戳
+    memset(data->matrix, 0, sizeof(float[4][4]));
+    clock_gettime(CLOCK_REALTIME, &data->timestamp);
 }
 
 void init_debug() {
@@ -183,96 +190,55 @@ void init_debug() {
     Data::timeout_flag = (*param)["Debug"]["TimeOut"];
 
 
-    std::vector<cv::Point3f> Point1;
-    cv::Point3f point1,point2,point3;
-    point1.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["point3"]["z"];
-    Point1.push_back(point1);
-    Point1.push_back(point2);
-    Point1.push_back(point3);
+    cv::Point3d point1,point2,point3,point4;
+    //获取四点世界坐标
+    point1.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["x"];
+    point1.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["y"];
+    point1.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point1"]["z"];
+    point2.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["x"];
+    point2.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["y"];
+    point2.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["z"];
+    point3.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["x"];
+    point3.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["y"];
+    point3.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["z"];
+    point4.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["x"];
+    point4.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["y"];
+    point4.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["z"];
 
-    std::vector<cv::Point3f> Point2;
-    point1.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point2"]["point3"]["z"];
-    Point2.push_back(point1);
-    Point2.push_back(point2);
-    Point2.push_back(point3);
-
-    std::vector<cv::Point3f> Point3;
-    point1.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point3"]["point3"]["z"];
-    Point3.push_back(point1);
-    Point3.push_back(point2);
-    Point3.push_back(point3);
-
-    std::vector<cv::Point3f> Point4;
-    point1.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["Four"]["Points"]["Point4"]["point3"]["z"];
-    Point4.push_back(point1);
-    Point4.push_back(point2);
-    Point4.push_back(point3);
-    
-    std::vector<cv::Point3f> Point5;
-    point1.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["z"];
-    Point5.push_back(point1);
-    Point5.push_back(point2);
-    Point5.push_back(point3);
-
-    std::vector<cv::Point3f> Point6;
-    point1.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["x"];
-    point1.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["y"];
-    point1.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["z"];
-    point2.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["x"];
-    point2.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["y"];
-    point2.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["z"];
-    point3.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["x"];
-    point3.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["y"];
-    point3.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["z"];
-    Point6.push_back(point1);
-    Point6.push_back(point2);
-    Point6.push_back(point3);
+    Data::points_3D.push_back(point1);
+    Data::points_3D.push_back(point2);
+    Data::points_3D.push_back(point3);
+    Data::points_3D.push_back(point4);
 
 
-    Data::points_3D.push_back(Point1);
-    Data::points_3D.push_back(Point2);
-    Data::points_3D.push_back(Point3);
-    Data::points_3D.push_back(Point4);
-    Data::points_3D.push_back(Point5);
-    Data::points_3D.push_back(Point6);
+    //获取V字世界坐标(右侧），V字尖朝左
+    cv::Point3d point5,point6,point7;
+    point5.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["x"];
+    point5.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["y"];
+    point5.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point1"]["z"];
+    point6.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["x"];
+    point6.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["y"];
+    point6.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point2"]["z"];
+    point7.x = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["x"];
+    point7.y = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["y"];
+    point7.z = (*param)["Point"]["MiningTank"]["V"]["PointRight"]["Point3"]["z"];
+    Data::points_3D.push_back(point5);
+    Data::points_3D.push_back(point6);
+    Data::points_3D.push_back(point7);
+
+
+    //获取V字世界坐标(左侧），V字尖朝右
+    cv::Point3d point8,point9,point10;
+    point8.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["x"];
+    point8.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["y"];
+    point8.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point1"]["z"];
+    point9.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["x"];
+    point9.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["y"];
+    point9.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point2"]["z"];
+    point10.x = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["x"];
+    point10.y = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["y"];
+    point10.z = (*param)["Point"]["MiningTank"]["V"]["PointLeft"]["Point3"]["z"];
+    Data::points_3D.push_back(point8);
+    Data::points_3D.push_back(point9);
+    Data::points_3D.push_back(point10);
 }

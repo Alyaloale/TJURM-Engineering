@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/eigen.hpp>
 #include "cuda/cudatool.h"
+#include <opencv2/ximgproc.hpp>
 
 cv::Point3d RealSensePixelToCamera(
     const cv::Point2d& pixel_coord,
@@ -19,47 +20,86 @@ cv::Point3d RealSensePixelToCamera(
         return cv::Point3d(-1, -1, -1);
     }
 
-
     // 3. 读取深度值（假设深度图为ushort类型，单位毫米）
-    std::vector<pointWithDepth> dataset;
-    for(int i=-3;i<3;i++)
-    {
-        for(int j=-3;j<3;j++)
-        {
-            pointWithDepth point;
-            point.pos.x = pixel_coord.x+i;
-            point.pos.y = pixel_coord.y+j;
-            point.depth = depth_image.at<ushort>(point.pos.y,point.pos.x);
-            if(point.depth)
-            {
-                dataset.push_back(point);
-                //depth = std::min(depth,point.depth);
-            }
-        }
-    }
-    double depth_mm = getDepthWithDbscan(dataset, 5, 1);
-    if (depth_mm <= 0 || depth_mm > 10000) { // 假设有效深度0.1m~10m
+    // std::vector<pointWithDepth> dataset;
+    // for(int i=-3;i<3;i++)
+    // {
+    //     for(int j=-3;j<3;j++)
+    //     {
+    //         pointWithDepth point;
+    //         point.pos.x = pixel_coord.x+i;
+    //         point.pos.y = pixel_coord.y+j;
+    //         point.depth = depth_image.at<ushort>(point.pos.y,point.pos.x);
+    //         if(point.depth)
+    //         {
+    //             dataset.push_back(point);
+    //             //depth = std::min(depth,point.depth);
+    //         }
+    //     }
+    // }
+    // double depth_mm = getDepthWithDbscan(dataset, 5, 1);
+    // std::vector<ushort> depths;
+    // for(int i=-3;i<3;i++)
+    // {
+    //     for(int j=-3;j<3;j++)
+    //     {
+    //         float dep = depth_image.at<ushort>(pixel_coord.y+i, pixel_coord.x+j);
+    //         if(pixel_coord.x+j < 0 || pixel_coord.x+j >= depth_image.cols ||
+    //             pixel_coord.y+i < 0 || pixel_coord.y+i >= depth_image.rows ||
+    //             dep <= 0 || dep > 10000)
+    //         {
+    //             continue;
+    //         }
+    //         depths.push_back(dep);
+    //     }
+    // }
+    double depth_mm = 0;
+    // if(depths.size() == 0)
+    // {
+    //     return cv::Point3d(-1, -1, -1);
+    // }
+    // else {
+    //     std::sort(depths.begin(), depths.end());
+    //     int n = depths.size();
+    //     if (n % 2 == 0) {
+    //         depth_mm = (depths[n / 2 - 1] + depths[n / 2]) / 2.0;
+    //     } else {
+    //         depth_mm = depths[n / 2];
+    //     }
+    // }
+    // if (depth_mm <= 0 || depth_mm > 10000) { // 假设有效深度0.1m~10m
+    //     return cv::Point3d(-1, -1, -1);
+    // }
+    
+
+    //去畸变
+    cv::Mat undistorted_pixel;
+    cv::undistortPoints(std::vector<cv::Point2d>{pixel_coord}, undistorted_pixel, camera_matrix, dist_coeffs, cv::Mat(), camera_matrix);
+    cv::Point2d undistorted_point = undistorted_pixel.at<cv::Point2d>(0, 0);
+    double depth = static_cast<double>(depth_image.at<ushort>(undistorted_point.y, undistorted_point.x)); // 转换为米
+    if (depth <= 0 || depth > 10000) { // 假设有效深度0.1m~10m
         return cv::Point3d(-1, -1, -1);
     }
-    double depth = depth_mm ; // 转换为米
-
-    // 4. 计算相机坐标系坐标
+    //提取内参
     double fx = camera_matrix.at<double>(0, 0);
     double fy = camera_matrix.at<double>(1, 1);
     double cx = camera_matrix.at<double>(0, 2);
     double cy = camera_matrix.at<double>(1, 2);
-    double X_c = (pixel_coord.x - cx) * depth / fx;
-    double Y_c = (pixel_coord.y - cy) * depth / fy;
+    // 4. 计算相机坐标系坐标
+    double X_c = (undistorted_point.x - cx) * depth / fx;
+    double Y_c = (undistorted_point.y - cy) * depth / fy;
     double Z_c = depth;
 
     return cv::Point3d(X_c, Y_c, Z_c);
 }
 
 
-cv::Point3d PixelToCameraWithoutDbscan(
-    const cv::Point2d& pixel_coord,
+cv::Point3f PixelToCameraWithoutDbscan(
+    const cv::Point2f& pixel_coord,
     const cv::Mat& depth_image,
-    const cv::Mat& camera_matrix
+    const cv::Mat& camera_matrix,
+    const cv::Mat& dist_coeffs,
+    bool accept_invalid_depth
 ) {
     // 1. 输入验证
     if (depth_image.empty() || camera_matrix.empty() ) {
@@ -67,23 +107,61 @@ cv::Point3d PixelToCameraWithoutDbscan(
     }
     if (pixel_coord.x < 0 || pixel_coord.x >= depth_image.cols ||
         pixel_coord.y < 0 || pixel_coord.y >= depth_image.rows) {
-        return cv::Point3d(-1, -1, -1);
+        return cv::Point3f(-1, -1, -1);
     }
-
-
+    //去畸变
+    cv::Mat undistorted_pixel;
+    cv::undistortPoints(std::vector<cv::Point2d>{pixel_coord}, undistorted_pixel, camera_matrix, dist_coeffs, cv::Mat(), camera_matrix);
+    cv::Point2d undistorted_point = undistorted_pixel.at<cv::Point2d>(0, 0);
     // 3. 读取深度值（假设深度图为ushort类型，单位毫米）
-    double depth_mm = depth_image.at<ushort>(pixel_coord.y, pixel_coord.x);
-
-    // 4. 计算相机坐标系坐标
+    //检测周围4*4是否有有效值进行插值处理
+    std::vector<ushort> depths;
+    int n = 1;
+    if(accept_invalid_depth)n = 4;
+    for(int i=-n;i<n;i++)
+    {
+        for(int j=-n;j<n;j++)
+        {
+            if(pixel_coord.x+j < 0 || pixel_coord.x+j >= depth_image.cols ||
+                pixel_coord.y+i < 0 || pixel_coord.y+i >= depth_image.rows)
+            {
+                continue;
+            }
+            float dep = depth_image.at<ushort>(pixel_coord.y+i, pixel_coord.x+j);
+            
+            if(dep > 0 && dep < 10000)depths.push_back(dep);
+        }
+    }
+    ushort depth_mm = 0;
+    if(depths.size() == 0)
+    {
+        return cv::Point3f(-1, -1, -1);
+    }
+    else {
+        std::sort(depths.begin(), depths.end());
+        int n = depths.size();
+        if (n % 2 == 0) {
+            depth_mm = (depths[n / 2 - 1] + depths[n / 2]) / 2.0;
+        } else {
+            depth_mm = depths[n / 2];
+        }
+    }
+    if (depth_mm <= 0 || depth_mm > 10000) { // 假设有效深度0.1m~10m
+        return cv::Point3f(-1, -1, -1);
+    }
+    //提取内参
     double fx = camera_matrix.at<double>(0, 0);
     double fy = camera_matrix.at<double>(1, 1);
     double cx = camera_matrix.at<double>(0, 2);
     double cy = camera_matrix.at<double>(1, 2);
-    double X_c = (pixel_coord.x - cx) * depth_mm / fx;
-    double Y_c = (pixel_coord.y - cy) * depth_mm / fy;
-    double Z_c = depth_mm;
+    double depth = depth_mm; // 转换为米
+    // 4. 计算相机坐标系坐标
+    double X_c = (undistorted_point.x - cx) * depth / fx;
+    double Y_c = (undistorted_point.y - cy) * depth / fy;
+    double Z_c = depth;
+    //std::cout<<"X_c: "<<X_c<<" Y_c: "<<Y_c<<" Z_c: "<<Z_c<<std::endl;
 
-    return cv::Point3d(X_c, Y_c, Z_c);
+    return cv::Point3f(X_c, Y_c, Z_c);
 }
 
 
@@ -119,30 +197,30 @@ std::vector<cv::Point2d> reprojectPointsToPixel(const std::vector<cv::Point3d>& 
 Eigen::Matrix4d computeTransformMatrix(const std::vector<Eigen::Vector3d>& world_points,
     const std::vector<Eigen::Vector3d>& camera_points) {
     // 参数校验
-    if (world_points.size() != 4 || camera_points.size() != 4) {
-    throw std::invalid_argument("点集数量必须为4");
-    }
-
+    // if (world_points.size() != 4 || camera_points.size() != 4) {
+    // throw std::invalid_argument("点集数量必须为4");
+    // }
+    int count = world_points.size();
     // 1. 计算质心
     Eigen::Vector3d world_centroid = Eigen::Vector3d::Zero();
     Eigen::Vector3d camera_centroid = Eigen::Vector3d::Zero();
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < count; ++i) {
     world_centroid += world_points[i];
     camera_centroid += camera_points[i];
     }
-    world_centroid /= 4;
-    camera_centroid /= 4;
+    world_centroid /= count;
+    camera_centroid /= count;
 
     // 2. 去质心坐标
-    std::vector<Eigen::Vector3d> world_centered(4), camera_centered(4);
-    for (int i = 0; i < 4; ++i) {
+    std::vector<Eigen::Vector3d> world_centered(count), camera_centered(count);
+    for (int i = 0; i < count; ++i) {
     world_centered[i] = world_points[i] - world_centroid;
     camera_centered[i] = camera_points[i] - camera_centroid;
     }
 
     // 3. 构造H矩阵
     Eigen::Matrix3d H = Eigen::Matrix3d::Zero();
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < count; ++i) {
     H += world_centered[i] * camera_centered[i].transpose();
     }
 
@@ -257,20 +335,30 @@ void get_image_rgbdepth()
 
     //将点云投影到深度图
     project_pointcloud_to_depth(camera_point_in_world, depth,fx_DaHengf,fy_DaHengf,cx_DaHengf,cy_DaHengf,width,height);
-
-    Data::image_in_DaHeng_depth = cv::Mat::zeros(height,width,CV_16UC1);
+    //转换成Mat
+    cv::Mat depth_mat(height,width,CV_32F);
     for(int i=0;i<height;i++)
     {
         for(int j=0;j<width;j++)
         {
-            Data::image_in_DaHeng_depth.at<ushort>(i,j) = static_cast<ushort>(depth->at(i*width+j));
+            depth_mat.at<float>(i,j) = (*depth)[i*width+j];
         }
     }
+    Data::image_in_DaHeng_depth = depth_mat.clone();
     depth->clear();
     delete depth;
     camera_point_in_world->clear();
     delete camera_point_in_world;
 
+}
+void hybridMedianBilateralFilter(const cv::Mat& depth, cv::Mat& output,
+    int medianSize,
+    int bilateralSize,
+    float sigmaColor,
+    float sigmaSpace) {
+    cv::Mat temp;
+    cv::medianBlur(depth, temp, medianSize);
+    cv::bilateralFilter(temp, output, bilateralSize, sigmaColor, sigmaSpace);
 }
 
 

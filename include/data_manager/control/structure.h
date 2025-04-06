@@ -1,53 +1,15 @@
 #ifndef CONTROL_STRUCTURE_H_
 #define CONTROL_STRUCTURE_H_
-#include <cstdint>
+#include <pthread.h>
+#include <time.h>
 
-struct FrameHeader {
-    uint8_t     sof;
-    uint8_t     crc8;
-} __attribute__((packed));
+#define SHM_NAME "/transform_matrix_shm"
+#define SHM_SIZE sizeof(SharedData)
 
-struct FrameTailer {
-    uint16_t    crc16;
-} __attribute__((packed));
-
-
-struct InputData {
-    uint8_t     enemy_color;
-} __attribute__((packed));
-
-struct OutputData {
-    float       x00;
-    float       x01;
-    float       x02;
-    float       x03;
-    float       x10;
-    float       x11;
-    float       x12;
-    float       x13;
-    float       x20;
-    float       x21;
-    float       x22;
-    float       x23;
-    float       x30;
-    float       x31;
-    float       x32;
-    float       x33;
-} __attribute__((packed));
-
-
-
-struct StateBytes {                     // 电控传给自瞄系统的云台数据
-    FrameHeader frame_header;
-    InputData   input_data;
-    FrameTailer frame_tailer;
-} __attribute__((packed));
-
-struct OperateBytes {                   // 自瞄返回给电控的控制数据
-    FrameHeader frame_header;
-    OutputData  output_data;
-    FrameTailer frame_tailer;
-} __attribute__((packed));
-
-
+typedef struct {
+    pthread_mutex_t mutex;       // 互斥锁确保独占访问
+    double matrix[4][4];          // 4x4变换矩阵
+    short color;                 // 我方颜色
+    uint64_t version;            // 版本号
+} SharedData;
 #endif

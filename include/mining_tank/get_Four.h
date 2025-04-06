@@ -4,16 +4,13 @@
 #include "data_manager/base.h"
 
 
-struct MiningTankFour
-{
-    std::vector<std::vector<cv::Point2f>> point;//以三角形形式存储，顶点为第一个点，顺时针
-    cv::Point2f center;
-};
 
-
-MiningTankFour GetMiningTankFour(std::vector<std::vector<cv::Point>> contours,cv::Mat& binary_image,cv::Mat& show_triangle); //获取四点
-std::vector<std::vector<cv::Point>> MiningTankCountourFourSift(std::vector<std::vector<cv::Point>> &contours,cv::Mat& show_contour); //获取四点轮廓
+void GetMiningTankFour(std::vector<std::vector<cv::Point>>* contours,cv::Mat& binary_image,cv::Mat& show_triangle, std::vector<std::vector<cv::Point2f>>* mining_tank_four); //获取四点
+void MiningTankCountourFourSift(std::vector<std::vector<cv::Point>> contours,cv::Mat &show_contour, std::vector<std::vector<cv::Point>>* mining_tank_contours); //获取四点轮廓
 int CountLinePixels(cv::Point p1, cv::Point p2, cv::Mat &binary_image); //计算直线上的白点数
-double calculateRedness(uint8_t R, uint8_t G, uint8_t B);
-double calculateBlue(uint8_t R, uint8_t G, uint8_t B);
+double calculateRedness(cv::Mat& src, const std::vector<std::vector<cv::Point>>& contours);//计算红色度
+double calculateBlueness(cv::Mat& src, const std::vector<std::vector<cv::Point>>& contours);//计算蓝色度
+double triangleArea3D(const cv::Point3d& A, const cv::Point3d& B, const cv::Point3d& C); //计算三角形面积
+void orderPointsClockwise(std::vector<std::vector<cv::Point2f>> &points, cv::Point2f &centroid); //将四点按顺时针排序
+void findbestfour(std::vector<std::vector<cv::Point2f>> &fours, std::vector<std::vector<cv::Point2f>>* best_four); //获取最好的四点
 #endif
