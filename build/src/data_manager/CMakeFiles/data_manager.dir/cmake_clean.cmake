@@ -1,9 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/data_manager.dir/base.cpp.o"
   "CMakeFiles/data_manager.dir/control/control.cpp.o"
-  "CMakeFiles/data_manager.dir/control/crc.cpp.o"
-  "CMakeFiles/data_manager.dir/control/receive_thread.cpp.o"
-  "CMakeFiles/data_manager.dir/control/send_thread.cpp.o"
+  "CMakeFiles/data_manager.dir/control/shm.cpp.o"
   "CMakeFiles/data_manager.dir/control/thread_control.cpp.o"
   "CMakeFiles/data_manager.dir/init.cpp.o"
   "CMakeFiles/data_manager.dir/param.cpp.o"

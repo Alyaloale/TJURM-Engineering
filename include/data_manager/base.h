@@ -4,6 +4,7 @@
 #include <openrm.h>
 #include <opencv2/aruco.hpp>
 #include <librealsense2/rs.hpp>
+#include"data_manager/control/control.h"
 
 struct RealSenseCamera {
     rs2::config config;//配置摄像头
@@ -36,7 +37,7 @@ struct MiningTankFour
     cv::Point2f center;
 };
 
-
+struct SharedData;
 namespace Data{
     // 颜色
     extern rm::ArmorColor self_color;
@@ -65,7 +66,8 @@ namespace Data{
     extern std::vector<std::vector<cv::Point2f>> markerCorners;
     extern std::vector<std::vector<cv::Point2f>> rejectedCandidates;
     extern cv::Mat RealSenseT;
-    extern cv::Mat DaHengT;
+    extern double DaHengT[4][4];
+    extern SharedData* shared_data;
 }
 
 

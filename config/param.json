@@ -11,82 +11,35 @@
             "Four":{
                 "Points":{
                     "Point1":{
-                        "point1": {
-                            "x": -137.5,
-                            "y": -137.5,
-                            "z": 0
-                        },
-                        "point2": {
-                            "x": -87.5,
-                            "y": -137.5,
-                            "z": 0
-                        },
-                        "point3": {
-                            "x": -137.5,
-                            "y": -87.5,
-                            "z": 0
-                        }
+                        "x": -137.5,
+                        "y": 137.5,
+                        "z": 0
                     },
                     "Point2":{
-                        "point1": {
-                            "x": -137.5,
-                            "y": 137.5,
-                            "z": 0
-                        },
-                        "point2": {
-                            "x": 137.5,
-                            "y": 87.5,
-                            "z": 0
-                        },
-                        "point3": {
-                            "x": -87.5,
-                            "y": 137.5,
-                            "z": 0
-                        }
+                        "x": 137.5,
+                        "y": 137.5,
+                        "z": 0
                     },
                     "Point3":{
-                        "point1": {
-                            "x": 137.5,
-                            "y": 137.5,
-                            "z": 0
-                        },
-                        "point2": {
-                            "x": 87.5,
-                            "y": 137.5,
-                            "z": 0
-                        },
-                        "point3": {
-                            "x": 137.5,
-                            "y": 87.5,
-                            "z": 0
-                        }
+                        "x": 137.5,
+                        "y": -137.5,
+                        "z": 0
                     },
                     "Point4":{
-                        "point1": {
-                            "x": 137.5,
-                            "y": -137.5,
-                            "z": 0
-                        },
-                        "point2": {
-                            "x": 137.5,
-                            "y": -108.5,
-                            "z": 0
-                        },
-                        "point3": {
-                            "x": 108.5,
-                            "y": -137.5,
-                            "z": 0
-                        }
+                        "x": -137.5,
+                        "y": -137.5,
+                        "z": 0
                     }
                 },
                 "Ratio":{
                     "MaxHeightWideRatio":3.6,
                     "MinWideHeightRatio":0.25,
                     "MaxcontourRectRatio": 0.70,
-                    "MincontourRectRatio": 0.10
+                    "MincontourRectRatio": 0.20,
+                    "MinColorRatio": 0.55
                 },
                 "Area":{
-                    "MinArea": 60,
+                    "MinArea": 50,
                     "MaxArea":5000
                 }
             },
@@ -126,16 +79,16 @@
                     }
                 },
                 "Ratio":{
-                    "MaxHeightWideRatio":6.5,
-                    "MinHeightWideRatio":2,
-                    "MaxWideHeightRatio":0.52,
-                    "MinWideHeightRatio":0.13,
-                    "MaxcontourRectRatio": 0.28,
-                    "MincontourRectRatio": 0.06
+                    "MaxHeightWideRatio":7.5,
+                    "MinHeightWideRatio":1.5,
+                    "MaxWideHeightRatio":0.62,
+                    "MinWideHeightRatio":0.10,
+                    "MaxcontourRectRatio": 0.22,
+                    "MincontourRectRatio": 0.01
                 },
                 "Area":{
                     "MinArea": 250,
-                    "MaxArea": 2000
+                    "MaxArea": 15000
                 }
             }
         }
@@ -149,7 +102,7 @@
         "Debug":0,
         "TimeOut":false,
         "Control":{
-            "Serial":false,
+            "Serial":true,
             "SendWaitTime": 2000,
             "SerialFlag": 0
         }
@@ -166,6 +119,9 @@
             "Gain" : 24.0,
             "ROIWidth" : -1,
             "ROIHeight" : -1
+        },
+        "RealSense" :{
+            "ExposureTime":8
         }
     }
 }

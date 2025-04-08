@@ -293,7 +293,7 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
     {
         return false;
     }
-    std::cout<<flag.first<<" "<<flag.second<<std::endl;
+    //std::cout<<flag.first<<" "<<flag.second<<std::endl;
     //转换为相机坐标系
     for(int i=0;i<point_camera.size();i++)
     {
@@ -330,18 +330,19 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
     //计算变换矩阵
     Eigen::Matrix4d T = computeTransformMatrix(srcPoints_eigen, dstPoints_eigen);
     //std::cout<<"T: "<<T<<std::endl;
-    //转Mat Data::DaHengT
-    Data::DaHengT = cv::Mat::zeros(4, 4, CV_64F);
+
+    //更新共享内存
     for(int i=0;i<4;i++)
     {
         for(int j=0;j<4;j++)
         {
-            Data::DaHengT.at<double>(i,j) = T(i,j);
+            Data::DaHengT[i][j] = T(i,j);
         }
     }
+    update_shared_data(Data::shared_data, Data::DaHengT);
+
 
     //重投影
-
     std::vector<cv::Point2d> pixelPoints = reprojectPointsToPixel(point_world, T, Data::realsense_camera.intrinsic_matrix, Data::realsense_camera.distortion_coeffs);
 
     //依次画出四个点

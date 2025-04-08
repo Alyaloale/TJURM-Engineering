@@ -1,63 +1,82 @@
-#include <librealsense2/rs.hpp> // RealSense 头文件
-#include <opencv2/opencv.hpp>   // OpenCV 头文件
 #include <iostream>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <string.h>
+#include <stdint.h>
 
+
+
+struct SharedData{
+    pthread_mutex_t mutex;       // 互斥锁确保独占访问
+    double matrix[4][4];          // 4x4变换矩阵
+    short color;                 // 我方颜色
+    uint64_t version;            // 版本号
+};
+
+#define SHM_NAME "/transform_matrix_shm"
+#define SHM_SIZE sizeof(SharedData)
+
+
+/* 原子化写入（统一矩阵类型为 double） */
+void update_shared_data(
+    SharedData* data,
+    short new_color
+) {
+    pthread_mutex_lock(&data->mutex); // 安全复制
+    data->color = new_color;
+    pthread_mutex_unlock(&data->mutex);
+}
+
+/* 原子化读取（完整数据拷贝） */
+void read_shared_data(
+    SharedData* data,
+    double out_matrix[4][4],
+    uint64_t* out_version
+) {
+    pthread_mutex_lock(&data->mutex);
+    memcpy(out_matrix, data->matrix, sizeof(double[4][4]));
+    *out_version = data->version;
+    pthread_mutex_unlock(&data->mutex);
+}
 int main() {
-    // 1. 初始化 RealSense 管道
-    rs2::pipeline pipe;
-    rs2::config cfg;
-    cfg.enable_stream(RS2_STREAM_DEPTH, 640, 480, RS2_FORMAT_Z16, 30); // 启用深度流
-    cfg.enable_stream(RS2_STREAM_COLOR, 640, 480, RS2_FORMAT_BGR8, 30); // 启用 RGB 流
-    pipe.start(cfg);
+    int fd = shm_open(SHM_NAME, O_RDWR, 0666);
+    SharedData* shm = (SharedData*)mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    close(fd);
 
-    // 2. 创建对齐对象（将深度帧对齐到 RGB 帧）
-    rs2::align align_to_color(RS2_STREAM_COLOR);
-
-    // 3. 获取相机内参和畸变参数
-    rs2::pipeline_profile profile = pipe.get_active_profile();
-    rs2::video_stream_profile color_profile = profile.get_stream(RS2_STREAM_COLOR).as<rs2::video_stream_profile>();
-    rs2_intrinsics intrinsics = color_profile.get_intrinsics(); // RGB 相机内参
-
-    // 4. 主循环
-    while (true) {
-        // 等待下一帧数据
-        rs2::frameset frames = pipe.wait_for_frames();
-
-        // 对齐深度帧到 RGB 帧
-        frames = align_to_color.process(frames);
-
-        // 获取对齐后的深度帧和 RGB 帧
-        rs2::depth_frame aligned_depth_frame = frames.get_depth_frame();
-        rs2::video_frame color_frame = frames.get_color_frame();
-
-        // 将 RGB 帧转换为 OpenCV 格式
-        cv::Mat color_image(cv::Size(640, 480), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP);
-
-        // 显示 RGB 图像
-        cv::imshow("Color Frame", color_image);
-
-        // 获取鼠标点击点的坐标
-        if (cv::waitKey(1) == 27) break; // 按下 ESC 键退出
-        if (cv::getWindowProperty("Color Frame", cv::WND_PROP_AUTOSIZE) != -1) {
-            cv::setMouseCallback("Color Frame", [](int event, int x, int y, int flags, void* userdata) {
-                if (event == cv::EVENT_LBUTTONDOWN) {
-                    // 5. 获取鼠标点击点的深度值
-                    rs2::depth_frame* aligned_depth_frame = (rs2::depth_frame*)userdata;
-
-                    // 考虑相机畸变，校正像素坐标
-                    float pixel[2] = { (float)x, (float)y };
-                    float point[2];
-                    rs2_deproject_pixel_to_point(point, &intrinsics, pixel, 1.0f);
-
-                    // 获取深度值
-                    float depth = aligned_depth_frame->get_distance(x, y);
-                    std::cout << "Pixel (" << x << ", " << y << ") Depth: " << depth << " meters" << std::endl;
+    // 更新数据
+    short color = 1; // 1 for red, 2 for blue
+    update_shared_data(shm, color);
+    int last_version = 0;
+    while(1)
+    {
+        //读取数据
+        double matrix[4][4];
+        uint64_t version;
+        read_shared_data(shm, matrix, &version);
+        if(version != last_version)
+        {
+            last_version = version;
+            std::cout << "Version: " << version << " Color: " << color << std::endl;
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 0; j < 4; ++j) {
+                    std::cout << matrix[i][j] << " ";
                 }
-            }, &aligned_depth_frame);
+                std::cout << std::endl;
+            }
         }
+        // std::cout <<"Version:"<<version<< " Matrix: " << std::endl;
+        // for (int i = 0; i < 4; ++i) {
+        //     for (int j = 0; j < 4; ++j) {
+        //         std::cout << matrix[i][j] << " ";
+        //     }
+        //     std::cout << std::endl;
+        // }
     }
 
-    // 停止管道
-    pipe.stop();
+    //释放共享内存调用
+    munmap(shm, SHM_SIZE);
     return 0;
 }

@@ -530,6 +530,8 @@ src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/videoio.hpp
 
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/data_manager/base.h
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/data_manager/control/control.h
+src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/data_manager/control/structure.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/data_manager/param.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/locate/locate.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: ../include/locate/tools.h
@@ -1055,6 +1057,8 @@ src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/videoio.hpp
 
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/data_manager/base.h
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/data_manager/control/control.h
+src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/data_manager/control/structure.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/data_manager/param.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/locate/locate.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: ../include/locate/tools.h

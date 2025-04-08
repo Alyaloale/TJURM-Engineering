@@ -4,20 +4,12 @@
 #include <cstdint>
 #include <condition_variable>
 #include <deque>
+#include <thread>
 #include "data_manager/base.h"
 #include "data_manager/param.h"
 #include "data_manager/control/structure.h"
 
-#include <thread>
-#include <pthread.h>
-
 void setThreadPriority(std::thread& thread, int policy, int priority);
-
-SharedData* init_shared_memory();// 初始化共享内存
-
-void update_shared_data(SharedData* data, const float new_matrix[4][4], short new_color);// 更新共享内存
-
-void read_shared_data(SharedData* data, float out_matrix[4][4], short* out_color, uint64_t* out_ts);// 读取共享内存
 
 
 class Control {

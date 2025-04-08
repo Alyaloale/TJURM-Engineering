@@ -3,6 +3,7 @@
 
 
 
+
 rm::ArmorColor Data::self_color;
 rm::ArmorColor Data::mining_tank_color;
 int Data::camera_index = 1;
@@ -29,4 +30,5 @@ std::vector<int> Data::markerIds;
 std::vector<std::vector<cv::Point2f>> Data::markerCorners;
 std::vector<std::vector<cv::Point2f>> Data::rejectedCandidates;
 cv::Mat Data::RealSenseT;
-cv::Mat Data::DaHengT;
+double Data::DaHengT[4][4] = {0};
+SharedData* Data::shared_data = nullptr;

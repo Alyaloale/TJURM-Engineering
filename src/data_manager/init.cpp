@@ -157,19 +157,21 @@ void get_image_RealSense(){
 
 
 void init_serial() {
-    int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
-    ftruncate(fd, SHM_SIZE);
-    SharedData *data = mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    Data::shared_data = init_shared_memory();
+    short color = 0;
+    while(color == 0)
+    {
+    read_shared_data(Data::shared_data, &color);
+    }
+    if(color == 1 )Data::self_color = rm::ARMOR_COLOR_RED;
+    else if(color == 2) Data::self_color = rm::ARMOR_COLOR_BLUE;
+    else {
+        rm::message("Serial color error", rm::MSG_ERROR);
+        exit(-1);
+    }
 
-    // 初始化互斥锁属性为进程间共享
-    pthread_mutexattr_t mutex_attr;
-    pthread_mutexattr_init(&mutex_attr);
-    pthread_mutexattr_setpshared(&mutex_attr, PTHREAD_PROCESS_SHARED);
-    pthread_mutex_init(&data->mutex, &mutex_attr);
+    rm::message("Serial color: " + std::to_string(color), rm::MSG_OK);
 
-    // 初始矩阵和时间戳
-    memset(data->matrix, 0, sizeof(float[4][4]));
-    clock_gettime(CLOCK_REALTIME, &data->timestamp);
 }
 
 void init_debug() {

@@ -179,86 +179,32 @@ control/control.cpp.s:
 	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/control.cpp.s
 .PHONY : control/control.cpp.s
 
-control/crc.o: control/crc.cpp.o
+control/shm.o: control/shm.cpp.o
 
-.PHONY : control/crc.o
-
-# target to build an object file
-control/crc.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.o
-.PHONY : control/crc.cpp.o
-
-control/crc.i: control/crc.cpp.i
-
-.PHONY : control/crc.i
-
-# target to preprocess a source file
-control/crc.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.i
-.PHONY : control/crc.cpp.i
-
-control/crc.s: control/crc.cpp.s
-
-.PHONY : control/crc.s
-
-# target to generate assembly for a file
-control/crc.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/crc.cpp.s
-.PHONY : control/crc.cpp.s
-
-control/receive_thread.o: control/receive_thread.cpp.o
-
-.PHONY : control/receive_thread.o
+.PHONY : control/shm.o
 
 # target to build an object file
-control/receive_thread.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.o
-.PHONY : control/receive_thread.cpp.o
+control/shm.cpp.o:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/shm.cpp.o
+.PHONY : control/shm.cpp.o
 
-control/receive_thread.i: control/receive_thread.cpp.i
+control/shm.i: control/shm.cpp.i
 
-.PHONY : control/receive_thread.i
-
-# target to preprocess a source file
-control/receive_thread.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.i
-.PHONY : control/receive_thread.cpp.i
-
-control/receive_thread.s: control/receive_thread.cpp.s
-
-.PHONY : control/receive_thread.s
-
-# target to generate assembly for a file
-control/receive_thread.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/receive_thread.cpp.s
-.PHONY : control/receive_thread.cpp.s
-
-control/send_thread.o: control/send_thread.cpp.o
-
-.PHONY : control/send_thread.o
-
-# target to build an object file
-control/send_thread.cpp.o:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.o
-.PHONY : control/send_thread.cpp.o
-
-control/send_thread.i: control/send_thread.cpp.i
-
-.PHONY : control/send_thread.i
+.PHONY : control/shm.i
 
 # target to preprocess a source file
-control/send_thread.cpp.i:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.i
-.PHONY : control/send_thread.cpp.i
+control/shm.cpp.i:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/shm.cpp.i
+.PHONY : control/shm.cpp.i
 
-control/send_thread.s: control/send_thread.cpp.s
+control/shm.s: control/shm.cpp.s
 
-.PHONY : control/send_thread.s
+.PHONY : control/shm.s
 
 # target to generate assembly for a file
-control/send_thread.cpp.s:
-	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/send_thread.cpp.s
-.PHONY : control/send_thread.cpp.s
+control/shm.cpp.s:
+	cd /home/tjurm/Code/TJURM-Engineering/build && $(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/control/shm.cpp.s
+.PHONY : control/shm.cpp.s
 
 control/thread_control.o: control/thread_control.cpp.o
 
@@ -356,15 +302,9 @@ help:
 	@echo "... control/control.o"
 	@echo "... control/control.i"
 	@echo "... control/control.s"
-	@echo "... control/crc.o"
-	@echo "... control/crc.i"
-	@echo "... control/crc.s"
-	@echo "... control/receive_thread.o"
-	@echo "... control/receive_thread.i"
-	@echo "... control/receive_thread.s"
-	@echo "... control/send_thread.o"
-	@echo "... control/send_thread.i"
-	@echo "... control/send_thread.s"
+	@echo "... control/shm.o"
+	@echo "... control/shm.i"
+	@echo "... control/shm.s"
 	@echo "... control/thread_control.o"
 	@echo "... control/thread_control.i"
 	@echo "... control/thread_control.s"
