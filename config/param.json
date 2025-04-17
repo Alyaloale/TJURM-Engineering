@@ -99,7 +99,7 @@
         "ShowContour": true,
         "ShowTriangle": true,
         "ShowAruco": true,
-        "Debug":0,
+        "Debug":1,
         "TimeOut":false,
         "Control":{
             "Serial":true,

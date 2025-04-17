@@ -304,12 +304,12 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
         }
         cv::Point3f point = PixelToCameraWithoutDbscan(point_camera[i], Data::image_in_RealSense_depth, Data::realsense_camera.intrinsic_matrix, Data::realsense_camera.distortion_coeffs, accept_invalid_depth);
         cv::Point3d pointd;
-        pointd.x = static_cast<double>(point.x);
-        pointd.y = static_cast<double>(-point.x);
+        pointd.x = static_cast<double>(-point.y);
+        pointd.y = static_cast<double>(point.x);
         pointd.z = static_cast<double>(point.z);
 
         if(point.z < 0)
-        {0
+        {+
             return false;
         }
         point_camera_3D.push_back(pointd);

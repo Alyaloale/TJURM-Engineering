@@ -42,7 +42,7 @@ void read_shared_data(
     pthread_mutex_unlock(&data->mutex);
 }
 int main() {
-    int fd = shm_open(SHM_NAME, O_RDWR, 0666);
+    int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777);
     SharedData* shm = (SharedData*)mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     close(fd);
 

@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     if(!Data::debug) while(true) if(init_camera()) break;
     if (Data::serial_flag) init_serial();
 
-    control->autodetect();
+    //control->autodetect();
     rm::message("Main thread hang up!", rm::MSG_OK);
     std::unique_lock<std::mutex> lock(hang_up_mutex);
     hang_up_cv.wait(lock);

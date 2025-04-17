@@ -12,12 +12,12 @@
 /* 初始化共享内存（生产者端） */
 SharedData* init_shared_memory() {
     // 创建共享内存对象（O_EXCL 确保唯一创建者）
-    int fd = shm_open(SHM_NAME, O_CREAT | O_EXCL | O_RDWR, 0666);
+    int fd = shm_open(SHM_NAME, O_CREAT | O_EXCL | O_RDWR, 0777);
     if (fd == -1) {
         if (errno == EEXIST) {
             // 共享内存已存在，需先清理
             shm_unlink(SHM_NAME);
-            fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
+            fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777);
         } else {
             perror("shm_open failed");
             return NULL;
@@ -41,6 +41,11 @@ SharedData* init_shared_memory() {
     data->color = 0;
     data->version = 0;
 
+    //更改内存权限
+    int ret = system("chmod 777 /dev/shm/transform_matrix_shm");
+    if (ret != 0) {
+        perror("Permission denied");
+    }
     return data;
 }
 
