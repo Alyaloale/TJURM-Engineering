@@ -56,7 +56,6 @@ CMAKE_BINARY_DIR = /home/tjurm/Code/TJURM-Engineering/build
 all: CMakeFiles/TJURM-Engineering.dir/all
 all: src/data_manager/all
 all: src/mining_tank/all
-all: src/aruco/all
 all: src/locate/all
 all: src/cuda/all
 
@@ -65,7 +64,6 @@ all: src/cuda/all
 # The main recursive "preinstall" target.
 preinstall: src/data_manager/preinstall
 preinstall: src/mining_tank/preinstall
-preinstall: src/aruco/preinstall
 preinstall: src/locate/preinstall
 preinstall: src/cuda/preinstall
 
@@ -75,29 +73,10 @@ preinstall: src/cuda/preinstall
 clean: CMakeFiles/TJURM-Engineering.dir/clean
 clean: src/data_manager/clean
 clean: src/mining_tank/clean
-clean: src/aruco/clean
 clean: src/locate/clean
 clean: src/cuda/clean
 
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory src/aruco
-
-# Recursive "all" directory target.
-src/aruco/all: src/aruco/CMakeFiles/aruco.dir/all
-
-.PHONY : src/aruco/all
-
-# Recursive "preinstall" directory target.
-src/aruco/preinstall:
-
-.PHONY : src/aruco/preinstall
-
-# Recursive "clean" directory target.
-src/aruco/clean: src/aruco/CMakeFiles/aruco.dir/clean
-
-.PHONY : src/aruco/clean
 
 #=============================================================================
 # Directory level rules for directory src/cuda
@@ -197,7 +176,6 @@ src/mining_tank/clean: src/mining_tank/CMakeFiles/mining_tank.dir/clean
 # All Build rule for target.
 CMakeFiles/TJURM-Engineering.dir/all: src/data_manager/CMakeFiles/data_manager.dir/all
 CMakeFiles/TJURM-Engineering.dir/all: src/mining_tank/CMakeFiles/mining_tank.dir/all
-CMakeFiles/TJURM-Engineering.dir/all: src/aruco/CMakeFiles/aruco.dir/all
 CMakeFiles/TJURM-Engineering.dir/all: src/locate/CMakeFiles/locate.dir/all
 CMakeFiles/TJURM-Engineering.dir/all: src/cuda/CMakeFiles/cudatools.dir/all
 	$(MAKE) -f CMakeFiles/TJURM-Engineering.dir/build.make CMakeFiles/TJURM-Engineering.dir/depend
@@ -207,7 +185,7 @@ CMakeFiles/TJURM-Engineering.dir/all: src/cuda/CMakeFiles/cudatools.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TJURM-Engineering.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TJURM-Engineering.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
 .PHONY : CMakeFiles/TJURM-Engineering.dir/rule
@@ -229,7 +207,7 @@ CMakeFiles/TJURM-Engineering.dir/clean:
 src/data_manager/CMakeFiles/data_manager.dir/all:
 	$(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/depend
 	$(MAKE) -f src/data_manager/CMakeFiles/data_manager.dir/build.make src/data_manager/CMakeFiles/data_manager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=8,9,10,11,12,13,14 "Built target data_manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=6,7,8,9,10,11,12 "Built target data_manager"
 .PHONY : src/data_manager/CMakeFiles/data_manager.dir/all
 
 # Build rule for subdir invocation for target.
@@ -256,7 +234,7 @@ src/data_manager/CMakeFiles/data_manager.dir/clean:
 src/mining_tank/CMakeFiles/mining_tank.dir/all:
 	$(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/depend
 	$(MAKE) -f src/mining_tank/CMakeFiles/mining_tank.dir/build.make src/mining_tank/CMakeFiles/mining_tank.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=18,19,20,21 "Built target mining_tank"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=16,17,18,19 "Built target mining_tank"
 .PHONY : src/mining_tank/CMakeFiles/mining_tank.dir/all
 
 # Build rule for subdir invocation for target.
@@ -277,40 +255,13 @@ src/mining_tank/CMakeFiles/mining_tank.dir/clean:
 .PHONY : src/mining_tank/CMakeFiles/mining_tank.dir/clean
 
 #=============================================================================
-# Target rules for target src/aruco/CMakeFiles/aruco.dir
-
-# All Build rule for target.
-src/aruco/CMakeFiles/aruco.dir/all:
-	$(MAKE) -f src/aruco/CMakeFiles/aruco.dir/build.make src/aruco/CMakeFiles/aruco.dir/depend
-	$(MAKE) -f src/aruco/CMakeFiles/aruco.dir/build.make src/aruco/CMakeFiles/aruco.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=3,4 "Built target aruco"
-.PHONY : src/aruco/CMakeFiles/aruco.dir/all
-
-# Build rule for subdir invocation for target.
-src/aruco/CMakeFiles/aruco.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 src/aruco/CMakeFiles/aruco.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tjurm/Code/TJURM-Engineering/build/CMakeFiles 0
-.PHONY : src/aruco/CMakeFiles/aruco.dir/rule
-
-# Convenience name for target.
-aruco: src/aruco/CMakeFiles/aruco.dir/rule
-
-.PHONY : aruco
-
-# clean rule for target.
-src/aruco/CMakeFiles/aruco.dir/clean:
-	$(MAKE) -f src/aruco/CMakeFiles/aruco.dir/build.make src/aruco/CMakeFiles/aruco.dir/clean
-.PHONY : src/aruco/CMakeFiles/aruco.dir/clean
-
-#=============================================================================
 # Target rules for target src/locate/CMakeFiles/locate.dir
 
 # All Build rule for target.
 src/locate/CMakeFiles/locate.dir/all:
 	$(MAKE) -f src/locate/CMakeFiles/locate.dir/build.make src/locate/CMakeFiles/locate.dir/depend
 	$(MAKE) -f src/locate/CMakeFiles/locate.dir/build.make src/locate/CMakeFiles/locate.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=15,16,17 "Built target locate"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=13,14,15 "Built target locate"
 .PHONY : src/locate/CMakeFiles/locate.dir/all
 
 # Build rule for subdir invocation for target.
@@ -337,7 +288,7 @@ src/locate/CMakeFiles/locate.dir/clean:
 src/cuda/CMakeFiles/cudatools.dir/all:
 	$(MAKE) -f src/cuda/CMakeFiles/cudatools.dir/build.make src/cuda/CMakeFiles/cudatools.dir/depend
 	$(MAKE) -f src/cuda/CMakeFiles/cudatools.dir/build.make src/cuda/CMakeFiles/cudatools.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=5,6,7 "Built target cudatools"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tjurm/Code/TJURM-Engineering/build/CMakeFiles --progress-num=3,4,5 "Built target cudatools"
 .PHONY : src/cuda/CMakeFiles/cudatools.dir/all
 
 # Build rule for subdir invocation for target.

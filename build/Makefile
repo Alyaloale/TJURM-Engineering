@@ -150,19 +150,6 @@ mining_tank/fast:
 .PHONY : mining_tank/fast
 
 #=============================================================================
-# Target rules for targets named aruco
-
-# Build rule for target.
-aruco: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 aruco
-.PHONY : aruco
-
-# fast build rule for target.
-aruco/fast:
-	$(MAKE) -f src/aruco/CMakeFiles/aruco.dir/build.make src/aruco/CMakeFiles/aruco.dir/build
-.PHONY : aruco/fast
-
-#=============================================================================
 # Target rules for targets named locate
 
 # Build rule for target.
@@ -226,7 +213,6 @@ help:
 	@echo "... TJURM-Engineering"
 	@echo "... data_manager"
 	@echo "... mining_tank"
-	@echo "... aruco"
 	@echo "... locate"
 	@echo "... cudatools"
 	@echo "... src/main.o"

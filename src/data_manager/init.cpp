@@ -158,11 +158,11 @@ void get_image_RealSense(){
 
 void init_serial() {
     Data::shared_data = init_shared_memory();
-    short color = 0;
-    while(color == 0)
-    {
-    read_shared_data(Data::shared_data, &color);
-    }
+    short color = 1;
+    // while(color == 0)
+    // {
+    // read_shared_data(Data::shared_data, &color);
+    // }
     if(color == 1 )Data::self_color = rm::ARMOR_COLOR_RED;
     else if(color == 2) Data::self_color = rm::ARMOR_COLOR_BLUE;
     else {

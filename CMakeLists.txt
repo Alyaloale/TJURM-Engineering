@@ -44,7 +44,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/json/single_include/nlohmann)
 # 添加构建子目录
 add_subdirectory(src/data_manager)
 add_subdirectory(src/mining_tank)
-add_subdirectory(src/aruco)
+#add_subdirectory(src/aruco)
 add_subdirectory(src/locate)
 add_subdirectory(src/cuda)
 

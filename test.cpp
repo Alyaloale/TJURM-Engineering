@@ -45,6 +45,10 @@ int main() {
     int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777);
     SharedData* shm = (SharedData*)mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     close(fd);
+    if(fd != -1)
+    {
+        std::cout<<"create succesfully"<<std::endl;
+    }
 
     // 更新数据
     short color = 1; // 1 for red, 2 for blue
@@ -56,23 +60,18 @@ int main() {
         double matrix[4][4];
         uint64_t version;
         read_shared_data(shm, matrix, &version);
-        if(version != last_version)
-        {
-            last_version = version;
-            std::cout << "Version: " << version << " Color: " << color << std::endl;
-            for (int i = 0; i < 4; ++i) {
-                for (int j = 0; j < 4; ++j) {
-                    std::cout << matrix[i][j] << " ";
-                }
-                std::cout << std::endl;
-            }
-        }
-        // std::cout <<"Version:"<<version<< " Matrix: " << std::endl;
-        // for (int i = 0; i < 4; ++i) {
-        //     for (int j = 0; j < 4; ++j) {
-        //         std::cout << matrix[i][j] << " ";
+        std::cout<<version<<std::endl;
+        std::cout<<1;
+        // if(version != last_version)
+        // {
+        //     last_version = version;
+        //     std::cout << "Version: " << version << " Color: " << color << std::endl;
+        //     for (int i = 0; i < 4; ++i) {
+        //         for (int j = 0; j < 4; ++j) {
+        //             std::cout << matrix[i][j] << " ";
+        //         }
+        //         std::cout << std::endl;
         //     }
-        //     std::cout << std::endl;
         // }
     }
 

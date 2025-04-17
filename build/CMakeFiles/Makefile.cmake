@@ -16,7 +16,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../libs/json/cmake/config.cmake.in"
   "../libs/json/cmake/nlohmann_jsonConfigVersion.cmake.in"
   "../libs/json/cmake/pkg-config.pc.in"
-  "../src/aruco/CMakeLists.txt"
   "../src/cuda/CMakeLists.txt"
   "../src/data_manager/CMakeLists.txt"
   "../src/locate/CMakeLists.txt"
@@ -93,7 +92,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/data_manager/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/data_manager/json_binary_dir/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/mining_tank/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "src/aruco/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/locate/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/cuda/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
@@ -103,7 +101,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/TJURM-Engineering.dir/DependInfo.cmake"
   "src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
   "src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
-  "src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
   "src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
   "src/cuda/CMakeFiles/cudatools.dir/DependInfo.cmake"
   )

@@ -21,7 +21,7 @@ public:
 
     void autodetect();
     void detect_start();
-    void aruco_detect();
+    //void aruco_detect();
 
 
 

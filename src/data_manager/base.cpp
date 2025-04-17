@@ -23,7 +23,7 @@ cv::Mat Data::image_in_RealSense_color;
 cv::Mat Data::image_in_RealSense_depth;
 RealSenseCamera Data::realsense_camera;
 int Data::send_wait_time_ms = 2000;
-cv::aruco::PREDEFINED_DICTIONARY_NAME Data::dictionaryName = cv::aruco::DICT_4X4_50;
+//cv::aruco::PREDEFINED_DICTIONARY_NAME Data::dictionaryName = cv::aruco::DICT_4X4_50;
 std::vector< std::pair< std::vector<cv::Point3f>,std::vector<cv::Point2f> > >Data::points_3D_2D;
 std::vector<cv::Point3d> Data::points_3D;
 std::vector<int> Data::markerIds;

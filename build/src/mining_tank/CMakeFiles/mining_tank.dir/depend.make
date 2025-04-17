@@ -421,8 +421,6 @@ src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/include/op
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/include/openrm/utils/timer.h
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/include/openrm/utils/trajectory.h
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/include/openrm/video/video.h
-src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco.hpp
-src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco/dictionary.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/calib3d.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/detector.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core/affine.hpp
@@ -949,8 +947,6 @@ src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/include/op
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/include/openrm/utils/timer.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/include/openrm/utils/trajectory.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/include/openrm/video/video.h
-src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco.hpp
-src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco/dictionary.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/calib3d.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_Four.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core/affine.hpp
@@ -1476,8 +1472,6 @@ src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/include/openr
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/include/openrm/utils/timer.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/include/openrm/utils/trajectory.h
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/include/openrm/video/video.h
-src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco.hpp
-src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/aruco/dictionary.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/calib3d.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core.hpp
 src/mining_tank/CMakeFiles/mining_tank.dir/get_V.cpp.o: /usr/local/opencv4.5.4/include/opencv4/opencv2/core/affine.hpp

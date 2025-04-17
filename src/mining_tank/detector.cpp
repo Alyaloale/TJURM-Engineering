@@ -309,7 +309,7 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
         pointd.z = static_cast<double>(point.z);
 
         if(point.z < 0)
-        {+
+        {
             return false;
         }
         point_camera_3D.push_back(pointd);

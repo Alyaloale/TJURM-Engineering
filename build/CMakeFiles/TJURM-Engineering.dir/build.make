@@ -81,7 +81,6 @@ TJURM-Engineering: CMakeFiles/TJURM-Engineering.dir/src/main.cpp.o
 TJURM-Engineering: CMakeFiles/TJURM-Engineering.dir/build.make
 TJURM-Engineering: src/data_manager/libdata_manager.a
 TJURM-Engineering: src/mining_tank/libmining_tank.a
-TJURM-Engineering: src/aruco/libaruco.a
 TJURM-Engineering: src/locate/liblocate.a
 TJURM-Engineering: src/cuda/libcudatools.a
 TJURM-Engineering: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.55.1

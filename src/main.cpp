@@ -2,7 +2,7 @@
 #include "data_manager/param.h"
 #include "mining_tank/detector.h"
 #include "data_manager/control/control.h"
-#include "aruco/aruco_locate.h"
+//#include "aruco/aruco_locate.h"
 
 std::mutex hang_up_mutex;
 std::condition_variable hang_up_cv;

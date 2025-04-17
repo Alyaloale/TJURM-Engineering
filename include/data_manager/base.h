@@ -2,7 +2,7 @@
 #define DATA_MANAGER_BASE_H
 #include <opencv2/opencv.hpp>
 #include <openrm.h>
-#include <opencv2/aruco.hpp>
+//#include <opencv2/aruco.hpp>
 #include <librealsense2/rs.hpp>
 #include"data_manager/control/control.h"
 
@@ -56,7 +56,7 @@ namespace Data{
     extern int send_wait_time_ms;
     extern std::vector<std::pair<std::vector<cv::Point3f>,std::vector<cv::Point2f>>> points_3D_2D;
     extern std::vector<cv::Point3d> points_3D;
-    extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
+    //extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
     extern cv::Mat image_in_DaHeng;
     extern cv::Mat image_in_DaHeng_depth;
     extern cv::Mat image_in_RealSense_color;

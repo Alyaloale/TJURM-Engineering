@@ -32,7 +32,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/tjurm/Code/TJURM-Engineering/build/src/data_manager/CMakeFiles/data_manager.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/mining_tank/CMakeFiles/mining_tank.dir/DependInfo.cmake"
-  "/home/tjurm/Code/TJURM-Engineering/build/src/aruco/CMakeFiles/aruco.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/locate/CMakeFiles/locate.dir/DependInfo.cmake"
   "/home/tjurm/Code/TJURM-Engineering/build/src/cuda/CMakeFiles/cudatools.dir/DependInfo.cmake"
   )
