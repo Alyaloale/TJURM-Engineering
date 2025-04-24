@@ -58,33 +58,43 @@ bool init_camera(){
     //     Param::from_json(camlens[camera_type][lens_type]["Distortion"], Data::camera[1]->distortion_coeffs);
 
 
-    double realsense_exp = (*param)["Camera"]["RealSense"]["ExposureTime"];
+    double realsense_exp_color = (*param)["Camera"]["RealSense"]["ColorExposureTime"];
+    double realsense_exp_depth = (*param)["Camera"]["RealSense"]["DepthExposureTime"];
     //RealSense相机
     try {
+
+        // 创建RealSense管道
         Data::realsense_camera.config.enable_stream(RS2_STREAM_COLOR, 1280, 720, RS2_FORMAT_BGR8, 30);
-        // 配置深度图像流
         Data::realsense_camera.config.enable_stream(RS2_STREAM_DEPTH, 1280, 720, RS2_FORMAT_Z16, 30);
+        
         // 启动管道，应用配置
         if(!Data::realsense_camera.Ispipeline_started)
         {
             Data::realsense_camera.pipeline.start(Data::realsense_camera.config);
             Data::realsense_camera.Ispipeline_started = true;
         }
+
         // 配置彩色图像流
         auto sensor = Data::realsense_camera.pipeline.get_active_profile().get_device().query_sensors()[1];
         sensor.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, 0); // 关闭自动曝光
-        sensor.set_option(RS2_OPTION_EXPOSURE, realsense_exp);
-        // 获取相机内参
+        sensor.set_option(RS2_OPTION_EXPOSURE, realsense_exp_color);
 
+        // 配置深度图像流
+        auto depth_sensor = Data::realsense_camera.pipeline.get_active_profile().get_device().first<rs2::depth_sensor>();
+        depth_sensor.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, 0); // 关闭自动曝光
+        depth_sensor.set_option(RS2_OPTION_EXPOSURE, realsense_exp_depth); // 设置曝光时间
+        if (depth_sensor.supports(RS2_OPTION_VISUAL_PRESET)) {
+            // 设置预设为"High Accuracy"
+            depth_sensor.set_option(RS2_OPTION_VISUAL_PRESET, RS2_RS400_VISUAL_PRESET_HIGH_DENSITY);
+        }
+
+        // 获取相机内参
         Param::from_json(camlens["RealSense"]["D435i"]["Intrinsic"], Data::realsense_camera.intrinsic_matrix);
         Param::from_json(camlens["RealSense"]["D435i"]["Distortion"], Data::realsense_camera.distortion_coeffs);
         //std::cout<<Data::realsense_camera.intrinsic_matrix<<std::endl;
         // 获取外参
         Param::from_json(camlens["RealSense"]["D435i"]["Rotation"], Data::realsense_camera.r_rgb_to_depth);
         Param::from_json(camlens["RealSense"]["D435i"]["Translation"], Data::realsense_camera.t_rgb_to_depth);
-        //获取深度标尺
-        // double depth_scale = Data::realsense_camera.pipeline.get_active_profile().get_device().first<rs2::depth_sensor>().get_depth_scale();
-        // std::cout << "Depth scale: " << depth_scale << std::endl;
 
 
     } catch (const rs2::error& e) {
@@ -129,7 +139,7 @@ void get_image_RealSense(){
     // dec_filter.set_option(RS2_OPTION_FILTER_MAGNITUDE, 2);  // 降采样率2x
 
     // rs2::spatial_filter spatial_filter;  // 空间域高斯滤波
-    // spatial_filter.set_option(RS2_OPTION_FILTER_SMOOTH_ALPHA, 0.5f); 
+    // spatial_filter.set_option(RS2_OPTION_FILTER_SMOOTH_ALPHA, 0.5f);
     // spatial_filter.set_option(RS2_OPTION_FILTER_SMOOTH_DELTA, 20);  // 边缘保护阈值
 
     // rs2::temporal_filter temp_filter;    // 时域递推滤波
@@ -159,10 +169,10 @@ void get_image_RealSense(){
 void init_serial() {
     Data::shared_data = init_shared_memory();
     short color = 1;
-    // while(color == 0)
-    // {
-    // read_shared_data(Data::shared_data, &color);
-    // }
+    while(color == 0)
+    {
+    read_shared_data(Data::shared_data, &color);
+    }
     if(color == 1 )Data::self_color = rm::ARMOR_COLOR_RED;
     else if(color == 2) Data::self_color = rm::ARMOR_COLOR_BLUE;
     else {
@@ -190,6 +200,8 @@ void init_debug() {
     Data::serial_flag = (*param)["Debug"]["Control"]["Serial"];
     Data::show_aruco = (*param)["Debug"]["ShowAruco"];
     Data::timeout_flag = (*param)["Debug"]["TimeOut"];
+    Data::IsFourOrTwelve = (*param)["Debug"]["IsFourOrTwelve"];
+    Data::show_depth = (*param)["Debug"]["ShowDepth"];
 
 
     cv::Point3d point1,point2,point3,point4;
@@ -243,4 +255,49 @@ void init_debug() {
     Data::points_3D.push_back(point8);
     Data::points_3D.push_back(point9);
     Data::points_3D.push_back(point10);
+
+    //四点周围两角点坐标
+    cv::Point3d point01,point02;
+    point01.x = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["x"];
+    point01.y = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["y"];
+    point01.z = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["z"];
+    point02.x = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["x"];
+    point02.y = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["y"];
+    point02.z = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["z"];
+    Data::points_3D.push_back(point01);
+    Data::points_3D.push_back(point02);
+
+
+    cv::Point3d point11,point12;
+    point11.x = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["x"];
+    point11.y = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["y"];
+    point11.z = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["z"];
+    point12.x = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["x"];
+    point12.y = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["y"];
+    point12.z = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["z"];
+    Data::points_3D.push_back(point11);
+    Data::points_3D.push_back(point12);
+
+
+    cv::Point3d point21,point22;
+    point21.x = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["x"];
+    point21.y = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["y"];
+    point21.z = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["z"];
+    point22.x = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["x"];
+    point22.y = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["y"];
+    point22.z = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["z"];
+    Data::points_3D.push_back(point21);
+    Data::points_3D.push_back(point22);
+
+
+    cv::Point3d point31,point32;
+    point31.x = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["x"];
+    point31.y = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["y"];
+    point31.z = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["z"];
+    point32.x = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["x"];
+    point32.y = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["y"];
+    point32.z = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["z"];
+    Data::points_3D.push_back(point31);
+    Data::points_3D.push_back(point32);
+
 }

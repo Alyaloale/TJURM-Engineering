@@ -31,6 +31,54 @@
                         "z": 0
                     }
                 },
+                "Points0":{
+                    "Point1":{
+                        "x": 131,
+                        "y": 102,
+                        "z": 0
+                    },
+                    "Point2":{
+                        "x": 102,
+                        "y": 131,
+                        "z": 0
+                    }
+                },
+                "Points1":{
+                    "Point1":{
+                        "x": 131,
+                        "y": -81,
+                        "z": 0
+                    },
+                    "Point2":{
+                        "x": 81,
+                        "y": -131,
+                        "z": 0
+                    }
+                },
+                "Points2":{
+                    "Point1":{
+                        "x": -131,
+                        "y": -81,
+                        "z": 0
+                    },
+                    "Point2":{
+                        "x": -81,
+                        "y": -131,
+                        "z": 0
+                    }
+                },
+                "Points3":{
+                    "Point1":{
+                        "x": -81,
+                        "y": 131,
+                        "z": 0
+                    },
+                    "Point2":{
+                        "x": -131,
+                        "y": 81,
+                        "z": 0
+                    }
+                },
                 "Ratio":{
                     "MaxHeightWideRatio":3.6,
                     "MinWideHeightRatio":0.25,
@@ -100,6 +148,7 @@
         "ShowTriangle": true,
         "ShowAruco": true,
         "Debug":1,
+        "IsFourOrTwelve":false,
         "TimeOut":false,
         "Control":{
             "Serial":true,
@@ -121,7 +170,8 @@
             "ROIHeight" : -1
         },
         "RealSense" :{
-            "ExposureTime":8
+            "ColorExposureTime":8,
+            "DepthExposureTime": 3000
         }
     }
 }

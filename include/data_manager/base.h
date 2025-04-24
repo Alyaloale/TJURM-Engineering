@@ -52,10 +52,12 @@ namespace Data{
     extern bool show_contour_flag;
     extern bool show_triangle_flag;
     extern bool show_aruco;
+    extern bool IsFourOrTwelve;
     extern bool serial_flag;
     extern int send_wait_time_ms;
     extern std::vector<std::pair<std::vector<cv::Point3f>,std::vector<cv::Point2f>>> points_3D_2D;
     extern std::vector<cv::Point3d> points_3D;
+    extern std::vector<std::vector<cv::Point3d>> points_3D_triangle;
     //extern cv::aruco::PREDEFINED_DICTIONARY_NAME dictionaryName;
     extern cv::Mat image_in_DaHeng;
     extern cv::Mat image_in_DaHeng_depth;
@@ -68,6 +70,7 @@ namespace Data{
     extern cv::Mat RealSenseT;
     extern double DaHengT[4][4];
     extern SharedData* shared_data;
+    extern bool show_depth;
 }
 
 

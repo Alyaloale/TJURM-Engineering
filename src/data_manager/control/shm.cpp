@@ -13,17 +13,29 @@
 SharedData* init_shared_memory() {
     // 创建共享内存对象（O_EXCL 确保唯一创建者）
     int fd = shm_open(SHM_NAME, O_CREAT | O_EXCL | O_RDWR, 0777);
-    if (fd == -1) {
+    while(fd == -1) {
         if (errno == EEXIST) {
-            // 共享内存已存在，需先清理
-            shm_unlink(SHM_NAME);
-            fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777);
+            // 共享内存已存在，尝试清理后重新创建
+            if (shm_unlink(SHM_NAME) == -1) {
+                perror("shm_unlink failed");
+            }
+            fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777); // 重新打开
+            if (fd == -1) { // 必须检查二次调用结果！
+                perror("shm_open after unlink failed");
+            }
+            else {
+                break; // 成功创建
+            }
         } else {
             perror("shm_open failed");
-            return NULL;
         }
     }
-    ftruncate(fd, SHM_SIZE);
+
+    if (ftruncate(fd, SHM_SIZE) == -1) { // 设置共享内存大小
+        perror("ftruncate failed");
+        close(fd);
+        return NULL;
+    }
 
     SharedData* data = (SharedData*)mmap(NULL, SHM_SIZE, 
                            PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);

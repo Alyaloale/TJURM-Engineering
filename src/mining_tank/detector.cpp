@@ -10,7 +10,7 @@ cv::Mat show_contour;
 cv::Mat show_triangle;
 using namespace rm;
 namespace fs = std::filesystem;
-
+int count = 0;
 void Control::detect_start()
 {
     while(true)
@@ -47,6 +47,10 @@ void Control::detect_start()
             {
                 std::cout<<"image_in_RealSense_color is empty"<<std::endl;
             }
+            if(Data::show_image_flag&&Data::show_depth)
+            {
+                cv::imshow("Aruco", Data::image_in_RealSense_depth);
+            }
 
             cv::waitKey(1);
         }
@@ -75,6 +79,17 @@ void Control::detect_start()
             }
             detect(src);
             cv::waitKey(0);
+        }
+        else if(Data::debug==3)
+        {
+            //输入空格保存图片
+            cv::imshow("Aruco", Data::image_in_RealSense_color);
+            char key = cv::waitKey(1);
+            if(key==' ')
+            {
+                cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/realsense/"+std::to_string(count)+".jpg", Data::image_in_RealSense_color);
+                count++;
+            }
         }
     }
 }
@@ -160,7 +175,6 @@ void detect(cv::Mat &src)
             cv::line(image_in,(*mining_tank_v)[0],(*mining_tank_v)[2],cv::Scalar(255,0,0),3);
             cv::circle(image_in,(*mining_tank_v)[0],2,cv::Scalar(255,0,0),2);
         }
-        cv::imshow("image", image_in);
     }
     //std::cout<<"mining_tank_four size: "<<mining_tank_four->size()<<std::endl;
     //std::cout<<"mining_tank_v size: "<<mining_tank_v->size()<<std::endl;
@@ -168,8 +182,8 @@ void detect(cv::Mat &src)
     check(mining_tank_four, mining_tank_v, flag);
     //std::cout<<"flag.first: "<<flag.first<<std::endl;
     bool islocate = false;
-    islocate = locate(mining_tank_four, mining_tank_v, flag);
-    cv::imshow("realsens",Data::image_in_RealSense_color);
+    islocate = locate(mining_tank_four, mining_tank_v, flag,Data::IsFourOrTwelve);
+    if(Data::show_image_flag)cv::imshow("realsens",image_in);
     //释放内存
     mining_tank_four->clear();
     mining_tank_v->clear();
@@ -227,26 +241,44 @@ void check(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector<
     }
 }
 
-bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector<cv::Point2f>* mining_tank_v, std::pair<int,int> flag)
+bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector<cv::Point2f>* mining_tank_v, std::pair<int,int> flag, bool IsFourOrTwelve)
 {
     std::vector<cv::Point3d> point_world;
     std::vector<cv::Point2f> point_camera;
     std::vector<cv::Point3d> point_camera_3D;
     if(flag.first == 1 && flag.second != 0)
     {
-        point_world.push_back(Data::points_3D[0]);
-        point_world.push_back(Data::points_3D[1]);
-        point_world.push_back(Data::points_3D[2]);
-        point_world.push_back(Data::points_3D[3]);
+        if(!IsFourOrTwelve)
+        {
+            point_world.push_back(Data::points_3D[0]);
+            point_world.push_back(Data::points_3D[1]);
+            point_world.push_back(Data::points_3D[2]);
+            point_world.push_back(Data::points_3D[3]);
 
 
-        point_camera.push_back((*mining_tank_four)[0][0]);
-        point_camera.push_back((*mining_tank_four)[1][0]);
-        point_camera.push_back((*mining_tank_four)[2][0]);
-        point_camera.push_back((*mining_tank_four)[3][0]);
-        point_camera.push_back((*mining_tank_v)[0]);
-        point_camera.push_back((*mining_tank_v)[1]);
-        point_camera.push_back((*mining_tank_v)[2]);
+            point_camera.push_back((*mining_tank_four)[0][0]);
+            point_camera.push_back((*mining_tank_four)[1][0]);
+            point_camera.push_back((*mining_tank_four)[2][0]);
+            point_camera.push_back((*mining_tank_four)[3][0]);
+            point_camera.push_back((*mining_tank_v)[0]);
+            point_camera.push_back((*mining_tank_v)[1]);
+            point_camera.push_back((*mining_tank_v)[2]);
+        }
+        else
+        {
+            for(int i =0; i< 4;i++)
+            {
+                point_world.push_back(Data::points_3D[i]);
+                point_world.push_back(Data::points_3D_triangle[i][0]);
+                point_world.push_back(Data::points_3D_triangle[i][1]);
+                orderPointsThreeAnticlockwise((*mining_tank_four)[i]);
+                for(int j = 0; j < 3; j++)
+                {
+                    point_camera.push_back((*mining_tank_four)[i][j]);
+                }
+            }
+        }
+        
         if(flag.second == 1)
         {
             point_world.push_back(Data::points_3D[4]);
@@ -262,14 +294,36 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
     }
     else if(flag.first == 1 && !flag.second)
     {
-        point_world.push_back(Data::points_3D[0]);
-        point_world.push_back(Data::points_3D[1]);
-        point_world.push_back(Data::points_3D[2]);
-        point_world.push_back(Data::points_3D[3]);
-        point_camera.push_back((*mining_tank_four)[0][0]);
-        point_camera.push_back((*mining_tank_four)[1][0]);
-        point_camera.push_back((*mining_tank_four)[2][0]);
-        point_camera.push_back((*mining_tank_four)[3][0]);
+        if(!IsFourOrTwelve)
+        {
+            point_world.push_back(Data::points_3D[0]);
+            point_world.push_back(Data::points_3D[1]);
+            point_world.push_back(Data::points_3D[2]);
+            point_world.push_back(Data::points_3D[3]);
+
+
+            point_camera.push_back((*mining_tank_four)[0][0]);
+            point_camera.push_back((*mining_tank_four)[1][0]);
+            point_camera.push_back((*mining_tank_four)[2][0]);
+            point_camera.push_back((*mining_tank_four)[3][0]);
+            point_camera.push_back((*mining_tank_v)[0]);
+            point_camera.push_back((*mining_tank_v)[1]);
+            point_camera.push_back((*mining_tank_v)[2]);
+        }
+        else
+        {
+            for(int i =0; i< 4;i++)
+            {
+                point_world.push_back(Data::points_3D[i]);
+                point_world.push_back(Data::points_3D_triangle[i][0]);
+                point_world.push_back(Data::points_3D_triangle[i][1]);
+                orderPointsThreeAnticlockwise((*mining_tank_four)[i]);
+                for(int j = 0; j < 3; j++)
+                {
+                    point_camera.push_back((*mining_tank_four)[i][j]);
+                }
+            }
+        }
     }
     else if(flag.first == 0 && flag.second != 0)
     {
@@ -298,7 +352,11 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
     for(int i=0;i<point_camera.size();i++)
     {
         bool accept_invalid_depth = true;
-        if(i >= 4)
+        if(i >= 4&&!IsFourOrTwelve)
+        {
+            accept_invalid_depth = true;
+        }
+        else if(i >= 12 && IsFourOrTwelve)
         {
             accept_invalid_depth = false;
         }
@@ -352,4 +410,42 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
         cv::circle(Data::image_in_RealSense_color, pixelPoints[j], 5, cv::Scalar(0, 255, 0), -1);
     }
     return true;
+}
+
+void orderPointsThreeAnticlockwise(std::vector<cv::Point2f>& points)
+{
+    if (points.size() != 3) {
+        return; // 确保只有3个点
+    }
+    cv::Point2f origin = points[0];
+    // 1. 计算三个点的中心（几何中心）
+    cv::Point2f center = (points[0] + points[1] + points[2]) / 3.0f;
+
+    // 2. 计算每个点相对于中心的角度（逆时针方向）
+    auto computeAngle = [&center](const cv::Point2f& point) {
+        cv::Point2f vec = point - center;
+        return std::atan2(vec.y, vec.x); // 使用 atan2 计算角度（弧度）
+    };
+
+    //3点逆时针排序
+    std::sort(points.begin(), points.end(), [&](const cv::Point2f& a, const cv::Point2f& b) {
+        return computeAngle(a) > computeAngle(b);
+    });
+
+    //寻找origin
+    int sign = 0;
+    for (int i = 0; i < points.size(); i++)
+    {
+        double dis = cv::norm(points[i] - origin);
+        if(dis < 0.1)
+        {
+            sign = i;
+            break;
+        }
+    }
+    //使特殊点为第一个点，逆时针顺序不变
+    if (sign != 0)
+    {
+        std::rotate(points.begin(), points.begin() + sign, points.end());
+    }
 }

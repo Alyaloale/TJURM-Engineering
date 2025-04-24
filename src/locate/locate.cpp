@@ -114,36 +114,40 @@ cv::Point3f PixelToCameraWithoutDbscan(
     cv::undistortPoints(std::vector<cv::Point2d>{pixel_coord}, undistorted_pixel, camera_matrix, dist_coeffs, cv::Mat(), camera_matrix);
     cv::Point2d undistorted_point = undistorted_pixel.at<cv::Point2d>(0, 0);
     // 3. 读取深度值（假设深度图为ushort类型，单位毫米）
-    //检测周围4*4是否有有效值进行插值处理
-    std::vector<ushort> depths;
-    int n = 1;
-    if(accept_invalid_depth)n = 4;
-    for(int i=-n;i<n;i++)
-    {
-        for(int j=-n;j<n;j++)
-        {
-            if(pixel_coord.x+j < 0 || pixel_coord.x+j >= depth_image.cols ||
-                pixel_coord.y+i < 0 || pixel_coord.y+i >= depth_image.rows)
-            {
-                continue;
-            }
-            float dep = depth_image.at<ushort>(pixel_coord.y+i, pixel_coord.x+j);
-            
-            if(dep > 0 && dep < 10000)depths.push_back(dep);
-        }
-    }
+    //检测周围2*2是否有有效值进行插值处理
     ushort depth_mm = 0;
-    if(depths.size() == 0)
+    depth_mm = depth_image.at<ushort>(pixel_coord.y, pixel_coord.x);
+    if(depth_mm <= 0 || depth_mm > 6000) // 假设有效深度0.1m~10m
     {
-        return cv::Point3f(-1, -1, -1);
-    }
-    else {
-        std::sort(depths.begin(), depths.end());
-        int n = depths.size();
-        if (n % 2 == 0) {
-            depth_mm = (depths[n / 2 - 1] + depths[n / 2]) / 2.0;
-        } else {
-            depth_mm = depths[n / 2];
+        std::vector<ushort> depths;
+        int n = 2;
+        if(accept_invalid_depth)n = 1;
+        for(int i=-n;i<n;i++)
+        {
+            for(int j=-n;j<n;j++)
+            {
+                if(pixel_coord.x+j < 0 || pixel_coord.x+j >= depth_image.cols ||
+                    pixel_coord.y+i < 0 || pixel_coord.y+i >= depth_image.rows)
+                {
+                    continue;
+                }
+                ushort dep = depth_image.at<ushort>(pixel_coord.y+i, pixel_coord.x+j);
+                if(dep > 0 && dep < 6000)depths.push_back(dep);
+            }
+        }
+        if(depths.size() == 0)
+        {
+            return cv::Point3f(-1, -1, -1);
+        }
+        else {
+            std::sort(depths.begin(), depths.end());
+            int num = depths.size();
+            num /= 2;
+            if (num % 2 == 0) {
+                depth_mm = (depths[num / 2 - 1] + depths[num / 2]) / 2.0;
+            } else {
+                depth_mm = depths[num / 2];
+            }
         }
     }
     if (depth_mm <= 0 || depth_mm > 10000) { // 假设有效深度0.1m~10m

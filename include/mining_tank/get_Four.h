@@ -11,6 +11,6 @@ int CountLinePixels(cv::Point p1, cv::Point p2, cv::Mat &binary_image); //计算
 double calculateRedness(cv::Mat& src, const std::vector<std::vector<cv::Point>>& contours);//计算红色度
 double calculateBlueness(cv::Mat& src, const std::vector<std::vector<cv::Point>>& contours);//计算蓝色度
 double triangleArea3D(const cv::Point3d& A, const cv::Point3d& B, const cv::Point3d& C); //计算三角形面积
-void orderPointsClockwise(std::vector<std::vector<cv::Point2f>> &points, cv::Point2f &centroid); //将四点按顺时针排序
+void orderPointsClockwise(std::vector<std::vector<cv::Point2f>> &points, cv::Point2f &centroid); //将四点按逆时针排序
 void findbestfour(std::vector<std::vector<cv::Point2f>> &fours, std::vector<std::vector<cv::Point2f>>* best_four); //获取最好的四点
 #endif
