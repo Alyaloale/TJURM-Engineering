@@ -147,7 +147,8 @@
         "ShowContour": true,
         "ShowTriangle": true,
         "ShowAruco": true,
-        "Debug":1,
+        "ShowDepth": false,
+        "Debug":0,
         "IsFourOrTwelve":false,
         "TimeOut":false,
         "Control":{
