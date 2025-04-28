@@ -13,18 +13,13 @@
 SharedData* init_shared_memory() {
     // 创建共享内存对象（O_EXCL 确保唯一创建者）
     int fd = shm_open(SHM_NAME, O_CREAT | O_EXCL | O_RDWR, 0777);
-    while(fd == -1) {
+    if(fd == -1) {
         if (errno == EEXIST) {
-            // 共享内存已存在，尝试清理后重新创建
-            if (shm_unlink(SHM_NAME) == -1) {
-                perror("shm_unlink failed");
-            }
-            fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0777); // 重新打开
-            if (fd == -1) { // 必须检查二次调用结果！
-                perror("shm_open after unlink failed");
-            }
-            else {
-                break; // 成功创建
+            // 如果共享内存已存在，尝试打开它
+            fd = shm_open(SHM_NAME, O_RDWR, 0777);
+            if (fd == -1) {
+                perror("shm_open failed");
+                return NULL;
             }
         } else {
             perror("shm_open failed");
@@ -70,6 +65,19 @@ void update_shared_data(
     memcpy(data->matrix, new_matrix, sizeof(double[4][4]));  // 安全复制
     data->version++;
     pthread_mutex_unlock(&data->mutex);
+
+    //读取输出矩阵验证
+    // double read_matrix[4][4];
+    // pthread_mutex_lock(&data->mutex);
+    // memcpy(read_matrix, data->matrix, sizeof(double[4][4]));
+    // pthread_mutex_unlock(&data->mutex);
+    // std::cout << "Updated matrix: " << std::endl;
+    // for (int i = 0; i < 4; i++) {
+    //     for (int j = 0; j < 4; j++) {
+    //         std::cout << read_matrix[i][j] << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
 }
 
 /* 原子化读取（完整数据拷贝） */

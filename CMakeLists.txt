@@ -55,7 +55,6 @@ add_executable(TJURM-Engineering src/main.cpp)
 target_link_libraries(TJURM-Engineering
     data_manager
     mining_tank
-    aruco
     locate
     cudatools
 )

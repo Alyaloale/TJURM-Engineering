@@ -82,13 +82,19 @@ void Control::detect_start()
         }
         else if(Data::debug==3)
         {
-            //输入空格保存图片
-            cv::imshow("Aruco", Data::image_in_RealSense_color);
-            char key = cv::waitKey(1);
-            if(key==' ')
+            while(true)
             {
-                cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/realsense/"+std::to_string(count)+".jpg", Data::image_in_RealSense_color);
-                count++;
+                if(!Data::image_in_RealSense_color.empty())
+                {
+                    //输入空格保存图片
+                    cv::imshow("Aruco", Data::image_in_RealSense_color);
+                    char key = cv::waitKey(1);
+                    if(key==' ')
+                    {
+                        cv::imwrite("/home/tjurm/Code/TJURM-Engineering/image/realsense/"+std::to_string(count)+".jpg", Data::image_in_RealSense_color);
+                        count++;
+                    }
+                }
             }
         }
     }
@@ -230,6 +236,7 @@ void check(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector<
     if(four_point_camera.size() == 4)
     {
         double flatness = calculateFlatness(four_point_camera);
+        //std::cout<<"flatness: "<<flatness<<std::endl;
         if(flatness < 10)
         {
             flag.first = 1;
@@ -277,6 +284,9 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
                     point_camera.push_back((*mining_tank_four)[i][j]);
                 }
             }
+            point_camera.push_back((*mining_tank_v)[0]);
+            point_camera.push_back((*mining_tank_v)[1]);
+            point_camera.push_back((*mining_tank_v)[2]);
         }
         
         if(flag.second == 1)
@@ -306,9 +316,6 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
             point_camera.push_back((*mining_tank_four)[1][0]);
             point_camera.push_back((*mining_tank_four)[2][0]);
             point_camera.push_back((*mining_tank_four)[3][0]);
-            point_camera.push_back((*mining_tank_v)[0]);
-            point_camera.push_back((*mining_tank_v)[1]);
-            point_camera.push_back((*mining_tank_v)[2]);
         }
         else
         {
@@ -365,6 +372,17 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
         pointd.x = static_cast<double>(-point.y);
         pointd.y = static_cast<double>(point.x);
         pointd.z = static_cast<double>(point.z);
+        //右乘自定义外参旋转矩阵，绕y轴逆时针转20度
+        Eigen::Matrix3d rotate_y;
+        rotate_y << cos(20.0/180.0*M_PI), 0, sin(20.0/180.0*M_PI),
+                    0, 1, 0,
+                    -sin(20.0/180.0*M_PI), 0, cos(20.0/180.0*M_PI);
+        Eigen::Vector3d point_eigen(pointd.x, pointd.y, pointd.z);
+        point_eigen = rotate_y * point_eigen;
+        //std::cout<<"pointd: "<<point_eigen<<std::endl;
+        pointd.x = point_eigen(0);
+        pointd.y = point_eigen(1);
+        pointd.z = point_eigen(2);
 
         if(point.z < 0)
         {
@@ -373,7 +391,7 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
         point_camera_3D.push_back(pointd);
         //std::cout<<point_world[i]<<" ";
     }
-    //std::cout<<std::endl;
+    std::cout<<std::endl;
 
     //转换为Eigen
     std::vector<Eigen::Vector3d> srcPoints_eigen;
@@ -388,7 +406,7 @@ bool locate(std::vector<std::vector<cv::Point2f>>* mining_tank_four, std::vector
 
     //计算变换矩阵
     Eigen::Matrix4d T = computeTransformMatrix(srcPoints_eigen, dstPoints_eigen);
-    //std::cout<<"T: "<<T<<std::endl;
+    std::cout<<"T: "<<T<<std::endl;
 
     //更新共享内存
     for(int i=0;i<4;i++)

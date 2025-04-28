@@ -88,7 +88,7 @@
                 },
                 "Area":{
                     "MinArea": 50,
-                    "MaxArea":5000
+                    "MaxArea":10000
                 }
             },
             "V":{
@@ -136,17 +136,17 @@
                 },
                 "Area":{
                     "MinArea": 250,
-                    "MaxArea": 15000
+                    "MaxArea": 20000
                 }
             }
         }
     },
     "Debug":{
         "ShowImage": true,
-        "BinaryImage": true,
+        "BinaryImage": false,
         "ShowContour": true,
-        "ShowTriangle": true,
-        "ShowAruco": true,
+        "ShowTriangle": false,
+        "ShowAruco": false,
         "ShowDepth": false,
         "Debug":0,
         "IsFourOrTwelve":false,
@@ -172,7 +172,7 @@
         },
         "RealSense" :{
             "ColorExposureTime":8,
-            "DepthExposureTime": 3000
+            "DepthExposureTime":4000
         }
     }
 }

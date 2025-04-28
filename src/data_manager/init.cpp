@@ -258,46 +258,53 @@ void init_debug() {
 
     //四点周围两角点坐标
     cv::Point3d point01,point02;
+    std::vector<cv::Point3d> points0;
     point01.x = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["x"];
     point01.y = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["y"];
     point01.z = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point1"]["z"];
     point02.x = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["x"];
     point02.y = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["y"];
     point02.z = (*param)["Point"]["MiningTank"]["Four"]["Points0"]["Point2"]["z"];
-    Data::points_3D.push_back(point01);
-    Data::points_3D.push_back(point02);
+    points0.push_back(point01);
+    points0.push_back(point02);
+    Data::points_3D_triangle.push_back(points0);
 
 
     cv::Point3d point11,point12;
+    std::vector<cv::Point3d> points1;
     point11.x = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["x"];
     point11.y = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["y"];
     point11.z = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point1"]["z"];
     point12.x = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["x"];
     point12.y = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["y"];
     point12.z = (*param)["Point"]["MiningTank"]["Four"]["Points1"]["Point2"]["z"];
-    Data::points_3D.push_back(point11);
-    Data::points_3D.push_back(point12);
+    points1.push_back(point11);
+    points1.push_back(point12);
+    Data::points_3D_triangle.push_back(points1);
 
 
     cv::Point3d point21,point22;
+    std::vector<cv::Point3d> points2;
     point21.x = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["x"];
     point21.y = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["y"];
     point21.z = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point1"]["z"];
     point22.x = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["x"];
     point22.y = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["y"];
     point22.z = (*param)["Point"]["MiningTank"]["Four"]["Points2"]["Point2"]["z"];
-    Data::points_3D.push_back(point21);
-    Data::points_3D.push_back(point22);
+    points2.push_back(point21);
+    points2.push_back(point22);
+    Data::points_3D_triangle.push_back(points2);
 
 
     cv::Point3d point31,point32;
+    std::vector<cv::Point3d> points3;
     point31.x = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["x"];
     point31.y = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["y"];
     point31.z = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point1"]["z"];
     point32.x = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["x"];
     point32.y = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["y"];
     point32.z = (*param)["Point"]["MiningTank"]["Four"]["Points3"]["Point2"]["z"];
-    Data::points_3D.push_back(point31);
-    Data::points_3D.push_back(point32);
+    points3.push_back(point31);
+    Data::points_3D_triangle.push_back(points3);
 
 }

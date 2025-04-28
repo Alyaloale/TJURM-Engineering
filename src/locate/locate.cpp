@@ -120,7 +120,7 @@ cv::Point3f PixelToCameraWithoutDbscan(
     if(depth_mm <= 0 || depth_mm > 6000) // 假设有效深度0.1m~10m
     {
         std::vector<ushort> depths;
-        int n = 2;
+        int n = 3;
         if(accept_invalid_depth)n = 1;
         for(int i=-n;i<n;i++)
         {
@@ -142,7 +142,6 @@ cv::Point3f PixelToCameraWithoutDbscan(
         else {
             std::sort(depths.begin(), depths.end());
             int num = depths.size();
-            num /= 2;
             if (num % 2 == 0) {
                 depth_mm = (depths[num / 2 - 1] + depths[num / 2]) / 2.0;
             } else {
